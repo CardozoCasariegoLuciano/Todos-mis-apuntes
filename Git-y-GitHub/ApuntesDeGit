@@ -1,0 +1,375 @@
+Para crear un repositorio: git init
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+para ver el estado de los archivos: git status
+----------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+para mandar un archivo al staging:
+----------------------------------
+
+git add <en nombre del archivo> o
+git add . (para agregar todo)
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Para desacer los cambios guardados
+----------------------------------
+
+	[git restore <nombre del archivo>] vulve a la ultima vercion del archivo y lo quita de la lista "no stage" en [git status]
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+para mandar un archivo que ya esta en el staging al repositorio:
+------------------------------------------------------------------
+
+[git commit -m "Algun mensaje"] (Si van las comillas) o
+[git commit -am "Algun mensaje"] (esto reemplaza el paso del git add, pero solo si no es el primer add de ese archivo)
+
+[git commit --amend -m "Algun mensaje"] lo que hace es fucionar ese comit con el anterior (se usa cuando te olvidaste de incluir algo en ese comit anterior, para no tener que hacer otro) 
+ 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+para quitar un elemento del staging uso el comando
+---------------------------------------------------
+
+       
+	[git resert HEAD] quita el elemento del stagin (cuanto tiene el color verde en el [git status])
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Quitar un elemento de Git
+-------------------------
+		[git rm --force <nombre del archivo>] elimina el archivo de git y del disdo duro
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+para ver la historia de un archivo:
+------------------------------------
+   
+[git log <NombreDelArchivo>]
+
+[git log (sin nada)] te muestra todos los cambios del repositorio
+
+[git log <sin o con archivo> --stat]  te muestra ademas de la historia, los cambios que se hicieron
+
+[git log --all]  te muestra TODA la historia
+
+[git log --all --graph] te muestra una especie de grafico (puede  ir sin el --all) sobre las ramas
+
+[git log --all --graph --decorate --oneline] muestra lo mismo que el anterior, pero mas comprimido y facil de leer 
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+para ver los cambios de un archivo con su vercion anterior
+----------------------------------------------------------
+
+		[git show <nombreDelArchivo>]
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+para ver la diferencia entre dos verciones distintas de un archivo:
+--------------------------------------------------------------------
+
+git diff (sin nada) me muestra los cambios entre el archivo actual(modificado) y el que ya tengo en el repositorio
+
+git diff <IdentificadorDeUnaVercion> <IdentificadorDeOtraVercion>
+
+(con git log puedo ver los Identificador de cada vercion)
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+git reflog
+-----------
+		similar a [git log] pero muestra toda la historia, incluso las cosas que fueron borradas, se puede usar con el [git reset] para volver a una version ya eliminada
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Para volve a una vercion anterior:
+----------------------------------
+
+   [git reset <IdentificadorDeLaVercionQueQueremos> --hard] ("Vuelve en el tiempo y borra las verciones posteriores a esa que elegimos"
+                o
+    [git reset <IdentificadorDeLaVercionQueQueremos> --soft] ("Vuelve en el tiempo" pero lo que este en el staging sigue ahi)
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Para ver como era una vercion antigua de un archivo
+----------------------------------------------------
+
+git checkout <IdentificadorDeLaVercionQueQueremos> <NombreDerArchivoQueQueremosVer>
+       ej
+git checkout 950534474b24579e3a2beb1cb74a16cd317e2881 historia.txt
+
+si hago un commit en esta parte voy a perder todo lo que hice despues de esa vercion del archivo (otra forma de "volver en el tiempo")
+
+para volver a la ultima vercion hago lo mismo pero con master
+    ej
+git checkout master historia.txt
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Ramas
+-----
+    Para crear una rama nueva: git branch <ElNombreDeLaRama>
+
+    Para moverme a otra rama: git checkout <ElNombreDeLaRama> (paa volver al master es: git checkout master)
+
+    Para ver todas las ramas: git branch
+
+    Pare eliminar una rama: git branch -D <NombreDeLaRama>
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Merge
+----- 
+   un Merge es unir dos ramas. los cambios van a terminar en la rama en la que este parado a la hora de hacer un merge
+
+   Para hacer un merge: git merge <>ElnombreDeLaRamaQueQuieroMergear> -m "<unComentario>"
+
+        En caso de conflicto (que dos ramas modifiquen las mismas partes del archivo) lo tengo que solucionar a mano, elijiendo la vercion de la rama 
+        que yo quiera (lo  voy a ver mas claro cuando haga el merge y falle) y luego hago el Commit para guardar los cambios
+
+   Para abortar la fucion: git merge --abort
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Repositoros remotos
+-------------------
+	
+	Si simplemente quiero traerme a mi computadora el repositorio de otra persona: [git clone <URL del repositorio en remoto>]
+
+
+	Para relacionar nuestro repositorio local con el remoto:  git remote add origin <URL de mi repositorio en remoto> (en gitHUb u otros)
+		
+	Para cambiar el repositorio local: git remote set-url origin <nuevo URL>
+		
+	Para verificar que la URL se haya guardado corretamente :git remote -v
+
+
+		
+	Para descargar cosas del repositorio remoto(Y actualizar con los nuevos cambios): [git pull origin master]		
+	
+	Para Subir cosas al repositorio remoto: git push origin master
+
+
+	IMPORTANTE!! este es un caso muy puntual:
+	supongamos que los archivos que estan en mi repositorio local y remoto son distintos.
+	Si lo que yo quiero es subir mis archivos del repositorio local al repositorio remoto no me va a dejar ya que las historias de esos arichos no esta relacionada, primero tengo que traer lo que este en el remoto a mi repositorio local con el comando:	
+	
+	 [ git pull origin master --alow-unrelated-histories ] Comando que trae la versión del repositorio remoto y hacer merge para crear un commit con los archivos de ambas partes.
+
+	una vez ya tenga todo lo del repositorio remoto en mi local, ya voy a poder subir y bajar cosas sin problemas
+	
+	Si desde un principio mi repositorio local esta vacio, no hace falta, solo con un gil pull... alcanza
+	
+
+	
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+Llaves publicas y privadas/ SSH
+--------------------------------
+
+	Cambie el protocolo HTTPS por el SSH en mi gitHub, que es mas seguro y no requiere que este todo el tiempo poniendo mi usuario y contraseña.
+	cada computadora que se conecte al repositorio mediante SSH tiene que tener su propia calve publica/privada conectada a gitHub
+
+	La info esta en las clases 19,20 y 21 del curso de Git/GitHub de platzi 
+		ó
+	Googlea como crear una llave SSH en tu PC, y luego busca Como usar GitHub con SSH
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+Alias  (no es propio de Git, es de linux/git bash)
+-----
+
+	en git bash se borran los alias una ves cerrada la consola, en linux lo tengo que probar
+
+	Un alias es una abreviacion de un comando (generalmente uno largo) para tener acceso de forma mas rapida, es algo muy subjetivo y cada persona va a tener sus propios alias
+
+Para crear un alias: [alias <Nombre del alias>="<Nombre del comando>"]
+
+	mis alias:
+		arbolito = git log --all --graph --decorate --oneline
+		gs = git status
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Alias dentro de git
+-------------------
+
+	A diferencia de los alias normales estos solo son para git, y no se borran
+
+	para crear estos alias: [git config --global alias.ElnombreDelAlias "<Nombre del comando>"]
+	y para acceder a ellos es: [git <nombre del alias>]
+
+
+	mis alias:
+		git arbolito = log --all --graph --decorate --oneline
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Tags  los tags son mas que nada utiles en GitHub, donde otras personas puedan verlos 
+----
+
+	Para crear un Tag: [git tag -a <nombreDelTag> -m "un mensaje" <El Hash>]  
+
+			por comvencion el nombre del tag es v0.1, v0.2,v0.3 ect
+			el hash de una vercion son los primeros 7 caracteres del IdentificadorDeUnaVercion (se puede ver mas facil con mi alias "arbolito"
+
+	Los nuevos Tags no cuentan como cambios, por lo que no los vamos a ver en [git status]
+
+	Para mandalos a gitHub: [git push origin --tags]
+
+	para ver todos los tag: [git tag]
+	para ver todos los tag con informacion: [git show-ref --tags]
+
+	Para borrar un tag de nuestro repositorio local: [git tag -d <Nombre del tag>] 
+	para borrar un tag de nuestro repositorio remoto: [git push origin :refs/tags/<ElNombreDelTag>] (primero hay que borarrlo de forma local)
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Manejo de ramas en GitHub
+-------------------------
+
+	Para mandar una rama al repositorio: es lo mismo que simepre pero en vez de mandar al master mando la rama ej:
+		[git push origin <LaRama>]
+	
+	lo mismo es para traer una rama desde el repositorio remoto:
+		[git pull origin <LaRama>] 
+
+	Para borrar ramas en el repositorio remoto que ya no esten en el local:
+		[git push origin --delete <nombreDelaRama>]
+
+
+
+	para ver las ramas locales:
+		[git branch]
+
+	para ver las ramas remotas:
+		[git branch -r]
+
+	para ver todas las ramas:
+		[git branch -a]
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+.gitignore
+----------
+	Con el git ignore nos aseguramos que git va a ignorar siertos archivos a la hora se subirlos al repositorio remoto, como por ejemplo archivos bianrios, archivos que tengan nuestras contraseñas, etc
+	Para hacerlo tenemos que crear un archivo llamado [.gitignore]	y dentro poner los archivos que vamos a ignorar
+		por ejemplo: si pongo [*.jpg] git va a ignorar todos los archivos .jpg que quiera subir    
+		
+
+	Para subir imagenes(archivos binarios) al remoto, lo que tengo que hacer es usar algun tipo de FTP, content delivery network, por Rsync, imgur.com, etc.
+ 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+GitHub Pages
+-------------
+	GitHub pages es un servicio de hosting gratuito que ofrece github para publicar tu pagina web
+	Esta bueno para crear tu portafolio 
+
+Pasos: 
+	1) Estando en GitHub crear un nuevo repositorio publico llamado <TuNombreDeUsuario>.github.io 
+	2) Clonar ese repositorio vacio al home de tu PC y ahi dentro crear un index.html
+	3) Modificar ese index a gusto, hacerle el git add, commit, pull y push
+	4) Listo, ahora ya tengo en internet mi pagina web, para buscarca en el navegador el url es: [<TuNombreDeUsuario>.github.io]
+
+	Si te tira error podes intentar con:
+	5) Estando al repocitorio en GitHub ir a "Setings" y buscar la seccion "GitHub Pages", ahi en el campo Source cambiar el "None" por "Master branch" una vez cargado eso te va a decir la url de tu pagina
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Git Stash
+---------
+		
+	Es una forma útil de tener en temporal los cambios para poder moverse entre ramas y luego poder recuperar esos cambios.
+	Cuando hago un cambio por error y no quiero hacerle un comit uso el git stash
+	
+	[git stash] guarda los cambios en un lugar temporal y vuelve al estado anterior
+	
+	[git stash list] muestra la lista de todos mis stash (WIP = work in progres)
+	
+	[git stash pop] devuelve los cambios guardados en stash (se tiene que hacer en la misma rama en la que se hizo el stash)
+
+	[git stash branch <NombreDeNuevaRama>] mueve ese stash a una nueva rama (el stash ya tiene que estar creado)
+
+	[git stash drop] borra el ultimo stash
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Git Grep y Git Log para buscar info
+------------------------------------
+		
+		son comandos para ver cuantas veces y/o donde usaste determinada palabra, tanto en tus archivos como en commits		
+
+		En el repositorio:
+		------------------
+
+		[git grep <PALABRAaBuscar>]  busca la palabra en todo el repositorio y en que archivo se encuentra
+
+		[git grep -n <PALABRAaBuscar>] ademas muestra en que linea se encuetra
+
+		[git grep -c <PALABRAaBuscar>] muestra cuantas veces aparece esa palabra
+
+
+		En los commits:
+		--------------
+
+		[git log -S "<PALABRAaBuscar>"] muestra todos los commits en los que se menciona o tiene que ver la palabra elegida
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
