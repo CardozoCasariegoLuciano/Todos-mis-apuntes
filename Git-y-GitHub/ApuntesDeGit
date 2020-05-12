@@ -4,8 +4,11 @@ Para crear un repositorio: git init
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-para ver el estado de los archivos: git status
-----------------------------------------------
+para ver el estado de los archivos: 
+-----------------------------------
+
+       [git status]
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -23,7 +26,7 @@ git add . (para agregar todo)
 Para desacer los cambios guardados
 ----------------------------------
 
-	[git restore <nombre del archivo>] vulve a la ultima vercion del archivo y lo quita de la lista "no stage" en [git status]
+	[git restore <nombre del archivo>] vulve a la ultima vercion del archivo y lo quita de la lista "no stage" en [git status] (en color rojo)
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -140,7 +143,7 @@ Ramas
 -----
     Para crear una rama nueva: git branch <ElNombreDeLaRama>
 
-    Para moverme a otra rama: git checkout <ElNombreDeLaRama> (paa volver al master es: git checkout master)
+    Para moverme a otra rama: git checkout <ElNombreDeLaRama> (para volver al master es: git checkout master)
 
     Para ver todas las ramas: git branch
 
@@ -216,10 +219,8 @@ Llaves publicas y privadas/ SSH
 
 
 
-Alias  (no es propio de Git, es de linux/git bash)
+Alias  (no es propio de Git, es de linux/git bash pero se borran cuando cierro la consola)
 -----
-
-	en git bash se borran los alias una ves cerrada la consola, en linux lo tengo que probar
 
 	Un alias es una abreviacion de un comando (generalmente uno largo) para tener acceso de forma mas rapida, es algo muy subjetivo y cada persona va a tener sus propios alias
 
