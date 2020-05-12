@@ -1,0 +1,8 @@
+Para dar permisos a una carpeta:
+--------------------------------
+
+[sudo chmod 777 -R <'direccion de la carpeta a la que le quiero dar permisos'>]
+
+el numero indica el tipo de permisos, googlear para saber las otras combinaciones
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
