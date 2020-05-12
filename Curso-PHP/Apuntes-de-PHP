@@ -9,4 +9,20 @@ La sintaxis de PHP:
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-echo "unTexto";   muestra el contenido en la pagina
+[echo "unTexto";]   muestra el contenido en la pagina
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+Variables
+----------
+
+	Las variables son dinamicas, no hace falta indicar el tipo de dato que van a contener
+
+	se las inicializa asi: [$<NomVariable>] ej: $nombre
+
+	se les puede asignar un valor o cambiarle el que ya tiene con el = (Igual) ej: $nombre = "Luciano";
+
+	para ver algo asi como el debug de la variable uso la funcion [var_dump(<nombVar>);] ej: var_dump($nombre);
+
+

@@ -2,4 +2,8 @@ Para arrancar Xampp desde la consola de linux: [sudo /opt/lampp/lampp star]
 
 para detener Xampp desde la consalo de linux: [sudo /opt/lampp/lampp stop]
 
+
+----------
+
+Para abirir los archivos .php en el navegador: tengo que entrar en la direccion localhost/cursoPHP/...la carpeta que quiera
     
