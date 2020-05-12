@@ -1,0 +1,12 @@
+La sintaxis de PHP:
+-------------------
+
+	Todo el codigo escrito en PHP tiene que estar entre las etiquetas <?php ... ?>, todo lo que este fuera no se va a procesar como php
+	Cada instruccion esta separada por ; (Punto y coma)
+	No se va a interpretar PHP al menos que el archivo termine en .php
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+echo "unTexto";   muestra el contenido en la pagina
