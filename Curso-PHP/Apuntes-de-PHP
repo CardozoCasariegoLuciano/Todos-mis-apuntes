@@ -26,3 +26,53 @@ Variables
 	para ver algo asi como el debug de la variable uso la funcion [var_dump(<nombVar>);] ej: var_dump($nombre);
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+Arreglos:
+----------
+
+    Los arreglos usan la estructura Clave => Valor, Por defecto PHP enumera las Claves pero se puden cambiar Ej:
+
+        $personas = ["Pepe" , "Juan"]; ---- Esto es un arreglo simple asignado a la variable "personas"
+
+        $personas = 
+        [
+            [
+                "nombre" => "Pepe",
+                "edad" => 20
+            ],                            --- Esto es un arreglo que contiene otros arrelgos, donde estos tienen 
+            [                             --- claves llamadas "nombre" y "Edad"             
+                "nombre" => "Juan",       --- Los dos arreglos dentro de persona tienen como claves los numeros 0 y 1 ya que
+                "edad" => 40              --- no los hemos modificado
+            ]
+        ];
+
+
+
+        Para acceder a un elemento del arreglo Ej:
+        
+            $personas[0] -- En el caso del arreglo simple 
+
+            $personas[0]["nombre"] -- en el caso del arreglo anidado
+
+        (Utiliso el indice que le corresponde a cada valor, por defecto arranca arranca desde 0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

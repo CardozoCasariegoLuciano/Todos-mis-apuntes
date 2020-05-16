@@ -1,4 +1,4 @@
-Para arrancar Xampp desde la consola de linux: [sudo /opt/lampp/lampp star]
+Para arrancar Xampp desde la consola de linux: [sudo /opt/lampp/lampp start]
 
 para detener Xampp desde la consalo de linux: [sudo /opt/lampp/lampp stop]
 
