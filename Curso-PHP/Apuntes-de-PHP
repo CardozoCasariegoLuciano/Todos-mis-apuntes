@@ -139,12 +139,38 @@ Funciones utiles:
    };
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+     Operadores Logicos:
+     -------------------
+            
+       nombre     en PHP
+
+        and   |   and     $a and $b   los dos son true
+        or    |   or      $a or  $b   uno de los dos es true
+        xor   |   xor     $a xor $b   uno de los dos es true, pero no los dos al mismo tiempo
+        not   |   !       ! $a        el booleano opuesto
+              |
+        and   |   ||      $a || $b    los dos son true
+        or    |   &&      $a && $b    uno de los dos es true
+
+        el and y el or estan dos veces operan con distinta precedencias
 
 
+     Operadores para array:
+     ----------------------
+
+        nombre           en PHP
+                
+        Union         |  +         $a + $b    Union de $a y $b
+        Igualdad      |  ==        $a == $b   True si $a y $b tienen las mismas clave/valor
+        Identidad     |  ===       $a === $b  True si $a y $b tienen las mismas clave/valor en el mismo orden y del mismo tipo
+        Desigualdad   |  != o <>   $a != $b   True si $a no es igual a $b
+
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
+               
 
 
 
