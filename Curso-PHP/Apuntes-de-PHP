@@ -86,27 +86,57 @@ Funciones utiles:
         Repiten su bloque de codigo una determinada cantidad de veces
 
 
+
     Do ... While:
     -------------
     
     do
     {
-    [UnBloqueDeCodigo]    
+    [UnBloqueDeCodigo]    --- Garantisa que el bloque se ejecute al menos una vez
     }
     while(<Condicion>);
 
+====================================
 
+    While:
+    -----
 
+    while()
+    {
+    [Bloque de codigo]  --- El bloque podria no ejecutarce nunca si la condicion es falsa
+    };
+ 
+====================================
+ 
     For:
     ----
     
     for(<Inicializador> ,<Condicion>, <Incrementador>){
     [Bloque de codigo]
-    }
+    };
+
+====================================
+
+  
+   Foreach: 
+   --------
+	
+	 El foreach nos da una solucion facil para iterar sobre los elementos de un arreglo. El siclo se repetira tantas veces como elementos tenga el arreglo utilizado.
+
+	en cada iteracion "<unaVariableNueva>" (que tiene que ser una variable que no exita previamente y solo tendra valides dentro del foreach) tendra el valor que corresponda con los elementos del array
 
 
+   foreach(<UnArreglo> as <unaVariableNueva>)
+   {
+   [Bloque de codigo]
+   };
 
-
+	Ó
+	
+   foreach(<UnArreglo> as <$unaLlave> => <$unValor>)    ---Similar al foreach anterior, solo que utiliza dos variables, la primera para las llaves y la segunda para los valores
+   {
+   [Bloque de codigo]
+   };
 
 
 
