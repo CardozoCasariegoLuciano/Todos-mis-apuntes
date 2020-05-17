@@ -9,7 +9,7 @@ La sintaxis de PHP:
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-[echo "unTexto";]   muestra el contenido en la pagina
+[echo "unTexto";]   muestra el contenido en la pagina, utilizando el . (punto) se pueden concatenar cadenas
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,7 +23,10 @@ Variables
 
 	se les puede asignar un valor o cambiarle el que ya tiene con el = (Igual) ej: $nombre = "Luciano";
 
-	para ver algo asi como el debug de la variable uso la funcion [var_dump(<nombVar>);] ej: var_dump($nombre);
+Funciones utiles:
+-----------------
+
+	 [var_dump(<nombVar>);] --- muestra algo asi como el debug de la variable ej: var_dump($nombre);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,8 +50,6 @@ Arreglos:
             ]
         ];
 
-
-
         Para acceder a un elemento del arreglo Ej:
         
             $personas[0] -- En el caso del arreglo simple 
@@ -56,6 +57,69 @@ Arreglos:
             $personas[0]["nombre"] -- en el caso del arreglo anidado
 
         (Utiliso el indice que le corresponde a cada valor, por defecto arranca arranca desde 0)
+
+Funciones utiles:
+-----------------
+
+        [count(<NombreDelArreglo>);]  --- Retorna la cantidad de elementos del arreglo
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    Condicionales If:
+    ------------------
+
+    ssintaxis: if (<Condicion>)
+                {
+                [Bloque a ejecutar]  -- Este codigo solo se cumple si la <Condicion> SI se cumple
+                }else{
+                [Otro bloque]        -- Este codigo solo se cumple si la <Condicion> NO se cumple
+                }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    Siclos:   
+    -------
+
+        Repiten su bloque de codigo una determinada cantidad de veces
+
+
+    Do ... While:
+    -------------
+    
+    do
+    {
+    [UnBloqueDeCodigo]    
+    }
+    while(<Condicion>);
+
+
+
+    For:
+    ----
+    
+    for(<Inicializador> ,<Condicion>, <Incrementador>){
+    [Bloque de codigo]
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
