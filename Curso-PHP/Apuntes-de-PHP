@@ -138,6 +138,16 @@ Funciones utiles:
    [Bloque de codigo]
    };
 
+====================================
+
+
+Funciones utiles para todos los siclos:
+----------------------------------------
+
+            continue;  --- Ternima la iteracion (sin importa si queda codigo por ejecutar) y sige con la proxima
+            breack;    --- Termina el siclo directamente, sin importar si todavia quedan iteraciones 
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
