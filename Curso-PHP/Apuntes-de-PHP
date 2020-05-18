@@ -177,30 +177,54 @@ Funciones utiles para todos los siclos:
         Identidad     |  ===       $a === $b  True si $a y $b tienen las mismas clave/valor en el mismo orden y del mismo tipo
         Desigualdad   |  != o <>   $a != $b   True si $a no es igual a $b
 
+
+Funciones utiles para los operadores aritmeticos
+--------------------------------------------------
+
+            floor(<unaCuenta)>;  --- ti tiene decimales, lo lleva al entero anterior Ej, 2,3333 = 2 y 4,9999 = 4
+
+
+
+
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-               
+         Funciones:
+        ------------
+                    
+            function <NombreFuncion>(){    --- Entre los parecentesis van los parametros (Opcionales) pero solo pueden ser variables
+               [Bloque de codgio]
+            }
 
 
 
+Palabras utiles:
+----------------
+        
+        return <contenido a retornar>;  ---Tambien termina con la funcion (algo asi como el break de los siclos) en ese caso es 
+                                           [return;](sin contenido a retornar
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    Archivos Externos:
+    ------------------
+        
+        El archivo externo tiene que estar en la misma carpeta que nuestro php
+
+            include("NombreDerArchivo") ---si no lo encuentra tira una advertencia, pero igual va a tratar de correrlo
+            require("NombreDerArchivo") ---si no lo encuentra tira un error fatal y corta todo 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+             include_ones("NombreDerArchivo")  
+                        o                      ---solo lo puede añadir una sola vez, si importar cuantas veces se hagan los
+             require_ones("NombreDerArchivo")  ---includes/requires al mismo archivo
 
 
 
