@@ -254,6 +254,43 @@ Funciones utiles para los operadores aritmeticos
                [Bloque de codgio]
             }
 
+	Caracteristicas especiales de las funciones en PHP:
+	-------------------------------------------------
+			
+			* Parametros por defecto:
+			  en el momento de declarar una funcion yo puedo escribir un paramatro con un valor, eso hace que ese parametro sea opcional, si no pongo nada por defecto va a valer ese valor que le indique
+			  ej:
+			
+				function sumar10Alnumero($unNumero, $mensajeSalida = "El resultado es: "){
+					$unNumero += 10; 							--- Esta funcion requiere que le pasemos un valor para el parametro $unNumero para que funcione, sin embargo  
+														--- no hace falta para el segundo ya que ya tiene un valor por defecto (que lo podemos cambiar dentro de la funcion)
+
+					return "$mensajeSalida $unNumero";
+				}
+
+			
+			* Parametros por referencia:
+
+				Pasar una variable como parametro por referencia en una funcion hace que este cambie por fuera de la funcion, (mientras que con un parametro normal lo que pasa dentro de la funcion quda en la funcion
+
+			ejemplo:
+			
+				function sumarUno(&$unValor){    <---SINTAXIS Para que sea por referencia tiene que ir el signo & antes que el de $ en la variable
+					$unValor++;		  --- Basicamente lo que hace es crear un vinculo entre la variable que utilizo tanto dentro como fuera de la funcion 
+					return $unValor;
+				}				
+
+				$unNumero = 5;
+
+				echo (sumarUno($unNumero));	  <--- esto va a imprimir un 6 porque es lo que hace la funcion sin importar que sea o no por referencia
+
+				echo ($unNumero);     		  <--- Pero esto no va a retornar un 5, ya que aunque la variable $unNumero la defini fuera de la funcion tambien va a sufrir los cambios de la funcion 
+							 	   --- ya que la pase como un parametro por referencia (por lo que tambien imprimiria un 6)
+					
+
+
+
+
 
 
 Palabras utiles:
