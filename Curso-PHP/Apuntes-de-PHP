@@ -361,14 +361,14 @@ Palabras utiles:
 
             class <NombreDeLaClase> 
             {
-                [Visivilidad] <NomDelColaborador>   --- Asi se definen los colaboradores internos, en PHP es una variable ($nombre)
+                [Visivilidad] <NomDelColaborador>;   --- Asi se definen los colaboradores internos, en PHP es una variable ($nombre)
                                                     --- La visivilidad puede ser publica: todos la pueden usar directamente
                                                     ---                          private: no la pueden usar fuera de la clase, para eso 
                                                     ---                                   se tienen que crear metodos PUBLICOS que puedan
                                                     ---                                   dar esa informacion
-                                                                                 protected: igual que la anterior, pero tambien la pueden
-                                                                                            ver las clases hijas
-
+                                                    ---                          protected: igual que la anterior, pero tambien la pueden
+                                                    ---                                     ver las clases hijas
+						   			 
             
                 [Visivilidad] function <NomDelMetodo> (){ --- Si lleva un parametro, tambien se tiene que escribir como una variable
                        [bloque de codigo];                --- osea ($nombre)
@@ -377,6 +377,15 @@ Palabras utiles:
 
             }
 
+      *  colavoradores o metodos estaticos: que sea estatico significa que no permite que instancias de si mismos puedan tener su propia vercion de de ese colavorador/metodo sino que se comparten para todas las instancias
+
+		De todas formas preguntar mas como funcionan los colavoradores o metodos estaticos
+
+		datos:
+			para acceder a estos colavoradores o metodos estaticos desde una de las instancias tengo que hacerlo asi: [<nombreDeLaCLASE>::<NombreDeLoQueSeaEstatico>] o [self::<NombreDeLoQueSeaEstatico>]
+
+	
+
       *  Para crear un nuevo objeto de una clase:
         
              $nombreDelObjeto = new nobmreDeLaClase();  --- puede ir con parametros si tiene un constructor
@@ -384,6 +393,9 @@ Palabras utiles:
 
       *  Es una muy buena practica tener cada clase en un archivo distinto, con el nombre de esa clase y luego ir conectadolas con 
          includes o requires
+
+	
+      
 
 
 
@@ -429,6 +441,8 @@ Palabras utiles:
                             $otroNombre = "el nombre del hijo es" . $unNombre     --- que esten en el padre
                             Parent::__construct($otroNombre, $unAño);             --- en este constructor uso al mismo del padre, pero tiene
                         }                                                         --- otras modificaciones 
+
+										  --- El mensaje [parent:: <unMensajeDeLaClasePadre>]  lo que hace es ejecutar todo el mensaje elejido para luego usarlo 
 
 
        interfaces:        
