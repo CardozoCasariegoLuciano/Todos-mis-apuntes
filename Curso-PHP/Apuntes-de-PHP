@@ -77,15 +77,48 @@ Funciones utiles:
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    Condicionales If:
+    Condicional If:
     ------------------
 
-    ssintaxis: if (<Condicion>)
+    sintaxis: if (<Condicion>)
                 {
                 [Bloque a ejecutar]  -- Este codigo solo se cumple si la <Condicion> SI se cumple
                 }else{
                 [Otro bloque]        -- Este codigo solo se cumple si la <Condicion> NO se cumple
                 }
+
+
+====================================
+
+
+    Condicional Ternario:
+    --------------------
+
+    sintaxis: <condicion> ? <Bloque si es true> : <Bloque si es false>
+
+
+====================================
+
+
+    Condicional Switch-case:
+    ------------------------
+		
+    sintaxis: switch ($unValor){
+
+		case unValor: <Codigo>;
+		break;		 	   ---El break separa los distintos case (tiene que estar si o si)
+
+		case unValor: <Codigo>;    ---tantos case como quiera
+		break;
+
+		case unValor: <Codigo>;
+		break;
+
+		default: <Codigo>;        ---El default se ejecuta cuando ninguna de las anteriores se cumple
+	      }
+
+
+se ejecutara el bloque en el que coincida $unValor con el de alguno de los cases
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
