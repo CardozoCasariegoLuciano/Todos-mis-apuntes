@@ -88,7 +88,9 @@ Funciones utiles:
 	[is_array(<NombreDelArreglo>)]; --- Retorna TRUE si el array por parametro es efectivamente un array
 					--- falso si no lo es (error si no existe)
 
-	[sort(unArray)]  ---ordena el array de mayor a menor 
+	[sort(unArray)];  ---ordena el array de mayor a menor 
+
+	[var_dump(unArray)]; --- tambien sirve para arrays, mostrando todo lo que tiene
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -505,8 +507,6 @@ Palabras utiles:
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-Tratar con formularios:
------------------------
 
 
 
