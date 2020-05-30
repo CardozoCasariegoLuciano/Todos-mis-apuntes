@@ -49,6 +49,17 @@ Arreglos:
 
         $personas = ["Pepe" , "Juan"]; ---- Esto es un arreglo simple asignado a la variable "personas"
 
+
+     Para agregar otro valor al array normal: 
+	 $personas[] = <ElNuevoElemento>    --- Tambien podemos poner un indice entre los corchetes para tambien 
+					    --- indicar en que pocicion queremos a este elemento (tener cuidado
+					    --- porque puede reemplazar los valores y saltearme pociciones)
+
+     Para agregar otro valor al array clave=>valor:
+	$personas[<clave>] = <valor> ; 	
+		
+
+
         $personas = 
         [
             [
@@ -73,6 +84,11 @@ Funciones utiles:
 -----------------
 
         [count(<NombreDelArreglo>);]  --- Retorna la cantidad de elementos del arreglo
+
+	[is_array(<NombreDelArreglo>)]; --- Retorna TRUE si el array por parametro es efectivamente un array
+					--- falso si no lo es (error si no existe)
+
+	[sort(unArray)]  ---ordena el array de mayor a menor 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
