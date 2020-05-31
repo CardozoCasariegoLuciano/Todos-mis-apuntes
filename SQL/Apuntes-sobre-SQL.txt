@@ -1,0 +1,48 @@
+SQL (structured query language)
+
+
+Bases de datos
+
+	*Para crear: CREATE DATABASE <nombreDB> ;
+
+	*Para Eliminar: DROP DATABASE <nombreDB> ;
+	*Para ver la lista de bases de datos (en consola): SHOW DATABASES; 
+	*Para acceder a una base de datos:  USE <nombreDB> ; --- esto nos posiciona dentro de la base de datos en la que queremos trbajar
+
+Tablas
+
+	*para crear una tabla: CREATE TABLE <nombreTabla> (<NombreDelCampo> <TipoDeDato>, otro campo y su tipo de dato ...)
+	
+	*para eliminar una tabla: DROP TABLE <nombreTabla> ;
+	*Para ver la lista de tablas (en consola): SHOW TABLES;
+	*para ver los detalles de una tabla: DESCRIBE <nombreTabla>;
+	*para quitar un campo(columna): ALTER TABLE <nombreTabla> DROP <NombreDelCampo> ;
+	*para agregar otro campo(columna): ALTER TABLE <nombreTabla> ADD COLUMN <NombreDelCampo> <TipoDeDato> ;
+
+	*para agregar tuplas(filas): INSERT INTO <nombreTabla> (<Campos>) VALUES (<Valores>);
+
+		(<Campos>): Todos los campos que tenga la tabla y que yo quiera usar para agregar valores
+		(<Valores>): los datos que quiera agregar en cada campo en el orden en el que los puse en <Campos>
+			--- Ambos separados por comas (,)  ---
+
+	*Si quiero importar una tabla de un exel, este tiene que ser .ods, y lo puedo hacer desde el panel de
+	    phpMyAdmin en mi localhost parandome en la base de datos que quiera y buscando la opcion importar.
+	    Tambien puedo exportar tablas de una base de datos para importarla en otra
+
+
+   
+Consultas de seleccion:
+
+		
+		
+		SELECT <Campos> FROM <nombreTabla>; --- Muestra todos los valores en los campos seleccionados de
+						    --- la tabla elegida ( con el * asterisco, en la parte 
+						    --- de <campos> seleccionamos todos los campos
+
+
+		SELECT <Campos> FROM <nombreTabla> WHERE <unaCondicion>; 
+
+			--- es igual a la anterior, pero al agregarle un WHERE, solo se van a mostrar
+			--- las tuplas que cumplan la condicion que le pasamos ej:
+			--- .... WHERE edad = 20 // esto muestra todas las tuplas en las que la edad sea 20
+			---  edad tiene que ser un campo existente en la tabla utilizada
