@@ -39,6 +39,30 @@ Funciones utiles:
 
 	 [var_dump(<nombVar>);] --- muestra algo asi como el debug de la variable ej: var_dump($nombre);
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+	Super variables:
+	----------------
+		Las super variables son aquellas en las que su area de trabajo va mas alla de un solo archivo
+		  
+	GET y POST: ambas se encargan de pasar informacion de un archivo a otro (generalmente por un formulario)
+	  la diferencia que es GET es publico y POST es privado a los ojos del usuario
+
+		ejemplo:
+
+		codigo html
+
+		  <form method="GET" action="pagina_busqueda.php">   			  --- Aca creo un formulario: en method espesifico cual voy a usar (GET o POST) y en action digo a donde se va a enviar esa informacion
+       		 	<label>Buscar: <input type="number" name ="valor"></lavel>        --- Aca va a esta el formato de mi formulario, puede ser el que mas me guste pero importante los nombres en el
+     		   	<input type="submit" value ="Dale uacho">			  ---  atributo "name" ya que con eso puedo recuperar el valor 
+   		  </form>
+
+		codigo PHP
+	
+		  $busqueda = $_GET["valor"];  						 ---Aca estoy accediendo a lo que el usuario guardo en la seccion del formulario llamada "valor" y se 
+										       	 ---  indican asi: $_GET(o POST)[unNombre]
+	Si llega a tirar un ERROR, intentar con un @ al comienzo			 ---  luego si lo guardo en una variable lo puedo usar para lo que quiera (incluida una consula en SQL) <-- mas adelante vemos eso
+	   @$busqueda = $_GET["valor"]; (no se porque)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -600,14 +624,24 @@ Palabras utiles:
 
 
 	----------------hasta aca ya esta la consulta----------------
-
 				
-		mysqli_connect($conexion)  ---cierra la coneccion con la bd para que ya no consuma recursos
+		mysqli_close($conexion)  ---cierra la coneccion con la bd para que ya no consuma recursos
 
 
 
+	diferencias entre las siguientes 3 funciones:
+			las tres leen una consulta en SQL y retornan el resultado en un array pero:
+	
+	 [mysqli_fetch_row(<Consulta>)]: tiene los indices por defecto (osea con numeros desde el 0)
 
+	 [mysqli_fetch_assoc(<Consulta>)]: tiene los indices con clave=>Valor, siendo las claves los nombres
+						    de los campos
 
+	[mysqli_fetch_array(<Consulta>, <Constante>)]: esta puede ser cualquiera de las anteriores (o ambas)
+		    				       dependiendo de lo que le pasemos como <Constante>:
+								MYSLQI_ASSOC: usa  los indices clave valor
+								MYSLQI_NUM: usa  los indices por defecto (numerico)
+								MYSLQI_BOTH: puede recibir cualquiera de los dos
 
 
 

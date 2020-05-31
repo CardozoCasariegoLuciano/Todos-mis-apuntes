@@ -46,3 +46,48 @@ Consultas de seleccion:
 			--- las tuplas que cumplan la condicion que le pasamos ej:
 			--- .... WHERE edad = 20 // esto muestra todas las tuplas en las que la edad sea 20
 			---  edad tiene que ser un campo existente en la tabla utilizada
+
+
+
+	Comodin en caracteres:
+	----------------------
+	los comodines de caracteres son justamente eso, pueden ser cualquier caracter
+	Para usarlos tengo que reemplazar el = (igual) por el LIKE (vendrian a ser lo mismo)
+	  y luego usar uno de los siguientes comodines dentro del string que quiero que retorne la consulta
+	
+	% Comodion de palabras: puede reemplazar toda una palabra
+	_ Comodin de caracter: solo puede reemplazar un caracter
+
+		ejemplos:
+
+			SELECT * FROM productos WHERE nombre LIKE "%personas"; 	
+				---Va a retornar todas las columnas de la tabla productos en las que
+				--- el campo "nombre" termine  en "personas" (ya que el comodin esta al principio)
+
+			SELECT * FROM productos WHERE nombre LIKE "personas%"; 	
+				---Va a retornar todas las columnas de la tabla productos en las que
+				--- el campo "nombre" comience con "personas" (ya que el comodin esta al final)
+
+			SELECT * FROM productos WHERE nombre LIKE "per_onas"; 	
+				---Va a retornar todas las columnas de la tabla productos en las que
+				--- el campo "nombre" sea igual a "per#onas" siendo # cualquier letra, por
+				--- lo que podra retornar tanto "personas" como "perzonas" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
