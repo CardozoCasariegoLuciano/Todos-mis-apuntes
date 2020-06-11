@@ -23,7 +23,27 @@ Tablas
 
 		(<Campos>): Todos los campos que tenga la tabla y que yo quiera usar para agregar valores
 		(<Valores>): los datos que quiera agregar en cada campo en el orden en el que los puse en <Campos>
-			--- Ambos separados por comas (,)  ---
+			--- Ambos separados por comas (,) 
+
+	*para Eliminar tuplas(filas): DELETE FROM <nombreTabla> WHERE <UnCriterioParaEliminar>;
+
+		<UnCriterioParaEliminar>: igual que para los SELECT, un ejemplo puede ser:
+			
+				DELETE FROM personas WHERE edad=30;  ---Elimina a todas las personas que tengan
+								     --- 30 años
+
+	*para Modificar tuplas(filas): UPDATE <nombreTabla> SET <NombreCampo>=<NuevoValor> WHERE <UnCriterioParaModificar>;
+
+		<UnCriterioParaModificar>: Es opcional, si no se pone modifica a toda la tabla.  
+	 ejemplo:
+			
+		UPDATE personas SET edad=(edad + 1) WHERE nombre = "Pepe";  
+
+						--- Aumenta un año a la edad de todas las personas que se llamen
+						--- pepe en la tabla
+
+
+
 
 	*Si quiero importar una tabla de un exel, este tiene que ser .ods, y lo puedo hacer desde el panel de
 	    phpMyAdmin en mi localhost parandome en la base de datos que quiera y buscando la opcion importar.

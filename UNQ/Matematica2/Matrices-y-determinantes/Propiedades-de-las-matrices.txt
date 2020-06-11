@@ -1,0 +1,105 @@
+Matriz cuadrada: si tiene la misma cantidad de filas y columnas
+Matriz NULA: si todos sus elementos son 0
+Matriz ESCALAR: es una matriz 1x1 
+Matriz IDENTIDAD: siempre es cuadrada, todos sus elementos son ceros menos la diagonal principal, que son todos 1
+Matriz TRIANGULAR: es aquella que todos sus elementos por encima o por debajo de la diagonal principal, son 0
+Matriz SIMETRICA: es cuando una matriz es igual a su traspuesta, las matrices simetricas son cuadradas y simetricas respecto a la diagonal principal A = A∧t
+Matriz ANTI-SIMETRICA: es cuando una matriz es igual a la opuesta de su traspuesta A = -A∧t
+Matriz IDEMPOTENTE: A = A∧2 
+Matriz ORTOGONAL: Es aquella cuya inversa es igual a su trastuesta (A∧-1 = A∧t)
+
+
+
+
+Suma de matrices:
+	Tienen que tener la misma dimension
+	Se suman los elementos de cada posicion 
+
+Producto escalar:
+	multiplicar una matriz por un numero
+	se multiplican todos los elementos de la matriz por ese escalar
+	
+
+
+Matriz transpuesta:
+
+	intercambiar las filas por columas
+
+		         
+ 	se explesa asi: A∧t (A a la t) siendo A una matriz
+
+	 
+	propiedades de la traspuesta:
+		
+		(A∧t)∧t = A
+		(A + B)∧t = A∧t +B∧t
+		(A * B)∧t = B∧t * A∧t  (se invierte el orden de A y B)
+		(k * A)∧t = k * A∧t    donde k es un real  
+
+
+
+
+
+Matriz inversa por gauss:
+
+	propiedades de la inversa:  Solo para matrices cuadradas
+		
+		(A∧-1)∧-1 = A
+		(A + B)∧-1 = A∧-1 + B∧-1
+		(A * B)∧-1 = B∧-1 * A∧-1  (se invierte el orden de A y B)
+		(k * A)∧-1 = k∧-1 * A∧-1    donde k es un real
+		(A∧-1)∧t = (A∧t)∧-1      (la traspuesta de la inversa es igual a la inversa de la traspuesta)
+
+
+	es dificil plasmmarlo por aca, en la carpeta lo tengo mejor, pero...
+	
+	paso1) copio mi matriz y al lado derecho copio la matriz identidad del mismo tamaño
+	paso2) aplicando diferentes ecuaciones elementales, llevar mi matriz original a la identidad, esto tambien va a modificar mi matriz de la derecha (la identidad)
+	paso3) si lo logro, entonces mi matriz SI tiene inversa, y es esa que me quedo del lado de la derecha
+	paso4) para verificar, [matriz original] * [matriz inversa] = [matriz identidad]
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

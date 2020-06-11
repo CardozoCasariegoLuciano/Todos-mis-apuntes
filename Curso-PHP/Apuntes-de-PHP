@@ -591,6 +591,7 @@ Palabras utiles:
   			  $consulta = "SELECT * FROM  datosusuarios";
 
 					--- Aca estoy guardando una consulta escrita en SQL
+					
 
    			  $resultado = mysqli_query($conexion, $consulta);					
 					
@@ -621,6 +622,8 @@ Palabras utiles:
 						--- false si ya no encuentra ninguna
 						--- No funciona si solo uso la variable $fila, tengo que usarlo
 						--- todo
+						--- Lo mismo con la variable $resultado(esta un poco mas arriba)
+						--- si no se puede realizar la consulta retorna false
 
 
 	----------------hasta aca ya esta la consulta----------------
@@ -644,17 +647,18 @@ Palabras utiles:
 								MYSLQI_BOTH: puede recibir cualquiera de los dos
 
 
-
-
+	-------------------- otras funciones ---------------------
 
  
 
+	[mysqli_affected_rows(<Conexion>)] --- Renorna el INT indicando cuantas lineas fueron Agregadas/Eliminadas
+					   ---  o modificadas
 
 
-
-
-
-
+	
+	[mysqli_real_escape_string(<Conexion> , <unString>)]    --- EVITA INYECCIONES (Importante en la seguridad)
+								--- Ignora todos los caracteres especiales
+							        ---   de <unString> (que podria ser una variable)
 
 
 
