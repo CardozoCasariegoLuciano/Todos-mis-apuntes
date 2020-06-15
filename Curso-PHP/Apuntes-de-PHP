@@ -662,6 +662,147 @@ Palabras utiles:
 
 
 
+	-------------------- Consultas preparadas ---------------------
+
+
+	Ventajas: Evitan la inyeccion SQL y las consultas de tipo INSERT son mas rapidas y eficientes
+	desventajas: son mas lineas de comandos
+
+	Paso 1: creamos la consulta SQL sustituyendo los valores de criterio por un ? (signo de pregunta)
+	 	 ej:  $consulta= "SELECT * FROM paises WHERE nombrePais = ?";
+
+	Paso 2: Preparamos la consulta con la funcion [mysqli_prepare();] resive 2 parametros: una conexion y
+		y una consulta SQL (retorna un objeto mysqli_stmt)
+		  ej:  $resultado= mysqli_prepare($conexion, $consulta);
+
+
+	Paso 3: Unimos los parametros a la sentencia SQL con la funcion [mysqli_stmt_bind_param()] requiere 3 
+		parametros: el objeto mysqli_stmt(paso2), <el tipo de dato>, <criterioParaElWhere>. retorna true o
+		false
+		<el tipo de dato>: "i" tipo INT
+				   "d" tipo double
+				   "s" tipo string			   
+				   "b" tipo blob y se envia en paquetes (sea lo que sea xD)
+		<criterioParaElWhere>: El que el usuario pasa por el formulario
+		  ej $ok = mysqli_stmt_bind_param($resultado, "sis" , $nombrePais, $poblacion, $idioma);
+						---un tipo de dato por cada elemento---
+
+
+	Paso 4: Ejecutar la consulta con  [mysqli_stmt_execute()] retorna true o false
+		requiere como parametro el objeto mysqli_stmt(paso2)
+
+	Paso 5: Asocial variables al resultado de la consulta con la funcion [mysqli_stmt_bind_result()] retorna
+		true o false
+		Requiere como parametros el objeto mysqli_stmt(paso2) y tantas variables como columnas requiera
+		  nuestra consulta (no tienen que estar previamente declaradas)
+
+	Paso 6: Lectura de valores, usamos la funcion [mysqli_stmt_fetch()] pide como parametro
+		 el objeto mysqli_stmt(paso2) 
+
+	
+	una vez terminado cierro el objeto stmt: [mysqli_stmt_close($resultado)]
+	
+
+
+Ejemplo:
+
+<?php  
+
+    $bd_host= "localhost";
+    $db_nombre= "cursophp_pildorayt";
+    $db_usuario= "root";
+    $db_contra= "";
+
+   //---- conexion y confuguracion de la base de datos
+
+    $conexion = mysqli_connect($bd_host, $db_usuario, $db_contra,  $db_nombre);
+
+    if (mysqli_connect_errno()){
+        echo("no se  pudo conectar a la base de datos");
+        exit();
+    }   
+
+    mysqli_set_charset($conexion, "utf8");
+
+    //---- fin de la coneccion y configuracion
+
+
+    $busqueda= $_GET["buscar"];
+
+
+    //---- Paso 1: Consulta     
+
+    $consulta = "SELECT * FROM  paises WHERE nombrePais = ?";    //--con el interrognate
+
+    //----  Paso 2: prepara la consulta
+
+    $resultado = mysqli_prepare($conexion, $consulta);    
+
+    //----  Paso 3: unir el dato que paso el usuario con la consulta
+
+    $ok = mysqli_stmt_bind_param($resultado, "s" , $busqueda);
+
+    //---- Paso 4  Ejecutar la consulta
+
+    $ok= mysqli_stmt_execute($resultado);
+
+        if ($ok==false) {
+            echo "Error al ejecutar la consulta";
+        }else{
+
+            //Paso---- 5  Asociar variables al resultado
+
+            $ok=mysqli_stmt_bind_result($resultado, $nomPais, $poblacion, $idioma, $continente, $precidente);
+
+            //Paso---- 6  Leo los resultados            
+
+            while (mysqli_stmt_fetch($resultado)) {
+                echo "Nombre: " . $nomPais . "<br>";
+                echo "Poblacion: " . $poblacion . "<br>";
+                echo "Idioma: " . $idioma . "<br>";
+                echo "Continente: " . $continente . "<br>";
+                echo "precidente Actual: " . $precidente . "<br>";
+            }
+        }
+
+        mysqli_stmt_close($resultado);  // ----------------- cierro el objeto stmt
+
+        mysqli_close($conexion);
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
