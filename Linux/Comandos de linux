@@ -6,3 +6,42 @@ Para dar permisos a una carpeta:
 el numero indica el tipo de permisos, googlear para saber las otras combinaciones
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Para comprimir un archivo/Carpeta .tar:
+----------------------------------------
+
+[tar cvf <nombreDel.tar> <archivosY/OCarpetasAComprimir>]
+
+ 	c: Indica que vas a crear un nuevo archivo
+	v: Indica que va a mosrar el proceso
+	f: Indica que voy a pasar un archivo .tar
+	<nombreDel.tar>: Es el nombre que va a terner el Comprimido, pero tiene que terminar en .tar
+	<archivosY/OCarpetasAComprimir>: si voy a comprimir mas de una cosa los pongo separado
+
+Para ver el contenido de un .tar:
+----------------------------------------
+
+[tar tvf <nombreDel.tar>]
+
+ 	t: Indica que queres ver el contenido
+	v: Indica que va a mosrar el proceso
+	f: Indica que voy a pasar un archivo .tar
+	<nombreDel.tar>: Es el nombre del archivo .tar
+	
+
+Para descomprimir un .tar:
+----------------------------------------
+
+[tar xvf <nombreDel.tar>]
+
+ 	x: Indica que vas a descomprimir
+	v: Indica que va a mosrar el proceso
+	f: Indica que voy a pasar un archivo .tar
+	<nombreDel.tar>: Es el nombre del archivo .tar
+	
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
