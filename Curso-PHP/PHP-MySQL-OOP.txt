@@ -1,0 +1,76 @@
+Conectarse a una BASE DE DATOS con PHP:
+---------------------------------------
+
+			
+	Hay 4 datos que son importantes a la hora de estableser una conexion con nuestra base de datos: 
+		* La direccion del servidor de la base de datos				
+		* El usuario de la base de datos (por defecto es root)
+		* la contraseña del usuario (por defecto no tiene, osea "" comillas vacias)
+		* El nombre de la base de datos
+
+
+	hay dos maneras de hacerlo: la orientada a objetos y la orietada a prosedimientos
+
+
+	Orientada a Objetos:
+	--------------------
+
+	Las funciones vistas en el metodo orientado a procedimientos pasan a ser metodos.
+
+	
+	ejemplo:
+
+
+	$nombreConexion = new mysqli("DirDeLaBD","Usuario","Password","NombreDeLaBD");
+			
+				--- Establese la conexion
+	
+	if ($conexion->connect_errno) {
+				echo "Fallo la conexion " . $conexion->connect_errno; 
+				exit();
+			}
+
+				--- Verifica si hay algun error en la connexion
+				--- [$conexion->connect_errno;] muestra el tipo de error
+
+
+	$sql = "SELECT * FROM paises";   --- La consulta en SQL
+
+	
+	$resultado = $conexion->query($sql);
+		
+					--- el metodo [query()] requiere una colsuta como parametro, y la ejecuta		
+	
+	
+	
+	while ($fila=$resultado->fetch_assoc()) 	--- "mira" la informacion de la tabla virtual
+	{						--- que recive como parametro y ademas 	
+		echo "Nombre: ". $fila["nombrePais"];	--- true si encuentra una tupla y
+	};						--- false si ya no encuentra ninguna
+							--- (mas detalles en metodo prosedural)	
+
+
+	$conexion->close();   --- cierra la conexion a la base de datos;
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,239 @@
+Conectarse a una BASE DE DATOS con PHP:
+	---------------------------------------
+
+			
+			Hay 4 datos que son importantes a la hora de estableser una conexion con nuestra base de datos: 
+				* La direccion del servidor de la base de datos				
+				* El usuario de la base de datos (por defecto es root)
+				* la contraseña del usuario (por defecto no tiene, osea "" comillas vacias)
+				* El nombre de la base de datos
+
+
+			hay dos maneras de hacerlo: la orientada a objetos y la orietada a prosedimientos
+
+
+	
+
+		orietada a prosedimientos:
+	----------------------------------------
+
+					antes que nada es una buena practica tener cada una de las sigientes
+					funciones guardadas en una variable para que el codigo sea mas facil 
+					de leer, pero no es necesario
+		ejemplo:
+
+		 	  $bd_host= "localhost";   		-- direccion de la bd		   	  
+  			  $db_usuario= "root";	   		-- usuario
+  			  $db_contra= "";	   		-- contraseña 
+			  $db_nombre= "cursophp_pildorayt";	-- nombre de la bd
+
+					--- arriba me estoy guardando la informacion importante para 
+					--- tenerla en variables mas comodas de usar
+ 
+
+  			  $conexion = mysqli_connect($bd_host, $db_usuario, $db_contra,  $db_nombre);
+
+					--- en la variable $conexion estoy guardando justamente la conexion que se 
+					--- consigue con la funcion [mysqli_connect()] que como parametro recibe como
+					--- parametros los datos importantes del principio (que tengo el otras variables
+					--- en el orden en el que estan
+
+
+			 if(mysqli_connect_errno())  ---OPCIONAL este if evita que salten errores
+			 {			     
+			    exit();     --- funcion propia de PHP que lo que hace es salir del bloque PHP
+			 }	 	--- directamente. En este caso, si no se puede conectar a la BD sale 
+					--- del bloque para evitar errores y que otro codigo se pueda ejecutar
+				
+					--- La funcnion [mysqli_connect_errno()] se utiliza justo debajo de 
+					--- intentar establecer la conexion con la base de datos y
+					--- retorna un booleano, TRUE si se encontro con un problema 
+
+			mysqli_set_charset($conexion, "utf8") --OPCIONAL permite a la BD leer carateres latinos
+
+	----------------hasta aca mi archivo ya esta vinculado con mi base de datos----------------
+				
+		hacele una consulta:
+		-------------------
+
+  			  $consulta = "SELECT * FROM  datosusuarios";
+
+					--- Aca estoy guardando una consulta escrita en SQL
+					
+
+   			  $resultado = mysqli_query($conexion, $consulta);					
+					
+					--- La funcion [mysqli_query()] ejecuta una consulta y recive como
+					--- parametros una CONEXION a la bd y una CONSULTA
+					--- (por eso esta bueno usar variables)
+					--- internamente lo que hace es crear una tabla virtual con los resultados
+					--- de nuestra consulta
+			 
+   			  $fila =mysqli_fetch_row($resultado);
+
+					--- La funcion [mysqli_fetch_row()] "mira" la informacion de la tabla virtual
+					--- que recive como parametro. OJO, solo mira la primer tupla, si lo vuelvo a
+					--- ejecutarme da la segunda, y asi con el resto, puedo usar un siclo
+					--- para verlas todas (solo mira, no muestra en pantalla)
+					--- el resultado lo expresa dentro de un array (osea eso es lo que retorna)
+ 			  
+			
+				*para acceder e imprimir todas las tuplas de la funcion [mysqli_fetch_row()]
+				
+				  	  while ($fila =mysqli_fetch_row($resultado))
+   					  {
+    					    echo "$fila[0]  <br>";
+    					    echo "$fila[1]  <br>";
+    				 	  };
+						--- puedo usarlo diractamente en la condicion del while porque
+						--- tambien retorna un booleano, true si encuentra una tupla y
+						--- false si ya no encuentra ninguna
+						--- No funciona si solo uso la variable $fila, tengo que usarlo
+						--- todo
+						--- Lo mismo con la variable $resultado(esta un poco mas arriba)
+						--- si no se puede realizar la consulta retorna false
+
+
+	----------------hasta aca ya esta la consulta----------------
+				
+		mysqli_close($conexion)  ---cierra la coneccion con la bd para que ya no consuma recursos
+
+
+
+	diferencias entre las siguientes 3 funciones:
+			las tres leen una consulta en SQL y retornan el resultado en un array pero:
+	
+	 [mysqli_fetch_row(<Consulta>)]: tiene los indices por defecto (osea con numeros desde el 0)
+
+	 [mysqli_fetch_assoc(<Consulta>)]: tiene los indices con clave=>Valor, siendo las claves los nombres
+						    de los campos
+
+	[mysqli_fetch_array(<Consulta>, <Constante>)]: esta puede ser cualquiera de las anteriores (o ambas)
+		    				       dependiendo de lo que le pasemos como <Constante>:
+								MYSLQI_ASSOC: usa  los indices clave valor
+								MYSLQI_NUM: usa  los indices por defecto (numerico)
+								MYSLQI_BOTH: puede recibir cualquiera de los dos
+
+
+	-------------------- otras funciones ---------------------
+
+ 
+
+	[mysqli_affected_rows(<Conexion>)] --- Renorna el INT indicando cuantas lineas fueron Agregadas/Eliminadas
+					   ---  o modificadas
+
+
+	
+	[mysqli_real_escape_string(<Conexion> , <unString>)]    --- EVITA INYECCIONES (Importante en la seguridad)
+								--- Ignora todos los caracteres especiales
+							        ---   de <unString> (que podria ser una variable)
+
+
+
+	-------------------- Consultas preparadas ---------------------
+
+
+	Ventajas: Evitan la inyeccion SQL y las consultas de tipo INSERT son mas rapidas y eficientes
+	desventajas: son mas lineas de comandos
+
+	Paso 1: creamos la consulta SQL sustituyendo los valores de criterio por un ? (signo de pregunta)
+	 	 ej:  $consulta= "SELECT * FROM paises WHERE nombrePais = ?";
+
+	Paso 2: Preparamos la consulta con la funcion [mysqli_prepare();] resive 2 parametros: una conexion y
+		y una consulta SQL (retorna un objeto mysqli_stmt)
+		  ej:  $resultado= mysqli_prepare($conexion, $consulta);
+
+
+	Paso 3: Unimos los parametros a la sentencia SQL con la funcion [mysqli_stmt_bind_param()] requiere 3 
+		parametros: el objeto mysqli_stmt(paso2), <el tipo de dato>, <criterioParaElWhere>. retorna true o
+		false
+		<el tipo de dato>: "i" tipo INT
+				   "d" tipo double
+				   "s" tipo string			   
+				   "b" tipo blob y se envia en paquetes (sea lo que sea xD)
+		<criterioParaElWhere>: El que el usuario pasa por el formulario
+		  ej $ok = mysqli_stmt_bind_param($resultado, "sis" , $nombrePais, $poblacion, $idioma);
+						---un tipo de dato por cada elemento---
+
+
+	Paso 4: Ejecutar la consulta con  [mysqli_stmt_execute()] retorna true o false
+		requiere como parametro el objeto mysqli_stmt(paso2)
+
+	Paso 5: Asocial variables al resultado de la consulta con la funcion [mysqli_stmt_bind_result()] retorna
+		true o false
+		Requiere como parametros el objeto mysqli_stmt(paso2) y tantas variables como columnas requiera
+		  nuestra consulta (no tienen que estar previamente declaradas)
+
+	Paso 6: Lectura de valores, usamos la funcion [mysqli_stmt_fetch()] pide como parametro
+		 el objeto mysqli_stmt(paso2) 
+
+	
+	una vez terminado cierro el objeto stmt: [mysqli_stmt_close($resultado)]
+	
+
+
+Ejemplo:
+
+<?php  
+
+    $bd_host= "localhost";
+    $db_nombre= "cursophp_pildorayt";
+    $db_usuario= "root";
+    $db_contra= "";
+
+   //---- conexion y confuguracion de la base de datos
+
+    $conexion = mysqli_connect($bd_host, $db_usuario, $db_contra,  $db_nombre);
+
+    if (mysqli_connect_errno()){
+        echo("no se  pudo conectar a la base de datos");
+        exit();
+    }   
+
+    mysqli_set_charset($conexion, "utf8");
+
+    //---- fin de la coneccion y configuracion
+
+
+    $busqueda= $_GET["buscar"];
+
+
+    //---- Paso 1: Consulta     
+
+    $consulta = "SELECT * FROM  paises WHERE nombrePais = ?";    //--con el interrognate
+
+    //----  Paso 2: prepara la consulta
+
+    $resultado = mysqli_prepare($conexion, $consulta);    
+
+    //----  Paso 3: unir el dato que paso el usuario con la consulta
+
+    $ok = mysqli_stmt_bind_param($resultado, "s" , $busqueda);
+
+    //---- Paso 4  Ejecutar la consulta
+
+    $ok= mysqli_stmt_execute($resultado);
+
+        if ($ok==false) {
+            echo "Error al ejecutar la consulta";
+        }else{
+
+            //Paso---- 5  Asociar variables al resultado
+
+            $ok=mysqli_stmt_bind_result($resultado, $nomPais, $poblacion, $idioma, $continente, $precidente);
+
+            //Paso---- 6  Leo los resultados            
+
+            while (mysqli_stmt_fetch($resultado)) {
+                echo "Nombre: " . $nomPais . "<br>";
+                echo "Poblacion: " . $poblacion . "<br>";
+                echo "Idioma: " . $idioma . "<br>";
+                echo "Continente: " . $continente . "<br>";
+                echo "precidente Actual: " . $precidente . "<br>";
+            }
+        }
+
+        mysqli_stmt_close($resultado);  // ----------------- cierro el objeto stmt
+
+        mysqli_close($conexion);
+?>

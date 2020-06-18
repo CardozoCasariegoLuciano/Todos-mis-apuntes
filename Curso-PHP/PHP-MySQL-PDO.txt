@@ -1,0 +1,46 @@
+Conectarse a una BASE DE DATOS con PHP:
+---------------------------------------
+
+			
+	Hay 4 datos que son importantes a la hora de estableser una conexion con nuestra base de datos: 
+		* La direccion del servidor de la base de datos				
+		* El usuario de la base de datos (por defecto es root)
+		* la contraseña del usuario (por defecto no tiene, osea "" comillas vacias)
+		* El nombre de la base de datos
+
+	
+	Metodo PDO (PHP DATA OBJECT)
+	----------------------------
+
+	es otra forma de trabajar con SQL que tambien es orientada a objetos
+
+
+
+	Como estableser la conexion:
+
+	
+	
+	try{		---- El bloque try{...}catch{...} primero intenta ejecutar lo que esta en el "try"
+			----  si se encuentra con un problema, lo corta ahi y empieza a ejecutar el bloque
+			----  "catch" 
+
+	    $base = new PDO ("mysql:host=localhost; dbname=cursophp_pildorayt" , "root" , "");
+			
+			---- el constructor de PDO requiere 3 parametros:
+				1ro) "mysql:host=$DirBBDD; dbname=$NombreBBDD"
+						 es medio extraña, solo modifico $DirBBDD y $NombreBBDD
+				2do) $unUsuario de mi base de datos
+				3ro) $unaConstraseña  de mi base de datos
+
+
+	}catch(Exception $e){             	 --- "catch" siempre resive como parametro un objeto tipo de
+						 ---   Exception ($e en este caso, pero puede ser cualquiera)
+
+		die("error: " . $e -> GetMessage());   --- los objetos Exception ($e en este caso) pueden recibir
+	}					       ---  el mensaje GetMessage(), que muestra el error 
+
+	$base=null;	 			---- Asi se cierra una conexion a una base de datos en PDO
+
+
+
+	

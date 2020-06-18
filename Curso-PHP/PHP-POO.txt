@@ -1,0 +1,135 @@
+Programacion orientada a objetos en PHP
+----------------------------------------
+
+    cosas utiles:
+    -------------
+                    * Para referirse al objeto actual: $this
+                    * Para asignarle un valor a un colaborador: $nombObjeto -> nombColaborador = valor; (sin el $ en el colaborador)   
+                    * para acceder al valor de un colaborador: $nombObjeto -> nombColaborado;  (sin el $ en el colaborador)
+
+                    * Para usar un Metodo: $nomObjeto -> <NomDelMetodo>();
+
+    Clases:
+    -------
+
+            class <NombreDeLaClase> 
+            {
+                [Visivilidad] <NomDelColaborador>;   --- Asi se definen los colaboradores internos, en PHP es una variable ($nombre)
+                                                    --- La visivilidad puede ser publica: todos la pueden usar directamente
+                                                    ---                          private: no la pueden usar fuera de la clase, para eso 
+                                                    ---                                   se tienen que crear metodos PUBLICOS que puedan
+                                                    ---                                   dar esa informacion
+                                                    ---                          protected: igual que la anterior, pero tambien la pueden
+                                                    ---                                     ver las clases hijas
+						   			 
+            
+                [Visivilidad] function <NomDelMetodo> (){ --- Si lleva un parametro, tambien se tiene que escribir como una variable
+                       [bloque de codigo];                --- osea ($nombre)
+                                                          --- puede o no tener un return
+                } 
+
+            }
+
+      *  colavoradores o metodos estaticos: que sea estatico significa que no permite que instancias de si mismos puedan tener su propia vercion de de ese colavorador/metodo sino que se comparten para todas las instancias
+
+		De todas formas preguntar mas como funcionan los colavoradores o metodos estaticos
+
+		datos:
+			para acceder a estos colavoradores o metodos estaticos desde una de las instancias tengo que hacerlo asi: [<nombreDeLaCLASE>::<NombreDeLoQueSeaEstatico>] o [self::<NombreDeLoQueSeaEstatico>]
+
+	
+
+      *  Para crear un nuevo objeto de una clase:
+        
+             $nombreDelObjeto = new nobmreDeLaClase();  --- puede ir con parametros si tiene un constructor
+
+
+      *  Es una muy buena practica tener cada clase en un archivo distinto, con el nombre de esa clase y luego ir conectadolas con 
+         includes o requires
+
+	
+      
+
+
+
+
+    Constructores:
+    --------------
+                
+                El constructor es un metodo ESPECIAL que se utiliza para inicializar un objeto al momento de crearlo
+                Es otro metodo mas, por lo que se escriben dentro de las {} (llaves) de [CLASS]
+        
+                Se escriben asi:
+           
+                        public function __construct()    --- Doble guion bajo, y dentro del paretecis van los parametros a inicializar
+                        {                                 
+                            [Codigo]                     
+                        }
+
+                    -------------- Ejemplo --------------
+
+                        public function __construct($unNombre, $unAño)
+                        {
+                            $this-> nombre = $unNombre;   --- Y ahora cuando se quiera crear un objeto de esa clase va a tener que llevar
+                            $this-> anoNac = $unAño;      --- esos dos parametros (En la parte del  new...)
+                        }                        
+
+
+    Herencia:
+    ---------
+
+    * Es importante hacerle un include o require a la clase padre si esta en otro archivo (que asi deberia ser)
+
+        La herencia (si tiene) se marca en cada clase y se escribe con la palabra [extends] Ej:
+        
+            class alumno extends persona{
+                                            --- Aca lo que digo es que la clase alumno es hijo de la clase persona, por lo que 
+            }                               --- hereda todos los metodos que tenga la clase padre
+
+
+    Si quiero tener un constructor en la clase hijo pero tambien quiero el constructor del padre se usa [parent::__construct();] Ej:
+                           
+                        public function __construct($unNombre, $unAño)
+                        {                                                         --- tengo que usar los mismos parametros(como minimo) 
+                            $otroNombre = "el nombre del hijo es" . $unNombre     --- que esten en el padre
+                            Parent::__construct($otroNombre, $unAño);             --- en este constructor uso al mismo del padre, pero tiene
+                        }                                                         --- otras modificaciones 
+
+										  --- El mensaje [parent:: <unMensajeDeLaClasePadre>]  lo que hace es ejecutar todo el mensaje elejido para luego usarlo 
+
+
+       interfaces:        
+       -----------
+                
+         se lo puede ver como un requisito que tiene que tener la clase que la implemente, esto esta bueno para garantizar que 
+         esa clase va a poder responder a siertos mensajes
+
+        una interfaz se crea en un arcihivo aparte como las clases y se las escribe asi:
+
+            	interface NombreDeLaIntefaz {
+                    [....            		            
+                        Todos los mensajes que tienen que entender
+                        las clases que implementen esta interfaz.
+                        pero solo nos nombres, no la implementacion
+                    ...]
+            	}
+
+                ejemplo
+
+            	interface printable 
+                {
+                    public function getDescription();                    
+            	}
+
+
+        Para aplicarle una interfaz a una clase es tan simple como poner luego del nombre de la clase o de la clase padre (si tiene)
+       [implements NombreDeLaInterfaz]
+
+                ej:  class alumno extends persona implements estudiar
+                       {
+                         ...
+                       }
+
+
+    *Datos:
+            La interfas que tenga un padre la heredan los hijos
