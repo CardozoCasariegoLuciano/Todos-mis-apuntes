@@ -191,7 +191,7 @@ Repositoros remotos
 	supongamos que los archivos que estan en mi repositorio local y remoto son distintos.
 	Si lo que yo quiero es subir mis archivos del repositorio local al repositorio remoto no me va a dejar ya que las historias de esos arichos no esta relacionada, primero tengo que traer lo que este en el remoto a mi repositorio local con el comando:	
 	
-	 [ git pull origin master --alow-unrelated-histories ] Comando que trae la versión del repositorio remoto y hacer merge para crear un commit con los archivos de ambas partes.
+	 [ git pull origin master --allow-unrelated-histories ] Comando que trae la versión del repositorio remoto y hacer merge para crear un commit con los archivos de ambas partes.
 
 	una vez ya tenga todo lo del repositorio remoto en mi local, ya voy a poder subir y bajar cosas sin problemas
 	
