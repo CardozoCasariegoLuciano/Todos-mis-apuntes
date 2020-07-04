@@ -1,0 +1,210 @@
+Etiquetas:
+		
+	Html se maneja con etiquetas, estas se indican con <..> (Mayor/Menor), cada etiqueta que abro la tengo que cerrar con </..>, estas a su vez pueden tener atributos, que se indican luego del nombre de la etiqueta
+			
+			ejemplo: <p>Un Parrafo </p>	 una etiqueta normal
+			
+			ejemplo: <a hfer="##">Un Parrafo </p>  una etiqueta con el atributo href=""
+			
+
+Estructura principal:
+
+	<!DOCTYPE html>  	<--- Etiqueta que indica que el archivo es un HTML
+		<html> 		<--- Todo el contenido de la pagina va a estar entre las etiquetas <html>
+			<head>	<--- Dentro de la etiqueta <head> va el contenido que el usuario no ve, pero que afectan a la pagina
+		
+			</head>
+			<body>	<--- Dentro del <body> va toda la informacion que el usuario ve en de la pagina web
+
+			</body>
+		</html>
+		
+		
+Comentarios:
+
+	<!--  ...  -->  Asi se escriben los comentarios
+	
+	
+Caracteres especiales:
+		
+		Algunos caracteres no se pueden visualiuzar asi nomas, estos son los codigos que hay que escribir para usarlos
+			
+				< 	--------  &lt;
+				>	--------	&gt;
+				"	--------	&quot;
+				Espacio -----	&nbsp;
+				&	--------	&amp;
+				Acento  -----	&acute + La letra (ej) &acutei = í 
+				
+
+Atributos Selectores:
+	
+		id=""	en SCC se marcan con un #
+		class=""  en SCC se marcan con un .
+		
+
+Etiquetas para el head:
+
+		<title> ... </title>  --- Aqui ira el titulo que aparece en las pestañas del buscador
+	
+		<meta>  --- las etiquetas meta no se cierran, toda la info la tiene en sus atributos
+		
+		<meta charset="utf-8"> --- Permite a la pagina usar caracteres españoles (acentos, ñ, ect)
+		
+		<link rel="stylesheet" type="text/css" href=""> --- en href va la direccion de un archivo .css
+		
+		<link rel="shortcut icon" type="image/x-icon" href="">  --- en href va la direccion de la imagen para el icono de la pag (en las pestañas del buscador)
+
+
+
+
+
+
+
+Etiquetas para el body:	
+
+
+	Otros:		
+						
+		<br>  hace un salto de linea		
+		
+		<hr/> esta etiqueta crea una linea separadora 
+			
+		
+		
+	Textos:
+			<article> ... </article> --- es un articulo, dentro tendra parrafos, imagenes y otras cosas
+	
+			<p> ... </p> 		--- En las etiquetas <p> van los parrafos de nuestra pagina
+		
+			<h#> ... <h#>		--- remplazar el # con un numero del 1 al 6, los <h> son titulos			
+		
+			<b> ... </b> el contenido lo pone en NEGRITA
+		
+			<i> ... </i> el contenido lo pone en Italica (inclinada)
+			
+	incrustar:
+	
+		<a href=""> ... </a> --- Esta etiqueta nos permite tener liks,  atributo obligatorio href="" donde va la direccion, entre las etiquetas va el texto que queremos mostrar (puede ser una imagen)
+		
+				atributos: [target: _blanck] abre el link en otra pestaña
+		
+		<img src="UnaDir">	--- esta etiqueta incrusta una imagen y no se cierra. Tiene un atributo obligatorio que es src="" entre las comillas va la direccion en la que se encuentra la imagen
+						---	en local o remoto
+						
+				atributos: [alt=""] texto que sale cuando no se puede cargar la imagen
+		
+		<video src=""></video>
+		
+		
+	Listas:
+			
+		<ol> ... <ol> --- Listas ordenadas
+		<ul> ... <ul> --- Listas desordenadas
+		<li> ... <li> --- Elemento de la lista (Sin importa cual sea)
+		
+		ej)  <ol> 
+				<li> Elemento 1 <li>
+				<li> Elemento 2 <li>
+			<ol>
+				
+				
+	Tablas:
+		
+		<table> ... </table> ---Crea una tabla
+		<tr> ... </tr> --- crea una nueva fila
+		<td> ... </td> --- crea una nueva columna
+		
+		ej) 	<table>
+				<tr>
+					<td>holis</td>
+					<td>holis</td>   --- Esta tabla tiene 2 fias y 3 columas
+					<td>holis</td>
+				</tr>
+				<tr>
+					<td>Chauchis</td>
+					<td>Chauchis</td>
+					<td>Chauchis</td>
+				</tr>
+			</table>
+			
+	
+	Formularios:
+		
+		estructura basica: <form action="" method=""> ... </form> --- Esos 2 atrubutos no son obligatorios para que anden, pero si para que hagan algo
+		
+			atributos:	
+					action=""  --- la pagina que se encarga de procesar los datos del formulario
+					method=""	 --- El metodo por el cual el formulario pa a pasar los datos (GET o POST, pero es un tema de PHP)
+		
+		dentro de esas etiquetas uso <label> ... </label> --- estas agrupan distintas funciones para el formulario
+		
+		y dentro de las label voy a usar <input type="" name=""> --- dentro de type="" va el tipo de formulario, en name va el mobre que lo identifica
+		
+				algunos tipos pueden ser: 
+						
+							Text    ----- Texto normal
+							Password ---- Asteristos de contraseñas
+							checkbox	--- un cuadro marcalbe
+							radio	--- igual que el anterior, pero si tienen el mismo valor en el atributo name="", solo podras elejir uno a la vez
+							button	--- es un boton normal
+							submit	--- es un boton que manda la informacion del formulario al citio elegido en "acction"
+							color	--- te permite elegir un color
+							range	--- te permite elejir un rango
+							
+					Algunos atrubutos pueden ser:
+					
+							value=""   ---El contenido por defento que tendra escrito ese campo
+							placeholder="" --- lo mismo pero en un texto de fondo
+							maxlength=""	--- la cantidad maxima de caracteres que permite ese campo (es un numero)
+							
+		dentro de los label tambien puedo usar:  <select> ... </select> y dentro de estos uso <option> ...</option> para crea una lista desplegable
+		donde cada <option></option> es un nuevo elemento
+			
+		
+		
+				
+						
+						
+	
+	Contenedores:
+	
+		<div> ... </div>  --- Se usa para contenido generico
+		
+		<footer> ... </footer> --- se usa para el contenido que se encuentra al pie de la pagina
+		
+		<header> ... </header> --- se usa para el contenido que se encuentra al principio de la pagina
+		
+		<span> ... </span>  --- Se usa para contenido generico
+		
+		<section> ... </section> --- aqui ira en contenido principal
+		
+		<aside> ... </aside> --- contenido lateral
+		
+		
+		
+Atributos generales:
+
+	<title> ... </title>  --- El nombre que saldra cuando mantengamos el mause en el elemto que tenga esta etiqueta
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
