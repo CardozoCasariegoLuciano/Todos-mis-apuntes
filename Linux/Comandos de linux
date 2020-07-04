@@ -1,11 +1,111 @@
+[man <unComando>] <----- Nos muestra el manual de ese comando  		ej) man ls
+
+[<unComando --help>]  <----. Nos muestra la ayuda de ese comando 		ej) ls --help
+
+
+Comandos básicos:
+------------------
+
+	[pwd]: (print working directory) Nos imprime la ubicación en la que estemos
+
+	[ls]: lista todos los elementos que estén en nuestra ubicación
+	
+		[ls -l]: nos brinda mas información sobre los archivos
+	
+	[cd]: (change directory) nos cambia la ubicación por el home
+		 	
+		[cd <UnaCarpeta>]: entramos a esa carpeta
+		
+		[cd ..]: nos manda un directorio atrás
+		
+	[mkdir <unNombre>]: (make directory) nos crea una carpeta en el directorio en el que estemos con el nombre que elijemos
+	
+	[clear]: limpia la terminal
+	
+	[touch <unNombre>]: crea un archivo vació
+	
+	[cp <elArchivo> <unaRutaAbsoluta>] : (copi) nos COPIA el archivo <elArchivo> y lo pega en <unaRutaAbsoluta>
+	
+	[mv <elArchivo> <unaRutaAbsoluta>] : (move) nos CORTA el archivo <elArchivo> y lo pega en <unaRutaAbsoluta>
+	
+	[rm <elArchivo>]: (remove) elimina <elArchivo> 
+	
+	[cat <unArchivo>]: me imprime en la terminal el contenido de ese archivo
+
+
+
 Para dar permisos a una carpeta:
 --------------------------------
 
-[sudo chmod 777 -R <'direccion de la carpeta a la que le quiero dar permisos'>]
+	Forma Octal:
 
-el numero indica el tipo de permisos, googlear para saber las otras combinaciones
+		[sudo chmod <Codigo> <unElemento>] --- Le da a <unElemento> (Archivo o carpeta) los permisos que le indique en <Codigo>
+		
+										Con la forma Octal el <Codigo> indica el tipo de permisos. Los mas comunes son:
+										
+											777: Todos tienen permiso para hacer todo
+											000: Nadie tiene permiso para hacer nada
+											700: Solo el Usuario tiene todos los permisos
+											755: El Usuario tiene todos los permisos mientras que el grupo y otros solo pueden ver y ejecutal (pero no escribir)
+											744:	El Usuario tiene todos los permisos mientras que el grupo y otros solo pueden ver (pero no escribir ni ejecutar)
+											
+										En total son 24 combinaciones, googlear si quiero mas
+										
+										Ejemplo)  sudo chmod 777 Tarea.txt				
+										
+	
+								
+	Forma Con caracter:
+	
+		[sudo chmod <unUsuario> <unaAccion> <unPermiso> <unElemento>]						
+											
+										<unUsuario> Pueden ser u(user) g(group) o(other) a(all)
+										<unaAccion> Pueden ser +(Agregar) -(Quitar) =(igual a)
+										<unPermiso> Pueden ser r(read) w(write) x(execute)
+										<unElemento> Archivo o carpeta
+										
+										Ejemplo)  sudo chmod u=rwx,q=,o+w tarea.txr   <--- sin espacios entre los distintos usuarios y separados con ,(comas)
+										
+														a user le estoy dando todos los permisos
+														a group le estoy sacando todos los permisos
+														y a others le estoy agregando el permiso de estritura
+														
+														
+	Sin importar el tipo:
+	
+		[.... -R] para cuando modifico los permisos de una carpeta, esos permisos tambien lo tienen todo lo que este dentro
+		
+		
+		
+Crear accesos directos:
+-----------------------
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+		[ln -s <rutaAbsolutaOrigen> <rutaAbsolutaDestino>]
+		
+				<rutaAbsolutaOrigen> ruta absoluta del elemento que quiero que tenga el acceso directo
+				
+				<rutaAbsolutaDestino> ruta absoluta en la que quiero que este el acceso directo
+				
+				
+				
+Editar archivos desde la terminal:
+----------------------------------
+			
+		[nano <unArchivo>]: esto nos manda a otra interfaz de la terminal en la que nos podemos mover con mas libertad, en la parte inferior nos da unas opciones especiales, las cuales podemos 
+							usar tocando la tecla Ctrl + La letra que queramos, Ej) Ctrl + X para salir de esa interfaz 
+							
+							Si <unArchivo> no existe primero lo crea y despues nos permite editarlo 
+																			
+										
+										
+
+
+
+
+
+
+
 
 Para comprimir un archivo/Carpeta .tar:
 ----------------------------------------
