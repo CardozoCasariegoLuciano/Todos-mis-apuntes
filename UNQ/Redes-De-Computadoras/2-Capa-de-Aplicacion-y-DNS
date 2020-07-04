@@ -1,0 +1,193 @@
+	Protocolos de la capa de aplicacion
+	-----------------------------------
+	
+	Estos modelos utilizan el modo Cliente/Servidor
+	
+	
+Protocolos:
+
+Protocolo DNS (Domain Name System)
+----------------------------------
+	*Es una base de datos que permite realizar un mapeo entre nombres de maquinas y direcciones web
+	
+	* Es el sistema utilizado para traducir nombres de nodos de red en direcciones IP
+		
+		
+	Un dominio es un mecanismo  de identificacion en internet (ICANN se encarga de que los nombres
+	sean unicos)
+	
+		un dominio consta de varias palabras separadas por puntos ( . )
+		Ejemplo yahoo.com.ar <--- yahoo es el nombre de la entidad mientras en .com.ar es la direccion
+							  del servidor en el que esta almacenado
+							  
+		se basa en un espacio jerarquico de nombres.
+		Ejemlpl yahoo.com.ar  
+							siempre arrancamos por el root, y leemos de derecha a izquierda
+							
+						en este caso, root sabe que .ar sabe que hacer, que a su vez sabe que es
+						"territorio" del ".com"
+						
+						
+		Un DNS puede buscar dominos de dos formas:
+		
+			recursiva:  el DNS local le pregunta a quien le corresponta. ese le pregunta al siguiente
+						 y asi hasta encontrar el dominio completo, luego vueve por el mismo camino
+						 con la informacion hasta nuestra PC
+			
+			iterativa:  el DNS local le pregunta al root, este le pregunta a quien le corresponta
+					   y	obtiene
+					   la respuesta, luego con esa respuesta busca la siguente  y asi con todas hasta
+					   tener toda la informacion
+					   
+					 (Buscar en internet si no quedo claro)
+					 
+					 
+			
+					   
+=========================================================================================
+el Comando [nslookup <HostBuscado>] nos permite averiguar un nombre o una direccion IP ||
+=========================================================================================			 		   
+					   
+					   
+					   
+Registros DNS
+
+	Registro SOA (Start Of Authority) Se forma  de una series de parametros a tener
+		 en cuenta:
+		 
+		 Host Origen: Host donde se mantiene el archivo
+		 
+		 Correo electronico: Del responsable de la BD
+		 
+		 Numero de serie: la vercion de ese archivo, aumenta con cada cambio
+		 
+		 Tiempo de actualizacion: tiempo que espera un DNS secundario para ver si el archivo ha
+		 					   cambiado y pedir una transferencia de zona
+		 
+		 Tiempo de reintento: tiempo que espera un DNS para volver a pedir una actualizacion si la primera
+		 				     falla
+		 
+		 Tiempo de caducidad: tiempo que el servidor secundario intentara descargar la zona
+		 
+		 Tiempo de vida: tiempo en el que el servidor mantiene en cache cualquier registro de un archivo
+		 		   
+					   
+	Registro NS (Name Server) contiene a los DNS a los cuales le delega un domino
+	
+	Registro A (Adress) Asocian nombres con direcciones IP
+	
+	Registro CNAME (Canonical NAME) apuntan a un mismo host mas de un nombre
+	
+	Registro MX (Mail eXchange) es el registro de intercambio de correo, indica que host se encarga
+						    del procesamiento del correo electronico de ese dominio
+						    
+						    
+						     
+==================================================================================================
+nic.ar se encarga del dominio territorial ".ar" mientras que ARIU se engarga de todos los edu.ar ||
+==================================================================================================
+	
+	
+	
+Protocolo HTTP (Hypertext transfer Protocol)
+--------------------------------------------
+
+	HTTP define la sintaxis y la semantica que utilizan los navegadores web para comunicarse
+	
+	
+
+Estandares de HTTP
+
+	HTTP/0.9: primer vercion del protocolo http, era muy simple y solo acepta el metodo GET
+	
+	HTTP/1.0: es la primera vercion que espesifica su vercion en las comumicaciones y soporta la 
+			mayoria de los metodos de cominicacion
+			
+	HTTP/1.1: Vercion actual. Permite al cliente enviar multiples peticiones a la vez
+	
+	HTTP/1.2: se publico en el 2000 es experimental
+
+	
+	
+Dialogo HTTP
+
+	se basa en envios y respuestas en ASCII
+	
+	
+	
+Metodos y comandos
+
+		GET: Solicita el recurso ubicado en la URL especificada
+		
+		HEAD: Solicita el encabezado del recurso en la URL especificada
+		
+		POST: Envia datos  al programa ubicado en la URL especificada
+		
+		PUT: Envia datos a la URL especificada
+		
+		DELETE: Borra el recurso ubicado en la URL especificada
+	
+	
+	
+Codigos de respuesta:
+
+	1xx: Mensaje de conexion rechazada
+	
+	2xx: Operacion exitosa
+	
+	3xx: redireccion hacia otro URL
+	
+	4xx: Eror por parte del cliente
+	
+	5xx: error por parte del servidor
+	
+	
+
+Protocolo SMTP (Simple Mail Transfer Protocol)
+-----------------------------------------------
+	
+	
+	es el protocolo que se eencarga de enviar correos 
+	
+	
+	
+
+Protocolo DHCP (Dynamic Host Configuration Protocol)
+----------------------------------------------------
+
+	se encarga de la asignacion dinamica de IP
+	
+	Seguir desde aca
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   

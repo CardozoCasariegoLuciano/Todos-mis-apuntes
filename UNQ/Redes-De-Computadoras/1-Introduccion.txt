@@ -1,0 +1,293 @@
+		Introduccion y marco de referencia
+		----------------------------------
+		
+		
+Redes de datos (computadoras):
+------------------------------
+
+	Son un conjunto de equipos que se comunican entre si para compartir informacion.
+	
+	
+Clasificacion de las redes:
+---------------------------
+
+	Por su ambito:
+		
+		redes LAN  (Local Area Network): 
+		
+			Caracteristicas:
+				
+					originalmente diceñadas para transportar datos
+				
+					Generalmente son de tipo broadcast
+						
+					Cableado normalmente propiedad del usuario
+						
+		
+		redes WAN (Wide Area Network):
+		
+			Caracteristicas:
+				
+					originamente diceñadas para transportar voz
+						
+					Son servicios contratados normalmente a operadoras (Telefonica,TelSur,etc)
+						
+					Tiene un costo elevado, por lo cual su diceño esta optimizado
+						
+					Normalmente usan elnaces punto a punto (salvo los satelites que usan Broadcast)
+		
+	Por su tecnologia:
+	
+		Redes Broadcast:
+		
+			Caracteristicas:
+			
+					Los paquetes se envian a toda la red, aunque solo este dirigido a un unico destinatario
+					posibles probemas de seguridad
+		
+		Redes punto a punto:
+		
+			Caracteristicas:
+			
+					La red es formada por un conjunto de enlaces entre nodos
+						
+					Generalmente la comunicacion entre dos computadores se realiza a traves de nodos
+					intermedios que encaminan los paquetes (Switches o routers)
+					
+					en una red punto a punto el conjunto de routers y switches y los enlaces que los unen
+					forman una sub-red, la sub-der delimita la presponsabilidad del proveedor del servicio
+					
+			Tipos de enlaces de una red punto a punto:
+			
+					* Simplex: Transmision en un unico sentido
+					
+					* Semi-duplex o half-duplex: transmision en ambos sentidos, pero no los dos al mismo tiempo
+					
+					* duplex o full-duplex: transmision simultanea en ambos sentidos
+					
+					
+					en el caso de Semi-duplex y duplex el enlace puede ser simetrico
+					(misma velocidad en ambos sentidos) o asimetrico
+					
+					
+
+Posibles formas de enviar informacion:
+---------------------------------------
+					
+		Segun el numero de destinatarios el envio de un paquete puede ser:
+		
+			* Unicast: si se envia a un destinatario concreto
+			
+			* Broadcast: Si se envia a todos los destinatarios posibles de la red
+			
+			* Multicast: si se envia a un grupo selecto dentro de la red
+			
+			* Anycast: si se envia a uno cualquiera de la red
+			
+			
+			
+CAPAS:
+-------
+
+	El modelo de capas mas conocido es el llamado moledo OSI. Permite describir el funcionamiento de las redes 
+	de  forma modular y hacer cambios de manera sencilla, cada capa tiene funcionalidades bien definidas
+	
+	Se utilizan para facilitar la conexion de dos equipos de distintas redes, que utilizan distintas tecnologias
+	e incluso de distintos fabricantes
+	
+	El modelo de capa se basa en el siguiente principio:
+		
+			Cada capa le ofrece sus servicios a la capa siguiente, y esta solo puede usar esos servicios
+			
+			La comunicacion entre capas se realiza mediante una Interfaz
+			
+			Cada capa de un equipo se comunica con la capa equivalente de otro equipo utilizando un
+			Protocolo caracteriztico de esa capa (protocolo de la capa x)
+			
+			el protocolo forma parte de la arquitectura, la interfaz no
+			
+			el stack de protocolos es el conjunto de todos los protocolos usados para la coneccion entre
+			dos equipos
+			
+			el modelo OSI tiene 7 capas:
+						
+								* Capa de Aplicacion
+								
+								* Capa de Presentacion	 	 						
+								
+								* Capa de Sesion
+								
+								* Capa de Transporte
+								
+								* Capa de Red
+								
+								* Capa de Enlace
+								
+								* Capa Fisica
+			
+			Los principales objetivos de un modelo de capas son:
+			
+				Sencillez: facilita el problema de la comunicacion entre computadoras
+				
+				Modularidad: permite realizar cambios con facilidad sin afectar al resto
+				
+				Compatibilidad: la comunicacion entre dos entidades de una capa se puede realizar
+							 independientemente de las otras
+			
+			
+Tarea de cada CAPA:
+-------------------
+					
+					
+	Capa Fisica:
+	
+			Transmite los datos (Impulsos electricos)
+			
+	
+	Capa de Enlace:
+	
+			es responsable de la transferencia fiable de información a través de un circuito de transmisión 
+			de datos	
+			
+	
+	Capa de red:
+	
+			es un nivel o capa que proporciona conectividad y selección de ruta entre dos sistemas de hosts 
+			que pueden estar ubicados en redes geográficamente distintas	
+			
+			
+	Capa de Transporte:
+	
+			Es la base de toda la jerarquía de protocolo. Esencargado de la transferencia libre de errores 
+			de los datos entre el emisor y el receptor, así como de mantener el flujo de la red	
+			
+			
+	Capa de sesion: 
+	
+			proporciona los mecanismos para controlar el diálogo entre las aplicaciones de los sistemas finales
+			
+	
+	Capa de Presentacion:
+	
+			Se encarga de la representación de la información, de manera que aunque distintos equipos puedan
+			tener diferentes representaciones internas los datos lleguen de manera reconocible.
+			
+			
+	Capa de Aplicacion:
+	
+			Es la interfaz que ve el usuario final, Muestra la informacion recibida, en ella residen
+			las aplicaciones
+			
+			
+			
+
+					
+Modelos TCP/IP:
+---------------
+
+	el modelo TCP/IP es otro modelo de capas. Se creo despues de los protocolos, es por eso que (a diferencia del modelo OSI) 
+	tiene protocolos "predefinidos"	
+	
+	
+Modelos Hibrido:
+----------------
+
+	A menudo se usa el modelo hibrido, siguiendo el modelo OSI en las capas bajas y a TCP/IP en las altas
+	
+	tiene las siguientes capas:
+	
+		5 Capa de Aplicacion
+		4 Capa de Transporte
+		3 Capa de red
+		2 Capa de Enlace
+		1 Capa fisica
+	
+	
+Diferencias entre OSI y TCP/IP:
+-------------------------------
+
+	* En OSI primero fue el modelo y luego los protocolos, en TCP fue al reves
+	
+	* En OSI el modelo es bueno, los protocolos no, en TCP fue al reves
+	
+	* En OSI los productos eran caros, llegaban tarde y tenian fallos
+	
+	* En TCP/IP los productos aparecian rapido, estaban muy probados (los usaba mucha gente) y a menudo eran gratis
+	
+	* El modelo OSI es academino, el TCP/IP es practico
+	
+	
+========================================================
+El modelo que vamos a usar en la cursada es el hibrido ||
+========================================================					
+					
+					
+					
+					
+Normalmente todo protocolo requiere el envio de informacion de control adicional, generalmente se añaden encabezados  al paquete a trasmitir, esto reduce el desempeño y supone un overhead (saturacion). Cada capa añade su propia informacion de control, cuantas mas capas tenga el modelo, mas overhead se introduce
+
+ Los encabezados sirven para notificar errores o fallas similares
+ 
+ 
+  					
+	
+	
+Tipos se servicios:
+--------------------
+
+	Orientado a conexion : (CONS) establese el canal antes de enviar informacion
+	
+				Caracteristicas:
+					
+						Se respeta el orden de los paquetes
+						
+						se mantiene la misma ruta para todos los paquetes
+						
+						Los paquetes no necesitan llevar la direccion de destino
+						
+						Si el canal se corta la comunicacion se interrumpe
+						
+	
+	No orientado a conexion: (CLNS) Envia los datos directamente, sin preguntar antes,  si la comunicacion no
+						es posible, los datos se perderan
+						
+					
+				Caracteristicas:
+				
+						No se respeta el orden de los paquetes
+						
+						cada paquete lleva la direccion de destino
+						
+						la ruta puede variar para cada paquete
+						
+
+Calidad de un servicio:
+-----------------------
+
+	La calidad de un servicio se mide con varios factores:
+		
+		Ancho de banda	 >= 265kbps (kilo bites por segundo)
+		 
+		latencia		<=200ms (mili segundos)
+		
+		fluctuacion de retardo <= 100ms
+					
+		disponibilidad >= 99.95 (21 min/mes fuera de servicio)
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+	
+	
