@@ -47,7 +47,7 @@ para quitar un elemento del staging uso el comando
 ---------------------------------------------------
 
        
-	[git resert HEAD] quita el elemento del stagin (cuanto tiene el color verde en el [git status])
+	[git reset HEAD] quita el elemento del stagin (cuanto tiene el color verde en el [git status])
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
