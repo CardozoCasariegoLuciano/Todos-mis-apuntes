@@ -131,7 +131,7 @@ Etiquetas para el body:
 	
 	Formularios:
 		
-		estructura basica: <form action="" method=""> ... </form> --- Esos 2 atrubutos no son obligatorios para que anden, pero si para que hagan algo
+		estructura basica: <form action="" method=""> ... </form> --- Esos 2 atrubutos no son obligatorios para que anden, pero si para que hagan algo ultil
 		
 			atributos:	
 					action=""  --- la pagina que se encarga de procesar los datos del formulario
@@ -152,7 +152,7 @@ Etiquetas para el body:
 							color	--- te permite elegir un color
 							range	--- te permite elejir un rango
 							
-					Algunos atrubutos pueden ser:
+					Atributos genericos:
 					
 							value=""   ---El contenido por defento que tendra escrito ese campo
 							placeholder="" --- lo mismo pero en un texto de fondo

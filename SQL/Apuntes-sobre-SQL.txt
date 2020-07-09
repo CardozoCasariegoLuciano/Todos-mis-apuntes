@@ -22,7 +22,7 @@ Tablas
 	*para agregar tuplas(filas): INSERT INTO <nombreTabla> (<Campos>) VALUES (<Valores>);
 
 		(<Campos>): Todos los campos que tenga la tabla y que yo quiera usar para agregar valores
-		(<Valores>): los datos que quiera agregar en cada campo en el orden en el que los puse en <Campos>
+		(<Valores>): los datos que quiera agregar en cada campo en el orden en el que los puse en <Campos> (NO olvidar las comillas para los varchars)
 			--- Ambos separados por comas (,) 
 
 	*para Eliminar tuplas(filas): DELETE FROM <nombreTabla> WHERE <UnCriterioParaEliminar>;

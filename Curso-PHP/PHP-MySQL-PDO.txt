@@ -34,12 +34,93 @@ Conectarse a una BASE DE DATOS con PHP:
 
 
 	}catch(Exception $e){             	 --- "catch" siempre resive como parametro un objeto tipo de
-						 ---   Exception ($e en este caso, pero puede ser cualquiera)
+						 ---   Exception ($e en este caso)
 
 		die("error: " . $e -> GetMessage());   --- los objetos Exception ($e en este caso) pueden recibir
 	}					       ---  el mensaje GetMessage(), que muestra el error 
 
 	$base=null;	 			---- Asi se cierra una conexion a una base de datos en PDO
+	
+	
+	
+	
+	
+	Consultas preparadas con PDO
+	------------------------------
+	
+	
+	Como buscar un elemento en la BBDD Ejemplo:
+	
+	<?php
+
+		$buscar = $_GET["buscar"];  <---- El elemento a buscar
+
+		try{
+
+			$base = new PDO ("mysql:host=localhost; dbname=cursophp_pildorayt" , "root" , "");   <---creando la conexion
+
+			$base -> exec("SET CHARACTER SET utf8"); 		<---- Exec, entre otras cosas permine espesificar un juego de caracteres
+
+			$sql = " SELECT * FROM paises WHERE nomPais = ?";  <---- La consulta con el ? 
+
+			$resultado = $base->prepare($sql);  	<---- el metodo prepare de $base crea un objeto "PDOstatemet"  y requiere como parametro una consulta SQL
+
+			$resultado -> execute(array($buscar));  <----- el objeto "PDOstatemet" acepta el metodo Execute, y le pasamos por parametro un array con el valor a buscar. Lo que hace es ejecutar la 														consulta 
+
+			while ($registro=$resultado->fetch(PDO::FETCH_ASSOC)) { 	<---- el metodo fetch del objeto "PDOstatemet" obtiene la siguiente fila (ademas, true si puede y false si no puede)y resibe 																	como parametro [PDO::FETCH_ASSOC] que significa que los va a asociar con clave/valor.
+					echo "Pais: " . $registro["nomPais"] . "<br>";
+					echo "Idioma: " . $registro["idioma"] . "<br>";
+					echo "Continente: " . $registro["continente"] . "<br>";
+					echo "Poblacion: " . $registro["poblacion"] . "<br><br>";
+
+					echo "<b>" . "hecho con una consulta preparada PDO" . "<b>";
+
+			}
+
+			$resultado->closeCursor();  <---- termino con el objeto "PDOstatemet" para que ya no consuma recursos		
+
+		}catch(Exception $e){
+
+			die("error mortal bro, te tenes que fijar: " . $e -> GetMessage());
+
+		}
+
+		$base=null;
+	?>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
