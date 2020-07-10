@@ -22,6 +22,14 @@ git add . (para agregar todo)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+para quitar un elemento del staging
+-----------------------------------
+
+       
+	[git reset HEAD] quita el elemento del stagin (cuanto tiene el color verde en el [git status])
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 Para desacer los cambios guardados
 ----------------------------------
@@ -39,16 +47,6 @@ para mandar un archivo que ya esta en el staging al repositorio:
 
 [git commit --amend -m "Algun mensaje"] lo que hace es fucionar ese comit con el anterior (se usa cuando te olvidaste de incluir algo en ese comit anterior, para no tener que hacer otro) 
  
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-para quitar un elemento del staging uso el comando
----------------------------------------------------
-
-       
-	[git reset HEAD] quita el elemento del stagin (cuanto tiene el color verde en el [git status])
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
