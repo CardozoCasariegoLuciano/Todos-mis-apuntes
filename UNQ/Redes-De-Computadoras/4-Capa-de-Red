@@ -1,0 +1,142 @@
+Generalidades:
+
+Esta formado por el protocolo IP y por una serie de protocolos auxiliares:
+		Protocolos de control
+		Protocolos de resolucion
+		Protocolos de routing
+		
+
+Cabecera de un datagrama IPv4
+
+tiene 32 bits de largo
+
+contiene los campos:
+	Version: siempre vale 4
+	Logitud de cabecera: en palabras de 32 bits (rango 5-15)
+	DS (Differentiated services): Para Calidad de Servicio
+	Logitud total: Expresaca en octetos, incluye la cabecera (rango 20-65535)
+	Campos de Fragmentacion: identificacion, DF, MF, desplaz. Fragmento
+	Tiempo de vida  (TTL): Cuenta saltos hacia atras, se descarta cuando llega a 0 (rango 0-255)
+	Protocolo: Indica a que protocolo pertenecen los datos
+	CheckSum: sirve para comprobar laintegridad de la cabecera
+	Direccion de origen
+	Direccion de destino
+	Opciones: si las hay su longitud debe ser multiplo de 4 octetos
+	
+	
+	Algunos valores del campo Protocolo:
+	
+	1 ICMP 			Internet Control Message Protocol
+	2 IGmp 			Internet Group Management Protocol
+	3 GGP 			Gateway-to-Gateway Protocol
+	4 IP 			IP en IP (encapsulado)
+	5 ST 			Stream
+	6 TCP  			Transmission Control Protocol
+	8 EGP 			Exterior Gateway Protocol
+	17 UDP 			User Datagram Protocol
+	29 ISO-TP4		ISO Transport Protocol Clase 4
+	80 CLNP 			Connectionless Network Protoco
+	88 IGRP/EIGRP 		Interior Gateway Routing Protocol
+	89 OSPF 			Open Shortest Path First
+	
+	
+	Formato y uso de las direcciones IPv4
+	=====================================
+	
+	estan formadas por 32 bits, que se represetan por cuatro numeros decimales
+	ej) 147.156.135.22
+	
+	
+	Estructura:
+	
+	*Se dividen en dos partes, la parte de red (a la izquierda) y la parte de host (a la derecha)
+	*La mascara se encarga de indicar la longitud de cada parte
+	*La mascara tambien tiene 32 bits de largo y son una serie de 1 seguido por todo ceros, donde los unos indican la parte de red
+	*La mascara no aparece en los paquetes IP, solo se especifica en las interfaces y las rutas
+	
+	
+	Clases de las Direcciones IP
+	============================
+	
+	Hoy en dia las clasificaciones estan obsoletas, pero aun son utilizadas
+	Cada clase establece donde se situa la separacion red/host
+	
+			Mascara			rango
+	Clase A  255.0.0.0(/8)		0-127
+	Clase B  255.255.0.0(/16)	128-191
+	Clase C  255.255.255.0(/24)	192-223
+	Clase D	Grupo Multicast  	224-239
+	Clase E	Reservado			240-255
+	
+	
+	Direcciones IP especiales
+	-------------------------
+	
+	255.255.255.255-------------- Broadcast en la LAN(Propia red)
+	0.0.0.0---------------------- Identifica al host que envia el datagrama
+	Parte Host a ceros----------- Identifica una der (ej: 147.156.0.0)
+	Parte Host a unos------------ Broadcast en una red (ej:147.156.255.255)
+	Parte Red a ceros------------ Identifica un host en la red en que estamos(ej: 0.0.1.25)
+	127.0.0.1-------------------- Direccion LoopBack (el LocalHost)
+	
+	La primera y ultima direcciones de una red estan siempre reservadas y no deben asignarles nunca a un host
+	
+	Ejemplo: si tenemos la red 40.40.0.0 con la mascara 255.255.0.0
+	
+		La primera direccion posible (40.40.0.0) identifica la red
+		La ultima direccion posible (40.40.255.255) es la de broadcast de esa red
+		El rango asignable en este caso seria desde 40.40.0.1 hasta 40.40.255.254
+		
+		
+	No siempre las mascaras son de 8,16 o 24 bits, en esos casos la separacion de red/host es mas dificil pero el mecanismo es el mismo
+	
+	=============================================================================================================
+	| Ver mas en el apunte:																	   |
+	| https://presencial.uvq.edu.ar/pluginfile.php/206684/mod_resource/content/1/6-Presentacion-Subneteo-IP.pdf |
+	=============================================================================================================
+	
+	Enrutamiento en un host
+	=======================
+	
+	Cuando el Host tiene queenviar un paquete:
+	
+		1) extrae del paquete la direccion de destino 
+		2)Extrae de la direccion de destino la parte Red(Aplicando un And entre la mascara propia y la IP destino)
+		3) Compara la parte red de la direccion de destino con la suya propia
+		4) a) Si coinciden, entonces el destino esta en su misma red (Normalmente una LAN) y envia el paquete directamente
+		   b) Si no Coinciden entonces envia el paquete al router por defecto y este se encarga de enviarlo
+	
+	
+	Rutas por defecto:
+	------------------	
+	Es la ruta que sigue cunado no se le indica ningun otra, esta tiene la sintaxis:
+	A 0.0.0.0/0 Por <Direccion del router por defecto>
+	
+	Rutas Host:
+	-----------
+	El Extremo opuesto a las rutas por defecto, usan mascaras de 32 bits y solo sirven para una direccion  de destino concreta(por eso rutas Host).
+	Se suelen usar para marcar excepciones, por ejemplo cuando un host esta temporalmente fuera de su LAN habitual
+	
+	
+	Los routers ordenan sus tablas de IPs segun la longitud de sus mascaras, poniendo primero las rutas de mascara mas largas (el orden de como se hayan introducido no importa). Con ese criterio se garantiza que primero se aplicaran las rutas mas especificas y luego las mas generales, asi por ejemplo las rutas host(/32) vas siempre primeras y las rutas por defecto(/0) van siempre ultimas
+	
+
+
+
+
+Asignacion de direcciones IP
+----------------------------
+
+RIR (Regional Internet Registry) es el encargado de asignar IPs a los proveedores grandes(los de primer nivel o tier-1). hoy en dia hay 5 RIRs en todo el mundo
+
+
+
+
+
+
+
+
+
+
+
+
