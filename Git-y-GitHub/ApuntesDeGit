@@ -31,14 +31,6 @@ para quitar un elemento del staging
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-Para desacer los cambios guardados
-----------------------------------
-
-	[git restore <nombre del archivo>] vulve a la ultima vercion del archivo y lo quita de la lista "no stage" en [git status] (en color rojo)
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 para mandar un archivo que ya esta en el staging al repositorio:
 ------------------------------------------------------------------
 
@@ -47,6 +39,16 @@ para mandar un archivo que ya esta en el staging al repositorio:
 
 [git commit --amend -m "Algun mensaje"] lo que hace es fucionar ese comit con el anterior (se usa cuando te olvidaste de incluir algo en ese comit anterior, para no tener que hacer otro) 
  
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Para desacer los cambios guardados
+----------------------------------
+
+	[git restore <nombre del archivo>] vulve a la ultima vercion del archivo y lo quita de la lista "no stage" en [git status] (en color rojo)
+	
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -76,7 +78,7 @@ para ver la historia de un archivo:
 [git log --all --graph --decorate --oneline] muestra lo mismo que el anterior, pero mas comprimido y facil de leer 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  Hasta aca en la Paggina 
 
 
 para ver los cambios de un archivo con su vercion anterior
