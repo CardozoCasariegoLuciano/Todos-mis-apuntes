@@ -11,6 +11,12 @@ Comandos básicos:
 	[ls]: lista todos los elementos que estén en nuestra ubicación
 	
 		[ls -l]: nos brinda mas información sobre los archivos
+		
+		[ls -lh]: expresa el tamaño de los archivos de forma mas clara
+		
+		[ls -a]: nos muestra los archivos ocultos
+		
+		[ls -R]: nos muestra recursivamente todos los archivos (el contenido dentro de las carpetas)
 	
 	[cd]: (change directory) nos cambia la ubicación por el home
 		 	
@@ -24,17 +30,43 @@ Comandos básicos:
 	
 	[touch <unNombre>]: crea un archivo vació
 	
-	[cp <elArchivo> <unaRutaAbsoluta>] : (copi) nos COPIA el archivo <elArchivo> y lo pega en <unaRutaAbsoluta>
+	[cp <elArchivo> <unaRutaAbsoluta>] : (copi) nos COPIA <elArchivo> y lo pega en <unaRutaAbsoluta>
 	
-	[mv <elArchivo> <unaRutaAbsoluta>] : (move) nos CORTA el archivo <elArchivo> y lo pega en <unaRutaAbsoluta>
+		[cp -i <elArchivo> <unaRutaAbsoluta>]: si ya existe un archivo con ese nombre, nos pregunta si lo queremos sobre-escribir
+	
+		[cp  -r <unaCarpeta> <unaRutaAbsoluta>]: nos COPIA <unaCarpeta> y la pega en <unaRutaAbsoluta>
+	
+	[mv <elElemento> <unaRutaAbsoluta>] : (move) nos CORTA <elElemento> y lo pega en <unaRutaAbsoluta>
+	
+		[mv -i <elElemento> <unaRutaAbsoluta>] : si ya existe el archivo/carpeta con ese nombre, nos pregunta si lo queremos sobre-escribir
+		
+	[mv <elElemento> <elElementoRenombrado>] : mv tambien sirve para renombrar archivos o carpetas, siempre y cuando el nuevo nombre no exista en la carpeta contenedora
 	
 	[rm <elArchivo>]: (remove) elimina <elArchivo> 
 	
+		[rm -R <elArchivo>]: Borra las carpetas, y todo lo que tengan dentro
+	
 	[cat <unArchivo>]: me imprime en la terminal el contenido de ese archivo
+	
+		[cat -n <unArchivo>]: Indica el numero de cada linea
+		
+		[cat -s <unArchivo>]: Elimina (solo en la terminal) los saltos de linea repetidos
 	
 	[sudo apt-get update]: Busca actualizaciones para el sistema
 	
 	[sudo apt-get upgrade]: Instala esas actualizaciones
+	
+	[sort]: ordena alfabeticamente/numeralmente, se aprovecha mas con los "|" (Ver mas abajo)
+	
+	[grep <unaPalabra>]: muestra las lineas que contengan esa palabra (o letra), se aprovecha mas con los "|" (Ver mas abajo)
+		
+		[grep -i <unaPalabra>]: ignora las mayusculas y minusculas
+		
+	[echo "texto"]: imprime ese texto en pantalla, puedo copiarlo dentro de un atchivo con los "|" (Ver mas abajo)
+	
+	[history]: lista todos los comandos usados
+	
+	[wc <unArchivoDeTexto>]: nos muestra 3 numeros: 1ro) cantidad de lineas  2do) cantidad de palabras  3ro) la cantidad de Bytes que tiene ese erchivo de texto (medio inutil este ultimo)
 
 
 
@@ -193,6 +225,35 @@ Procesos en la Terminal:
 		
 		[kill <unPID>] para matar ese proceso
 		
+		
+
+Concatenar comandos:
+---------------------
+
+	Cuando quiero que un comando modifique o trabaje sobre el resultado de otro uso la barra vertical "|". puedo concatenar cantos pipes (las barras) como querramos 
+	
+	Ejemplos:
+	
+			ls | sort <-- primero lista todos los elementos, y despues lo ordena alfabeticamente
+			
+			cat <unArchivo> | grep <unaPalabra>  <--- muestra el contenido de un archivo de texto, y sobre eso muestra solo las lineas/palabras que contengan "<unaPalabra>"
+			
+			
+			
+
+Shell Scripting Básico:
+-----------------------
+
+	Basicamente es crear un archivo que contenga una serie de comandos, estos comandos no van a hacer nada hasta que ejecute el archivo.
+	
+	Pasos:
+	
+	1) crear un archivo de texto plano con la extencion .sh
+	2) En la primera fila copiar: [#!/bin/bash] eso indica que usaremos bash, que es un interprete de comandos muy comun en linux
+	3) copiar los comandos que quiera (mkdir,touch,echo,sudo,cd,etc), todos separados por punto y coma ";"
+	4) Darle permisos de ejecucion
+	5) ejecutarlo cuando lo necesite (./elArchivo.sh)
+		
 
 
 Comandos Extra del Sistema:
@@ -205,6 +266,14 @@ Comandos Extra del Sistema:
 	Ver particiones del disco duro [df -h]
 	
 	Ver la memoria RAM disponible [free -h]
+	
+	
+	
+	
+Comandos utiles que requieren instalacion:
+------------------------------------------
+
+
 
 
 
