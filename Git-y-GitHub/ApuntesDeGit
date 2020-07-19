@@ -84,7 +84,7 @@ para ver la historia de un archivo:
 para ver los cambios de un archivo con su vercion anterior
 ----------------------------------------------------------
 
-		[git show <nombreDelArchivo>]
+		[git show <CodigoDeUnComit>]
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -95,12 +95,12 @@ para ver la diferencia entre dos verciones distintas de un archivo:
 
 git diff (sin nada) me muestra los cambios entre el archivo actual(modificado) y el que ya tengo en el repositorio
 
-git diff <IdentificadorDeUnaVercion> <IdentificadorDeOtraVercion>
+git diff <IdentificadorDeUnaVercion> <IdentificadorDeOtraVercion> muestra los cambios entre esas dos verciones
 
 (con git log puedo ver los Identificador de cada vercion)
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// hasta aca tengo en la pagina
 
 
 git reflog
@@ -157,7 +157,7 @@ Merge
 ----- 
    un Merge es unir dos ramas. los cambios van a terminar en la rama en la que este parado a la hora de hacer un merge
 
-   Para hacer un merge: git merge <>ElnombreDeLaRamaQueQuieroMergear> -m "<unComentario>"
+   Para hacer un merge: git merge <ElnombreDeLaRamaQueQuieroMergear> -m "<unComentario>"
 
         En caso de conflicto (que dos ramas modifiquen las mismas partes del archivo) lo tengo que solucionar a mano, elijiendo la vercion de la rama 
         que yo quiera (lo  voy a ver mas claro cuando haga el merge y falle) y luego hago el Commit para guardar los cambios
