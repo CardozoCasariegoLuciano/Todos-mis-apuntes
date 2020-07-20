@@ -68,6 +68,11 @@ Comandos básicos:
 	
 	[wc <unArchivoDeTexto>]: nos muestra 3 numeros: 1ro) cantidad de lineas  2do) cantidad de palabras  3ro) la cantidad de Bytes que tiene ese erchivo de texto (medio inutil este ultimo)
 
+	[sudo apt-get autoremove]: limpia la memoria de paquetes de instalación
+	
+	[sudo apt-get autoclean]:limpia el sistema de paquetes huérfanos, es decir, de paquetes que en un tiempo tuvieron uso por alguna aplicación y ahora ya no lo usa ningún programa
+	
+	 
 
 
 Para dar permisos a una carpeta:
@@ -217,6 +222,11 @@ Instalar archivos .tar.gz:
 	5to) [sudo make install]
 
 
+Dependencias incumplidas:
+-------------------------
+
+	[sudo apt-get -f install] resuelve las dependencias rotas que existan en el sistema
+
 
 Procesos en la Terminal:
 ------------------------
@@ -253,8 +263,16 @@ Shell Scripting Básico:
 	3) copiar los comandos que quiera (mkdir,touch,echo,sudo,cd,etc), todos separados por punto y coma ";"
 	4) Darle permisos de ejecucion
 	5) ejecutarlo cuando lo necesite (./elArchivo.sh)
+	
 		
 
+Alias temporal:
+---------------
+	Un alias es una abreviacion de un comando (generalmente uno largo) para tener acceso de forma mas rapida
+
+	[alias unNombre="el/los comandos"]
+	
+	
 
 Comandos Extra del Sistema:
 ---------------------------
@@ -267,6 +285,15 @@ Comandos Extra del Sistema:
 	
 	Ver la memoria RAM disponible [free -h]
 	
+	Ver informacion del Hardware [lshw]
+	
+	Muestra info del prosesador [lscpu]
+	
+	Muestra la hora actual, tiempo de encendido del equipo y  otras cosas mas [uptime]
+	
+	Muestra el espacio libre y ocupudo en las unidades de almacenamiento [df -h]
+	
+	Muestra 
 	
 	
 	
