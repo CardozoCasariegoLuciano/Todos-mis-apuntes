@@ -160,6 +160,8 @@ Etiquetas para el body:
 							
 		dentro de los label tambien puedo usar:  <select> ... </select> y dentro de estos uso <option> ...</option> para crea una lista desplegable
 		donde cada <option></option> es un nuevo elemento
+		
+		dentro de los label tambien puedo usar: <textarea> ... </textarea>: es un espacio para escribir mas amplio.
 			
 		
 		

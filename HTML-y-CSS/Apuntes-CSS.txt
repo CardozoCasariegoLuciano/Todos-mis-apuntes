@@ -1,0 +1,324 @@
+reglas CSS:
+ 
+<Selector>{       <---- A que cosa le vamos a modificar su apariencia
+	propiedad1;		
+	propiedad2;		<---- Los distintos cambios 
+	propiedad3;
+	etc;
+}
+
+////////////////////////////////////////////
+
+
+comentarios:
+
+/*  ...  */
+
+
+////////////////////////////////////////////
+
+
+selectores:
+
+	indica a que elemento se le realizara un cambio
+	
+	
+	* {...}
+	
+		 " * " es el selector universal (no se usa mucho)
+	 
+	 --------------------
+	 
+	body {...} 
+	
+		selector de etiqueta (body en este caso), puede ser cualquier etiqueta HTML. pero si por ejemplo elijo "h3" modificara a TODOS los h3 
+	 
+	 --------------------
+	 
+	h1, h2, h3 {...} 
+	 
+		para aplicar el mismo cambio a varios elementos se los puede indicar asi
+	 	
+	 --------------------
+	 
+	p a{...}
+	
+		selector desendente, puede ser cualquier etiqueta HTML que este dentro de otra. en ese caso solo afecta a las etiquetas <a> que estend dentro de una <p>
+	 
+	 --------------------
+	 
+	 p > a{...}  
+	 
+	 	selector desendente estricto, puede ser cualquier etiqueta HTML que este inmediatamente (sin otras etiquetas en el medio) dentro de otra. en ese caso solo afecta a las etiquetas <a> que estend 			dentro de una <p>
+	 	
+	 --------------------
+	 
+	 h1 + p {...}
+	 	
+	 	selector adyacente. Seleccionará solamente el elemento que es inmediatamente precedido por el primer elemento. En este caso a todos los parrafos que esten luego de un h1
+	 		 
+	 --------------------
+	 
+	 h1[title]{...} ó h1[title="hola"]{...}
+	 
+	 	selector de atributos. Sólo seleccionará las etiquetas que tengan el atributo seleccionado entre los corchetes., pueden ser solo con el nombre del atributo o tambien con el valor
+	 
+	 --------------------	 
+		 
+	 .nombre{...} 
+	 
+	 	selector de clase, en HTML se usa la etiquta class="nombre1"
+	 
+	 --------------------
+	 	 
+	 #nombre2{...} 
+	 
+		selector de ID, en HTML se usa la etiquta id="nombre2". a diferencia de las clases, los id no se pueden repetir con el mismo nombre
+	  
+	 --------------------
+	 
+	 a:link{...}
+	 
+	 	seleccionar todas las etiquetas <a> a las que aún no se les ha dado click	 		
+	 
+	 --------------------
+	 
+	 a:visited{...}
+	 
+	 	seleccionar todas las etiquetas <a> a las que ya se les ha dado click	 
+	 
+	 --------------------
+	 
+	 elem:active{...}
+	 
+	 	modifica al elemento pero cuando el usuario le hace un clic
+	 
+	 --------------------
+	 
+	 input:focus{...}
+	 
+	 	modifical el impul en el que estemos parados
+	 
+	 --------------------
+	 
+	 elem:hover{...}
+	 
+	 	selecciona al elemenlto elegido, pero solo cuando el usuario apoya el cursor sobre el
+	 
+	 --------------------
+	 
+	 input:checked{...}  ó para ser mas especificos  input[type=radio]:checked{...} 
+	 
+	 	sólo afectará a un elemento de interfaz de usuario que haya sido seleccionado - como un botón de opción (radio button) o casilla de selección (checkbox)
+	 	
+	 --------------------
+	 
+	 div:not(.container){...}   ó  elem:not(otroElem){..}	 
+	 	
+	 	en el primer ejemplo, selecciona todos los div, MENOS los que tengan la clase "container". ademas de clases pueden ser otras etiquecas, id, etc
+	 
+	--------------------
+	
+	p::selection{...}
+	
+		Modifica el texto cuando se selecciona con el clic derecho(en este caso en el texto de todos los parrafos)
+	
+	
+////////////////////////////////////////////
+
+	Unidades de medida:
+	
+		Absolutas:
+	
+			px  ---- Pixeles
+			
+			mm  ---- milimetros (no se usa, pero existe)
+			
+			cm  ---- centimetros (no se usa, pero existe)			
+			
+		Relativas:
+		
+			em  ---- el valor base de un "em" es el valor por defecto (o del cambio mas cercano) del elemento al que se lo quiero aplicar, por lo que 1em, no va a generar ningun cambio, pero 0.5em, 							es la mitad de su valor por defecto, sin importa de cuanto sea
+				
+							ej: body{font-size:10px;}
+								
+								p{font-size:2em} --- en este caso el tamaño de los parrafos sera de 20px, porque modifica al cambio mas cercano que son los 10px que establesi en el body
+			
+			rem ---- es igual al em, pero siembre se va a vasar en el valor de medida por defecto, sin importar si se cambio o no en el medio
+			
+			% ------ se usa mas que nada en las cajas, y es un valor en porsentaje de su padre mas sercano (o del archivo mismo si no tiene padre)
+
+
+////////////////////////////////////////////
+
+	Colores:
+	
+		palabras clave: estas pueden ser blue, gree, red, skyblue, yellow, black, white, aqua, orange, entre otras (17 en total)
+		
+		RGB decimal: rgb(xxx, xxx, xxx) se busca los valores del color en internet
+		
+		RGB hexadecimal: #xxxxxx  se busca los valores del color en internet		
+		
+		RGB porsentual: rgb(xx%, xx%, xx%) se busca los valores del color en internet
+		
+		RBG con trasparencia: rgba(xxx, xxx, xxx, x) puede ser igual a cualier otro RGB pero con otro valor al final que va desde el 0 al 1 el cual indica la transparencia
+
+
+////////////////////////////////////////////
+
+	modelo de caja:
+	
+		Nos permite crear "cajas" rectangulares en las que tendremos todo nuestro contenido
+		
+		
+	Tipo de elementos:
+	
+		tipo bloque: se extienden a lo largo de la linea. si tengo 2 tipo bloque juntos, no se ponen uno al lado del otro aunque tengan espacio, sino que hacen un salto  de linea
+		
+		tipo linea: se extienden solo lo necesario. si tengo 2 tipo linea juntos, se ponen uno al lado
+			
+					A estos elemetos no se les puede dar un alcho o alto 
+					
+		tipo en linea-bloque: son iguales a los en linea, pero se les puede modificar el ancho, alto y otras cosas mas
+		
+
+
+////////////////////////////////////////////
+
+
+	Posicionamiento de cajas:
+	
+		top: unNumero; 		<-----mueve la caja de arriba a abajo
+		bottom: unNumero;	   	<-----mueve la caja de abajo a arriba
+		left: unNumero;		<-----mueve la caja de izquierda a derecha
+		right: unNumero;		<-----mueve la caja de derecha a izquierda 
+	
+	position: relative;   <--- nos permite pocicionar una caja desde su pacicion de origen, el espacio que dejo libre luego de moverlo no se rellena automaticamente con otro elemento
+	
+	position: absolute;   <--- nos permite pocicionar una caja desde la esquina superior izquierda, el espacio que dejo libre luego de moverlo se rellena automaticamente con otro elemento
+	
+								si nuestro elemento con pocicion absoluta esta dentro de otro con pocicion relativa, se pocicionara en relacion a su padre y no de la pagina
+								
+								
+	position: fixed;   <--- nos permite pocicionar una caja desde la esquina superior izquierda, el espacio que dejo libre luego de moverlo si se rellena automaticamente con otro elemento. lo que tiene 								de especial es que si nosotros bajamos con la ruedita del mause, el objeto va a quedar siempre en la misma pocicion
+							
+							
+	float: left/right;  <--- Nos "Flota" el/los elementos en la direccion elejida, colocandolos uno al lado del otro. los elementos de texto y los en linea tambien se pocicionan a los lados
+	
+		clear:both;  <--- los float afectan tanto a los elementos anteriores como posteriores, con clear both nuestro elemento hace una especie de salto de linea para no ser afectado por el float
+	
+
+////////////////////////////////////////////
+
+
+	texto y tipografia:
+	
+		color: <unColor>  <--- un color para la fuente (texto)
+		font-size: <unNumero> <unaUnidad>   <-------- cambia el tamaño del texto
+		font-family:"<unaTipografia>";	<-------- cambia la tipografia del texto
+		font-weight:bold/normal;   <-------- pone el texto en negrita o normal
+		text-align: center/left/rigth;  <-------- Alinea el texto (solo para elementos tipo bloque)
+		line-heigth:<unNumero>; 		<-------- la distancia entre renglones
+		text-decoration:none/underline/overline/line-through    <-------- Agrega lineas sobre, debajo y tachando el texto
+		text-shadow:<unNumero> <unNumero> <unNumero> <unColor>; el orden es asi: distancia hacia abajo, distancia hacia la izquierda (con negativos a la derecha), el tamaño, y el color
+		
+		
+	Contenedores:
+
+		background: <unColor>  <-- determina el color de fondo
+		background: url(unURL) <-- determina la imagen de fondo
+	
+		width:<unNumero> 	<--- es el ancho 
+		heigth:<unNumero>	<---- es la altura
+		
+		max-width:<unNumero> 	<--- es el ancho maximo que podra tener
+		min-width:<unNumero> 	<--- es el ancho minimo que podra tener
+		
+		max-heigth:<unNumero>	<---- es la altura maxima que podra tener
+		min-heigth:<unNumero>	<---- es la altura minimo que podra tener
+	
+		margin:<unNumero>   <---- es el margen con los otros elementos en todas direcciones
+			margin:<unNumero> <unNumero> <--- el primer numero es el margen de arriba y abajo mienstras que el segundo es el margen a los costados
+	
+		padding:<unNumero>   <---- es el margen con los bordes de la caja
+	
+		border:<tamaño> <tipo> <color> <--- Agrega bordes a la caja: el tipo mas comun es solid
+	
+			tanto el margin como el padding y border aumentan el tamaño de las cajas, no es que estas se ajustan, para saver su tamaño real hay que sacar las cuentas
+			
+			
+		display:<un tipo de bloque>: cambia el tipo de bloque de la caja 
+		
+		box-shadow:<unNumero> <unNumero> <unNumero> <unColor>; el orden es asi: distancia hacia abajo, distancia hacia la izquierda (con negativos a la derecha), el tamaño, y el color
+	
+		border-radius:<unNumero>;  las cajas van a terner un borde redondeado
+		
+		Box-sizing:border-box;  <--- cuando la caja tiene este modificador, los paddings, margenes, bordes ,etc, no van a afectar el tamaño de la caja.
+		
+		
+		
+	otros:
+	
+		list-styles: none;  le saca los estilos a las listas
+	
+		cursor:pointer: cambia el cursor cuando apyas el mause en el elemento
+		
+		
+	Formularios:
+	
+		
+		para el textarea:
+		
+				resize: horizontal,vertical,both,none;  <--- nos permite modificar ese aspecto de los text area
+	
+	
+	
+	Variables en CSS:
+	-----------------
+	
+	Las inicializo general mente al principio del documento:
+	
+	:root{
+		--variable1;   <--- cada variable comienza con "--" (doble guion)
+		--variable2;
+		--etc;
+	}
+	
+	
+	a la hora de usarlas en alguna parte del documento:
+	
+		var(--variable1)
+		
+		
+		ejemplo:
+		
+			:root{
+				--colorCheto: blue;
+			}
+			
+			p a{
+				color: var(--colorCheto);
+			}
+	
+	
+	Funcion calc():
+	-------------
+	
+		nos permite hacer cuentas, ejemplo:
+		
+			calc(10% + 30px);
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
