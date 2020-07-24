@@ -100,23 +100,23 @@ git diff <IdentificadorDeUnaVercion> <IdentificadorDeOtraVercion> muestra los ca
 (con git log puedo ver los Identificador de cada vercion)
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// hasta aca tengo en la pagina
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 git reflog
 -----------
-		similar a [git log] pero muestra toda la historia, incluso las cosas que fueron borradas, se puede usar con el [git reset] para volver a una version ya eliminada
+		similar a [git log] pero muestra toda la historia, incluso las cosas que fueron borradas, se puede usar con el [git reset] para volver a una version ya eliminada (usando los codigos de identificacion del reflog)
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-Para volve a una vercion anterior:
+Para volver a una vercion anterior:
 ----------------------------------
 
-   [git reset <IdentificadorDeLaVercionQueQueremos> --hard] ("Vuelve en el tiempo y borra las verciones posteriores a esa que elegimos"
+   [git reset <IdentificadorDeLaVercionQueQueremos> --hard] "Vuelve en el tiempo" y borra las verciones posteriores a esa que elegimos
                 o
-    [git reset <IdentificadorDeLaVercionQueQueremos> --soft] ("Vuelve en el tiempo" pero lo que este en el staging sigue ahi)
+    [git reset <IdentificadorDeLaVercionQueQueremos> --soft] "Vuelve en el tiempo" pero lo que este en el staging sigue ahi
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,7 +136,7 @@ para volver a la ultima vercion hago lo mismo pero con master
 git checkout master historia.txt
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  hasta aca tengo en mi HTML
 
 
 Ramas
