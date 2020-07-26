@@ -174,9 +174,9 @@ Repositoros remotos
 	Si simplemente quiero traerme a mi computadora el repositorio de otra persona: [git clone <URL del repositorio en remoto>]
 
 
-	Para relacionar nuestro repositorio local con el remoto:  git remote add origin <URL de mi repositorio en remoto> (en gitHUb u otros)
+	Para relacionar nuestro repositorio local con el remoto:  git remote add origin [URL de mi repositorio en remoto] (en gitHUb u otros)
 		
-	Para cambiar el repositorio local: git remote set-url origin <nuevo URL>
+	Para cambiar el repositorio local: git remote set-url origin [nuevo URL]
 		
 	Para verificar que la URL se haya guardado corretamente :git remote -v
 
@@ -195,12 +195,12 @@ Repositoros remotos
 
 	una vez ya tenga todo lo del repositorio remoto en mi local, ya voy a poder subir y bajar cosas sin problemas
 	
-	Si desde un principio mi repositorio local esta vacio, no hace falta, solo con un gil pull... alcanza
+	Si desde un principio mi repositorio local esta vacio, no hace falta, solo con un gil pull alcanza
 	
 
 	
 	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  hasta aca llege  
 
 
 
