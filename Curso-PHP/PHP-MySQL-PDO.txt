@@ -36,8 +36,9 @@ Conectarse a una BASE DE DATOS con PHP:
 	}catch(Exception $e){             	 --- "catch" siempre resive como parametro un objeto tipo de
 						 ---   Exception ($e en este caso)
 
-		die("error: " . $e -> GetMessage());   --- los objetos Exception ($e en este caso) pueden recibir
-	}					       ---  el mensaje GetMessage(), que muestra el error 
+		die("error: " . $e -> GetMessage());   --- los objetos Exception ($e en este caso) pueden recibir varios mensajes
+	}					      		    --- GetMessage() muestra el error 
+									    --- GetLine() Muestra la linea en la que se produjo el error
 
 	$base=null;	 			---- Asi se cierra una conexion a una base de datos en PDO
 	
@@ -58,6 +59,8 @@ Conectarse a una BASE DE DATOS con PHP:
 		try{
 
 			$base = new PDO ("mysql:host=localhost; dbname=cursophp_pildorayt" , "root" , "");   <---creando la conexion
+			
+			$base -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  <--- Permite crear un objeto de tipo Excepcion, para luego ser usardo (Si es necesario) mas abajo en el bloque catch
 
 			$base -> exec("SET CHARACTER SET utf8"); 		<---- Exec, entre otras cosas permine espesificar un juego de caracteres
 
@@ -81,8 +84,9 @@ Conectarse a una BASE DE DATOS con PHP:
 
 		}catch(Exception $e){
 
-			die("error mortal bro, te tenes que fijar: " . $e -> GetMessage());
-
+			die("error mortal bro, te tenes que fijar: " . $e -> GetMessage()); --- los objetos Exception ($e en este caso) pueden recibir varios mensajes
+							      		  			 			   --- GetMessage() muestra el error 
+												  				   --- GetLine() Muestra la linea en la que se produjo el error  
 		}
 
 		$base=null;
@@ -90,9 +94,63 @@ Conectarse a una BASE DE DATOS con PHP:
 	
 	
 	
+	Marcadores para consultas preparadas:
+	-------------------------------------
+	
+		Los marcadores nos van a facilitar tener arrays asociativos, lo cual es muy util cuando nuestra consulta SQL requiere varios datos pasados por el HTML
+		
+		Los marcadores de indican con dos puntos (:) ej :cod-pais
+			
+		No cambia mucho respecto alcodigo anterior:
 	
 	
 	
+	
+	Buscar los Paises de america del sur y que tengan el idioma español
+	
+	<?php
+
+		$buscar-Continente = $_GET["continente"];  <---- El elemento a buscar pasado por el formulario 
+		$buscar-idioma = $_GET["idioma"];  <---- El elemento a buscar pasado por el formulario
+
+		try{
+
+			$base = new PDO ("mysql:host=localhost; dbname=cursophp_pildorayt" , "root" , "");   <---creando la conexion
+			
+			$base -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  <--- Permite crear un objeto de tipo Excepcion, para luego ser usardo (Si es necesario) mas abajo en el bloque catch
+
+			$base -> exec("SET CHARACTER SET utf8"); 		<---- Exec, entre otras cosas permine espesificar un juego de caracteres
+
+			$sql = " SELECT * FROM paises WHERE continente = :cont AND idioma = :idom ";  <---- La consulta con un MARCADOR (los nombres de esos marcadores los tengo que inventar en este punto)
+
+			$resultado = $base->prepare($sql);  	<---- el metodo prepare de $base crea un objeto "PDOstatemet"  y requiere como parametro una consulta SQL
+
+			$resultado -> execute(array(":cont" => $buscar-Continente , ":idom" => $buscar-idioma));  <--- el objeto "PDOstatemet" acepta el metodo Execute, y le pasamos por parametro un array que 																					 recive tantos parametros como etiquetas (y por lo tanto parametros para buscar) tengamos.
+																					 Solo el nombre de la etiqueta va entre comillas.
+																					   
+
+			while ($registro=$resultado->fetch(PDO::FETCH_ASSOC)) { 	<---- el metodo fetch del objeto "PDOstatemet" obtiene la siguiente fila (ademas, true si puede y false si no puede)y resibe 																	como parametro [PDO::FETCH_ASSOC] que significa que los va a asociar con clave/valor.
+					echo "Pais: " . $registro["nomPais"] . "<br>";
+					echo "Idioma: " . $registro["idioma"] . "<br>";
+					echo "Continente: " . $registro["continente"] . "<br>";
+					echo "Poblacion: " . $registro["poblacion"] . "<br><br>";
+
+					echo "<b>" . "hecho con una consulta preparada PDO" . "<b>";
+
+			}
+
+			$resultado->closeCursor();  <---- termino con el objeto "PDOstatemet" para que ya no consuma recursos		
+
+		}catch(Exception $e){
+
+			die("error mortal bro, te tenes que fijar: " . $e -> GetMessage()); --- los objetos Exception ($e en este caso) pueden recibir varios mensajes
+							      		  			 			   --- GetMessage() muestra el error 
+												  				   --- GetLine() Muestra la linea en la que se produjo el error   
+
+		}
+
+		$base=null;
+	?>
 	
 	
 	
