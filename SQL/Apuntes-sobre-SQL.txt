@@ -11,7 +11,12 @@ Bases de datos
 
 Tablas
 
-	*para crear una tabla: CREATE TABLE <nombreTabla> (<NombreDelCampo> <TipoDeDato>, otro campo y su tipo de dato ...)
+	*para crear una tabla: CREATE TABLE <nombreTabla> (<NombreDelCampo> <TipoDeDato> <Opcionales> , otro campo, su tipo de dato y sus opciones ...);
+	
+				Posibles opciones:
+							NOT NULL  : No permite el campo en NULL
+							AUTO_INCREMENT : Ese valor (tipo numerico, INT u otros) aumentara automaticamente 
+							PRIMARY KEY : clave primaria de la tabla
 	
 	*para eliminar una tabla: DROP TABLE <nombreTabla> ;
 	*Para ver la lista de tablas (en consola): SHOW TABLES;

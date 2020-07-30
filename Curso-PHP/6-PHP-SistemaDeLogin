@@ -1,0 +1,87 @@
+--- Para logearse
+
+<?php
+
+	try{
+
+		$conexion = new PDO ("mysql:host=localhost; dbname=cursophp_pildorayt","root",""); // establesco la conexion
+
+		$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // permito la creacion del objeto exception
+
+		$conexion-> exec("SET CHARACTER SET utf8"); // indico el juego de caracteres
+
+		$sql = "SELECT * FROM usuarios WHERE usuario = :usr AND password = :pass"; // consulta SQL con dos marcadores
+
+		$resultado = $conexion->prepare($sql); // Preparo la consulta
+
+			$user = htmlentities(addslashes($_POST["user"])); // en resumen, esta linea evita la inyeccion SQL (pero tambien sirve para otras cosas)
+
+			$password = htmlentities(addslashes($_POST["pass"])); // en resumen, esta linea evita la inyeccion SQL (pero tambien sirve para otras cosas)
+
+		$resultado->bindValue(":usr", $user); //  Vincula un valor a un parámetro en este caso una etiqueta con el valor pasado por el usuario de las 2 filas anteriores
+
+		$resultado->bindValue("pass", $password); // Vincula un valor a un parámetro en este caso una etiqueta con el valor pasado por el usuario de las 2 filas anteriores
+
+		$resultado->execute(); // Ejecuta la consulta
+
+
+		$cant_registros = $resultado->rowCount(); // $resultado->rowCount(): retorna la cantidad de filas que retorna una colsulta
+
+		if ($cant_registros != 0) {
+
+			echo "Todo bien por ahora";
+
+		}else {
+
+			header("location:pagina-de-Inicio.php");  // redirecciona a la pagina indicada
+		}
+
+	}catch(Exception $e){
+
+		die("Error en: " . $e->getLine());
+	}
+?>
+
+
+---- Para registrarse
+
+<?php
+	try{
+
+		$conexion = new PDO ("mysql:host=localhost; dbname=cursophp_pildorayt","root","");
+
+		$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		$sql = "INSERT INTO usuarios (usuario, password) VALUES (:user,:pass)";
+
+		$resultado = $conexion->prepare($sql);
+
+		$usuario = htmlentities(addslashes($_POST["user"]));
+		$password= htmlentities(addslashes($_POST["pass"]));
+
+		if ($usuario!= NULL && $password!= NULL) {		
+
+			$resultado->bindValue(":user",$usuario);
+			$resultado->bindValue(":pass", $password);
+
+			$resultado->execute();
+
+			$cant = $resultado->rowCount();
+
+			if ($cant != 0) {
+
+				echo "Nuevo usuario agregado";
+			
+			}else{
+
+				echo "NO se pudo agregar al nuevo  usuario";
+
+			}
+		}else{
+			echo "Ingrese datos validos";
+		}
+
+	}catch(Execption $e){
+		die("Error, Todo mal: " . $e->getLine());
+	}
+?>

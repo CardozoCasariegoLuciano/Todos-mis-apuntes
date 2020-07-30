@@ -31,6 +31,8 @@ Conectarse a una BASE DE DATOS con PHP:
 						 es medio extraña, solo modifico $DirBBDD y $NombreBBDD
 				2do) $unUsuario de mi base de datos
 				3ro) $unaConstraseña  de mi base de datos
+				
+	    $base -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  <--- Permite crear un objeto de tipo Excepcion, para luego ser usardo (Si es necesario) mas abajo en el bloque catch
 
 
 	}catch(Exception $e){             	 --- "catch" siempre resive como parametro un objeto tipo de

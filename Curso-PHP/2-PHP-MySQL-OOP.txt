@@ -44,10 +44,10 @@ Conectarse a una BASE DE DATOS con PHP:
 	
 	
 	while ($fila=$resultado->fetch_assoc()) 	--- "mira" la informacion de la tabla virtual
-	{						--- que recive como parametro y ademas 	
+	{									--- que recive como parametro y ademas 	
 		echo "Nombre: ". $fila["nombrePais"];	--- true si encuentra una tupla y
-	};						--- false si ya no encuentra ninguna
-							--- (mas detalles en metodo prosedural)	
+	};									--- false si ya no encuentra ninguna
+										--- (mas detalles en metodo prosedural)	
 
 
 	$conexion->close();   --- cierra la conexion a la base de datos;

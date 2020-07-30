@@ -1,0 +1,197 @@
+  	
+  	
+  		esta todo dividido en varios archivos:
+  		
+  			----------------Con libreria mysqli---------------
+  		
+  		
+  		**config.php:  aqui iran todos los datos para la conexion
+  		
+  		<?php
+	
+			define("DB_HOST","localhost");  // define() declara una constante, por lo que siempre que use este archivo config a la hora de conectar con una base de 											datos tentra estos valores
+
+			define("DB_PASSWORD","");		// define() requiere dos parametros, el primero es el nombre y el segundo es el valor
+
+			define("DB_USER","root");
+
+			define("DB_BASEdeDATOS","cursophp_pildorayt");
+
+			define("DB_CHARSET", "UTF8");
+
+		?>
+		
+		**conexion.php:  Aqui se establesera la conexion
+		
+		<?php
+
+			require ("config.php");  //llamo al archivo config en el que tengo toda la informacion de la conexion
+
+			class conexion{ 
+
+				protected $conexion_BD;  //creo una variable con la que voy a realizar la conexion
+
+				public function __construct(){ 	 //creo el constructor con dobles guion bajo (__)
+	
+					$this->conexion_BD=new mysqli(DB_HOST , DB_USER , DB_PASSWORD , DB_BASEdeDATOS);  //creo una conexion con la base de datos
+
+					if($this->conexion_BD->connect_errno){  //creo un If por si durante la conexion ocurre un error
+
+						echo "Todo mal crak. Fallo al conectar: " .  $this->conexion_BD->connect_error;  //si algo pasa, le digo que me muestre cual fue el error
+
+						return;
+					}
+				
+					$this->conexion_BD->set_charset(DB_CHARSET);  //le digo el juego de caracteres
+				}
+			}
+		?>
+		
+		**devuelvePaises: Esta es la consulta en la que pido un pais en espesifico
+		
+		<?php
+
+			require ("conexion.php");  //llamo al archivo conexion en el que tengo la clase nesesaria
+
+			class devuelvePaises extends conexion{  // devuelvePaises hereda de la clase conexion
+
+				public function __construct(){  //creo un constructor para esta clase
+
+					parent::__construct();   // parent:: ejecuta un metodo de su clase padre, el constructor en este caso
+				}
+				
+
+				public function get_paises($unPais){
+
+					$resultado=$this->conexion_BD->query('SELECT * FROM paises WHERE nomPais =  "'  . $unPais . '"'); 
+					 
+																	// puedo usar el objeto conexion_DB gracias a la herencia con extends de la clase conexion 																		// Este objeto puede recibir el metodo query que requiere un consulta SQL
+																	// Atento a esa concatenacion de comillas simples y dobles 
+																	
+					$paises=$resultado -> fetch_all(MYSQLI_ASSOC);   // fetch_all: consulta todas las filas y devuelve el resultado en un array asociativo, numérico, 																	o ambos. dependiendo del parametro
+					
+					return $paises;
+
+				}
+			}
+		?>
+		
+		
+		** El HTML encargado de mostrar los datos
+		
+		<?php
+
+			require("devuelvePaises.php"); 
+
+			$busqueda = $_POST["paisB"];  //el pais buscado lo saco del formulario de la pagina que ve el usuario
+
+			$todosLosPaises = new devuelvePaises();  //creo un instanca de la clase devuelvePaises
+
+			$array_paises = $todosLosPaises->get_paises($busqueda);  // creo la variable $array_paises para usarla mas adelante y le asigno el resultado de llamar al mensaje get_paises con el 
+														  // parametro del pais buscado  
+		?>
+
+
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<title></title>
+		</head>
+		<body>
+
+			<?php
+
+				foreach ($array_paises as $elem) {   // el foreach recorre el array
+
+					echo "Nombre: ". $elem["nomPais"] . "<br>"; 
+					echo "Idioma: ". $elem["idioma"] . "<br>"; 
+					echo "Continente: ". $elem["continente"] . "<br>"; 
+					echo "Poblacion: ". $elem["poblacion"] . "<br><br>"; 
+					echo "Construido con POO con Clases" . "<br><br><br>"; 
+				}
+			?>
+		</body>
+		</html>
+		
+		
+		
+		----------------Con libreria PDO---------------
+		
+		
+		
+		**conexion.php:  Aqui se establesera la conexion
+		
+		
+		<?php	
+
+			class conexion{ 
+
+				protected $conexion_BD;  //creo una variable
+
+				public function __construct(){  //creo el constructor
+
+					
+					try{
+						$this->conexion_BD = new PDO('mysql:host=localhost; dbname=cursophp_pildorayt' , "root", "");	<--- Creo la conexion
+
+						$this->conexion_BD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); <--- Permite crear un objeto de tipo Excepcion,
+
+						$this->conexion_BD->exec("SET CHARACTER SET utf8");  <--- Establesco el juego de caracteres
+
+						return $this->conexion_BD;
+
+					}catch(Exception $e){
+
+							echo "El error esta en la linea:  " . $e->GetLine() . "  Muy mal todo che";
+					}
+				}
+			}
+		?>
+		
+		
+		**devuelvePaises: Esta es la consulta en la que pido un pais en espesifico
+		
+		<?php
+
+			require ("conexion.php");
+
+			class devuelvePaises extends conexion{
+
+				public function __construct(){
+
+					parent::__construct();   // parent:: ejecuta un metodo de su clase padre, el constructor en este caso
+
+				}
+
+				public function get_paises($unPais){
+
+					$sql= ('SELECT * FROM paises WHERE nomPais = "' . $unPais . '"'); <---La consulta SQL
+
+					$sentencia=$this->conexion_BD->prepare($sql); <---Prepara una sentencia SQL para ser ejecutada por el método "execute"
+
+					$sentencia->execute(array());  <---Ejecuta la sentencia preparada.
+
+					$resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);   <---Devuelve el array que contiene todas las filas del conjunto de resultados, por parametro le indico que las quiero 																		asociando las claves->valor)
+
+					$sentencia->closeCursor();
+	
+					return $resultado;
+
+					$this->conexion_BD=null;
+				}
+			}
+		?>
+		
+		** El HTML encargado de mostrar los datos
+		
+			Es igual al de arriba
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
