@@ -1,0 +1,16 @@
+Instalando neofetch:  muestra informacion muy buena del sistema
+
+	Comando:  neofetch
+				Ejecuta el programa
+				
+				
+
+Instalando debtap:  Transforma los .deb en otro tipo de archivo compatible con la arquitectura Arch (y manjaro)
+
+	Comando:	debtap -U
+				upgradra las bases de datos de la aplicacion
+				
+			debtap -q <archivo.deb>
+				transforma ese archivo en uno compatible para arch (y manjaro)
+		
+						Para ejecutar ese nuevo archivo: [sudo pacman -U <elNuevoArchivo>]

@@ -1,0 +1,37 @@
+NUNCA INSTALE UN PROGRAMA ANTES DE ACTUALIZAR EL SISTEMA, al ser un rolling release pueden haber problemas
+
+	
+#Instalar paquetes
+pacman -S “paquete” #Instala un paquete.
+pacman -Sy “paquete” #Sincroniza repositorios e instala el paquete.
+pacman -U “paquete” #Instala un paquete local
+	
+
+# Actualizar paquetes
+pacman -Sy #Sincroniza repositorios.
+pacman -Syy #Fuerza la sincronización de repositorios incluso para paquetes que parecen actualizados.
+pacman -Syu #Sincroniza repositorios y actualiza paquetes.
+pacman -Syyu #Fuerza sincronización y actualiza paquetes.
+pacman -Su #Actualiza paquetes sin sincronizar repositorios.	
+
+	
+# Buscar paquetes
+pacman -Q (o -Ql) #Lista todos los programas
+pacman -Ss “paquete” #Busca un paquete.
+pacman -Si “paquete” #Muestra información detallada de un paquete.
+pacman -Sg “grupo” #Lista los paquetes que pertenecen a un grupo.
+pacman -Qs “paquete” #Busca un paquete YA instalado.
+pacman -Qi “paquete” #Muestra información detallada de un paquete YA instalado.
+pacman -Qdt #Muestra paquetes huerfanos.
+
+
+# Eliminar paquetes
+pacman -R “paquete” #Borra paquete sin sus dependencias.
+pacman -Rs “paquete” #Borra paquete y sus dependencias no utilizadas.	
+pacman -Rsu "paquete" #Elimina el programa junto a las dependencias
+	
+# Eliminar cache y otros
+pacman -Sc #Borra la caché de pacman.	
+pacman -Scc #Borra paquetes guardados y limpia repositorios no utilizados.
+		
+
