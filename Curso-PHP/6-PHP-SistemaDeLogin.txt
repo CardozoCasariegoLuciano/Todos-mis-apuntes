@@ -1,0 +1,310 @@
+--- Para logearse
+
+<?php
+
+	try{
+
+		$conexion = new PDO ("mysql:host=localhost; dbname=cursophp_pildorayt","root",""); // establesco la conexion
+
+		$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // permito la creacion del objeto exception
+
+		$conexion-> exec("SET CHARACTER SET utf8"); // indico el juego de caracteres
+
+		$sql = "SELECT * FROM usuarios WHERE usuario = :usr AND password = :pass"; // consulta SQL con dos marcadores
+
+		$resultado = $conexion->prepare($sql); // Preparo la consulta
+
+			$user = htmlentities(addslashes($_POST["user"])); // en resumen, esta linea evita la inyeccion SQL (pero tambien sirve para otras cosas). Le asigno a la variable 
+														$user, lo que paso el usuario por el formulario
+
+			$password = htmlentities(addslashes($_POST["pass"])); // en resumen, esta linea evita la inyeccion SQL (pero tambien sirve para otras cosas)
+
+		$resultado->bindValue(":usr", $user); //  Vincula un valor a un parámetro en este caso una etiqueta con el valor pasado por el usuario de las 2 filas anteriores
+
+		$resultado->bindValue("pass", $password); // Vincula un valor a un parámetro en este caso una etiqueta con el valor pasado por el usuario de las 2 filas anteriores
+
+		$resultado->execute(); // Ejecuta la consulta
+
+
+		$cant_registros = $resultado->rowCount(); // $resultado->rowCount(): retorna la cantidad de filas que retorna una colsulta
+
+		if ($cant_registros != 0) {
+
+			session_start();  // crea o reanuda una sesion para el usuario 
+
+			$_SESSION["Usuario"] = $_POST["user"]; // Creo una variable super global llamada "Usuario"(puede ser cualquier nombre) y le asigno el valor que me pasaron por el formulario de la pagina principal
+
+			header("location:Pagina-para-usuarios1.php"); // redirecciona a la pagina indicada
+
+		}else {
+
+			header("location:pagina-de-Inicio.php");  // redirecciona a la pagina indicada
+		}
+
+	}catch(Exception $e){
+
+		die("Error en: " . $e->getLine());
+	}
+?>
+
+
+---- Para registrarse
+
+<?php
+	try{
+
+		$conexion = new PDO ("mysql:host=localhost; dbname=cursophp_pildorayt","root","");    // Establesco la conexion
+
+		$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  // permito la creacion del objeto exception
+
+		$sql = "INSERT INTO usuarios (usuario, password) VALUES (:user,:pass)";  // consulta SQL
+
+		$resultado = $conexion->prepare($sql);   // Preparo la consulta
+
+		$usuario = htmlentities(addslashes($_POST["user"])); // en resumen, esta linea evita la inyeccion SQL (pero tambien sirve para otras cosas). Le asigno a la variable 
+														$user, lo que paso el usuario por el formulario
+		$password= htmlentities(addslashes($_POST["pass"]));
+
+		if ($usuario!= NULL && $password!= NULL) {		 // si no se ingreso ningun dato no entra en el If
+
+			$resultado->bindValue(":user",$usuario);  relaciono el dato que paso el usuario con mi etiqueta
+			$resultado->bindValue(":pass", $password); 
+
+			$resultado->execute();    // ejecuto la instruccion SQL
+
+			$cant = $resultado->rowCount();  
+
+			if ($cant != 0) {
+
+				echo "Nuevo usuario agregado";
+			
+			}else{
+
+				echo "NO se pudo agregar al nuevo  usuario";
+
+			}
+		}else{
+			echo "Ingrese datos validos";
+		}
+
+	}catch(Execption $e){
+		die("Error, Todo mal: " . $e->getLine());
+	}
+?>
+
+
+
+---- La pagina a la redireccionara al usuaria si se logeo correctamente
+
+<!DOCTYPE html>
+<html>
+ <head>
+	<title>Solo usuarios</title>
+ </head>
+ <body>
+	<?php
+
+		session_start();  // reanudo la secion qye ya abri a la hora de verificar el login
+
+		if (!isset($_SESSION["Usuario"])) {  // isset: Determina si una variable está definida y no es NULL. Osea que si el usuario no existe entra en el If
+			
+			header("location:pagina-de-Inicio.php");	// redirecciona	
+
+		}
+	?>
+
+
+	<h4 style="text-align: center;">Holis</h4>
+
+	<?php
+	echo "Bienvenido " . $_SESSION["Usuario"] . "<br>";  // imprimo el nombre del usuario
+	?>
+
+	<p> Todo el contenido de la pagina </p>
+
+ </body>
+</html>
+
+
+---- Como cerrar una sesion
+
+<?php
+
+session_start();  // Antes de cerrar una Sesion primero hay que abrirla para que el navegador sepa exactamente cual cerrar
+
+session_destroy(); // destruye la sesion para que cuando el usuario quiera salir, no quede la sesion abierta para que entre otra persona
+
+header("location:pagina-de-Inicio.php"); // Redirecciona
+
+?>
+
+
+
+
+---------------------------------------------------
+-----Login y contenido todo en la misma pagina-----
+---------------------------------------------------
+
+
+
+
+--- Para logearse
+
+
+	en este modelo, el formulario para logearse esta en la misma pagina principal, pero algunos contenidos no se van a ver hasta que uno este logueado.
+	
+	<!DOCTYPE html>
+<html>
+<head>
+	<title>Inicio Todo junto</title>
+</head>
+<body>
+
+	<?php
+
+	if (isset($_POST["botonlogin"])) {		// Para que no vea esto la primera vez que arranque la pagina uso el isset y le páso por parametro el nombre del boton(submit) del formulario
+									// de login	
+		
+		try{					// todo el bloque try/catch es exactamente igual al login de arriba, solo ya al final no redirecciona a nunguna otra pagina
+	
+			$conexion = new PDO ("mysql:host=localhost; dbname=cursophp_pildorayt","root",""); // establesco la conexion
+	
+			$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // permito la creacion del objeto exception
+	
+			$conexion-> exec("SET CHARACTER SET utf8"); // indico el juego de caracteres
+	
+			$sql = "SELECT * FROM usuarios WHERE usuario = :usr AND password = :pass"; // consulta SQL con dos marcadores
+	
+			$resultado = $conexion->prepare($sql); // Preparo la consulta
+	
+				$user = htmlentities(addslashes($_POST["user"])); // en resumen, esta linea evita la inyeccion SQL (pero hace otras cosas)
+	
+				$password = htmlentities(addslashes($_POST["pass"])); // en resumen, esta linea evita la inyeccion SQL (pero hace otras cosas)
+	
+			$resultado->bindValue(":usr", $user); //  Vincula un valor a un parámetro en este caso una etiqueta con el valor pasado por el usuario de las 2 filas anteriores
+	
+			$resultado->bindValue("pass", $password); // Vincula un valor a un parámetro en este caso una etiqueta con el valor pasado por el usuario de las 2 filas 	anteriores
+	
+			$resultado->execute(); // Ejecuta la consulta
+	
+	
+			$cant_registros = $resultado->rowCount(); // $resultado->rowCount(): retorna la cantidad de filas que retorna una colsulta
+	
+			if ($cant_registros != 0) {
+	
+				session_start();  // crea un secion para el usuario 
+	
+				$_SESSION["Usuario"] = $_POST["user"]; // Creo una varia super global llamada "Usuario" y le asigno el valor que me pasaron por el formulario de la pagina principal
+					
+				}else {
+					
+					echo "Usuario o contraseña equivocado";
+				}			
+	
+			}catch(Exception $e){
+	
+			die("Error en: " . $e->getLine());
+			}
+	}
+?>
+
+
+<?php
+	
+	if (!isset($_SESSION["Usuario"])) {	//solo va a entrar en el if si no hay nada en la super variable $_SESSION["Usuario"], por lo que el usuario lo va a ver hasta que se loguee correctamente
+	
+		include ("login-y-registro.php");   // pongo los formularios de login y registro en un archivo nuevo, para poder sacarlos cuando el usuario ya este logeado
+	}else{
+		echo "Bienvenido " . $_SESSION["Usuario"] . "!!";  //contenido a mostrar si el usuario esta conectado
+	}
+?>
+
+
+	<h1>Contenido</h1>    // Contenido que el usuario podra ver sin estar logueado
+
+	<p > Un contenido Epico</p>
+
+</body>
+</html>
+
+
+
+
+---- Para registrarse
+		
+		Es exacta mente el mismo codigo
+
+	
+---- La pagina a la redireccionara al usuaria si se logeo correctamente
+	
+		Ya no va a redireccionar directamente a otra pagina al loguearse correcta mente
+		
+	
+---- Como cerrar una sesion
+
+		Es exacta mente el mismo codigo
+		
+		
+
+---- Formularios de login  y registros
+
+	Todo muy normal, menos el atributo acction del formulario de login (el de registrarse no tiene nada raro pero podria tener algo parecido al login)
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+		<!-- LogIn-->
+		
+		<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?> " method="POST" class="login">
+			
+				//  La variable super global $_SERVER['PHP_SELF'] indica que recarge la pagina actual y con htmlentities() me aseguro que no
+																 me inyecten codigo
+
+		<label>
+			Nombre de usuario <input type="text" name="user">			
+		</label>
+		<label>			
+			Contraseña <input type="password" name="pass">
+		</label> <br>
+
+		<input type="submit" name="botonlogin" value="LogIn">
+	</form>
+
+
+	<!-- Registro-->
+
+	<form action="registro.php" method="POST" class="registro">
+		<label>
+			Nombre de usuario <input type="text" name="user">
+		</label>
+		<label>			
+			Contraseña <input type="password" name="pass">
+		</label> <br>
+
+		<input type="submit" name="" value="Registrarse">	
+	</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

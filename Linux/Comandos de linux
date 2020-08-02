@@ -215,7 +215,7 @@ Instalar archivos .run:
 Instalar archivos .tar.gz:
 --------------------------
 
-	1ro) hay que descomprimirlo [tar xvf <nombreDel.tar.gz]
+	1ro) hay que descomprimirlo [tar xvf <nombreDel.tar.gz] ó [tar jxvf <nom.tar.bz2>] si termina en bz2
 	2do) Entrar en la carpeta recien descomprimida
 	3ro) Ejecutar  el archivo "Configure" (Tiene que tener los permisos) con [./<ElArchivo>]
 	4to) [make] para que prepare la instalacion
