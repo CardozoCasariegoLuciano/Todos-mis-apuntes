@@ -1,0 +1,41 @@
+Una cookie es un archivo de texto en la que se puede guardar cualquier tipo de datos.
+El archivo a a permanecer en alguna carpeta destro del disco duro del usuario el tiempo que el desarroyador quiera 
+(pero tambien la puede borrar manualmente)
+
+
+como crear una cookie:
+
+	setcookie();  <---setcookie se usa para crear una cookie, esta tiene dos parametros obligatorios, el primero es el nombre de la cookie, el segundo es el valor que esta va a guardar.		
+
+		---setcookie("nombre", "contenido");  solo con variables obligatorias
+		
+	
+	Ademas puede tener mas variables:
+
+		//setcookie("nombre", "contenido", "tiempo");  la terser variable es el tiempo que va a permanecer la cookie en SEGUNDOS, por defecto la cookie se va a borrar cuando se cierre el navegador
+
+			 -------time() retorna el tiempo en el que se cargo la pagina, por lo que una cookie que en el parametro "tiempo" tenga [time()+30], solo va a durar 30 segundos
+			 
+
+		//setcookie("nombre", "contenido", "tiempo", "unaDireccion");  la cuarta variable es una direccion, que indica en que carpeta(y sub carpetas) tendra validez la cookie, por defecto tiene validez 				en todo el directorio del archivo que la creo
+		
+		
+como eliminar una cookie:
+
+	Para eliminar una cookie solo basta con poner el tiempo con un valor negativo. 
+	
+	Ej
+		setcookie("cookie-1", "Mi contenido", time()-1);  <-- la cookie con ese nombre (primer parametro) ya tiene que existir previamente para que tenga sentido
+		
+		
+Para leer el contenido de una cookie:
+
+	$_COOKIE["unNombre"] <-- esta super-gloval guarda todas las cookies con sus contenidos, solo hay que llamarlas por su nombre (primer parametro)
+	
+
+	if (isset($_COOKIE["cookie1"])) {  <--- Busca si existe esa cookie
+	
+		echo $_COOKIE["cookie1"]; <--- imprime en pantalla el contenido de esa cookie (el segundo parametro)
+		  
+	}
+
