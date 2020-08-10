@@ -207,15 +207,41 @@ Repositoros remotos
 Llaves publicas y privadas/ SSH
 --------------------------------
 
-	Cambie el protocolo HTTPS por el SSH en mi gitHub, que es mas seguro y no requiere que este todo el tiempo poniendo mi usuario y contraseña.
-	cada computadora que se conecte al repositorio mediante SSH tiene que tener su propia calve publica/privada conectada a gitHub
+	LLaves publicas y pribadas/SHH
+Las llaves SSH son una forma de proteger nuestro codigo con una capa de encriptacion, son mucho mas seguras que el HTTPS.
+Notas:
+   Podemos clonar nustro repositorio con SSH en lugar de HTTPS
+   No es necesario poner mi usuario y contraseña todo el tiempo
+   Es una llave para cada equipo(computadora), no por pesona
+Pasos a seguir para configurar una clave SHH en Linux:
+   Nota: las claves SSH no son propias de Git, pueden ser usadas en otras aplicasiones
 
-	La info esta en las clases 19,20 y 21 del curso de Git/GitHub de platzi 
-		ó
-	Googlea como crear una llave SSH en tu PC, y luego busca Como usar GitHub con SSH
+Paso 1) ssh-keygen -t rsa -b 4096 -C "tu@email.com"
+   Esto va a crear una clave SSH en nuestra computadora.
+   nos va a preguntar donde queremos guardarla, pero la ubicacion por defecto esta bien, solo le damos enter otra vez.
+   Luego nos va a preguntar por una contraseña estra para esa llave, no es nesesaria (puedo darle enter) pero esta bueno tenerla
+
+Paso2) eval $(ssh-agent -s)
+  Enciende el "servidor" de llaves SSH de tu computadora
+   nos muestra algo como "agent pid unNumero" indicando que esta todo bien
+
+Paso3) ssh-add ruta-donde-guardaste-tu-llave-privada
+  Añade tu llave SSH a este "servidor":
+   la ruta por defecto tendria que ser: ~/.ssh/id_rsa
+
+Paso4) copiar el contenido del archivo id_rsa.pub que esta en la carpeta ~/.ssh
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  hasta aca llege  
+Paso5) Ir a GitHub > settings de nuestro perfil > en la seccion "SHH and GPG keys" > clic en "new clave SSH" > Elijo un titulo y pego el contenido del punto 4
+   hasta aca ya tengo mi cuenta de git asociada con la clave SSH de mi PC, pero todabia no la estoy usando
+
+Paso6) git remote set-url [origin] [miRepositorio con SHH]
+   en mi repositorio remoto busco y copio el codigo para clonar con SHH y lo pego en ese comando
+
+Y listo, ya tengo una clave SSH en mi computadora conectada a GitHub
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
 
 
 
