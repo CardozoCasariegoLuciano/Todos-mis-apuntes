@@ -2,7 +2,7 @@ Una cookie es un archivo de texto en la que se puede guardar cualquier tipo de d
 El archivo a a permanecer en alguna carpeta destro del disco duro del usuario el tiempo que el desarroyador quiera 
 (pero tambien la puede borrar manualmente)
 
-
+-------------------------------------------------------------------
 como crear una cookie:
 
 	setcookie();  <---setcookie se usa para crear una cookie, esta tiene dos parametros obligatorios, el primero es el nombre de la cookie, el segundo es el valor que esta va a guardar.		
@@ -19,6 +19,7 @@ como crear una cookie:
 
 		//setcookie("nombre", "contenido", "tiempo", "unaDireccion");  la cuarta variable es una direccion, que indica en que carpeta(y sub carpetas) tendra validez la cookie, por defecto tiene validez 				en todo el directorio del archivo que la creo
 		
+-------------------------------------------------------------------
 		
 como eliminar una cookie:
 
@@ -27,6 +28,7 @@ como eliminar una cookie:
 	Ej
 		setcookie("cookie-1", "Mi contenido", time()-1);  <-- la cookie con ese nombre (primer parametro) ya tiene que existir previamente para que tenga sentido
 		
+-------------------------------------------------------------------
 		
 Para leer el contenido de una cookie:
 
@@ -38,4 +40,37 @@ Para leer el contenido de una cookie:
 		echo $_COOKIE["cookie1"]; <--- imprime en pantalla el contenido de esa cookie (el segundo parametro)
 		  
 	}
+	
+-------------------------------------------------------------------
 
+Como pasar una vaariable por URL:
+
+    una forma de hacerlo es pasando en la url la variable, separandolos con un "?". Ejemplo
+    
+    
+            <a href="crear-cookie.php?idioma=in">Idioma Ingles</a>  <--- En este ejemplo le estoy pasando por la url que idioma=in. que luego voy a poder recuperar con la super variable $_GET[Idioma](en este caso)
+                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                
