@@ -61,15 +61,123 @@
             
     
     Patrones de diseño
-    ------------------
+    ------------------           
+           
+   Un patron de diceño es una solucion estandarizada ante ciertas situaciones
+   
+   Los patrones de diceño de dividen en tres grupos:
+   
+        Creacionales: Creacion y configuracion de objetos
+        
+        Estructurales: Separan la interfaz de la implementacion
+        
+        Compartamietos: Describe como se comunican los distintos objetos
+        
+        
+        
+        
+ Patron Singleton:
+ -----------------
+ 
+    La idea de este patron es tener una uncia INSTANCIA de una clase determinada a lo largo de toda la aplicacion.
+    
+       
+    Estructura general: (con la sintaxis de PHP)
+    
+            classSingleton{
+        
+                private static $theInstance = null;  <-- privado y estatico, nadie fuera de la clase podra ver o modificar esto
+                
+                public static function getInstance(){  <-- una funcion especial que crea la instancia
+                
+                    if ( self::$theInstance === null ) {   <-- este if crea la instancia solo si no existe previamente, 
+                        self::$theInstance = new sefl();
+                    }
+                    returnself::$theInstance    <-- si la instanca no existia, la crea y la retorna, pero si ya existia de antes, retorna la creada previamente, asi nos aseguramos que no existan 2 instancias de la misma clase
+                }
+            }
+           
+           
+ Patron Factory:
+ ---------------
+ 
+    Este patron se utiliza cuando la cracion de un objeto es compleja y requiere varios parametros
+    
+    
+    Estructura general: (con la sintaxis de PHP)
+    
+    class AutomobileFactory{
+    
+        private static $modelo = 2019;   <--- un valor que se repite en todas las instancia
+
+        public static function create($marca){  <--- una funcion que se encarga de crear la instancia, pasando por parametro los valores minimos 
+        
+            return new Automobile($marca, self::$modelo);  <--- retorna la instancia ya lista con "Sus partes ensambladas"
+        }
+    }
+          
+          
+
+ Patron Command:
+ ---------------
+           
+     Este patron se utiliza cuando se tiene que realizar una operacion compleja desde varios puntos de entrada
+     
+     (a completar)
            
            
            
            
            
-           
-           
-           
+Tipo de Tests:
+--------------
+
+    Unit Testing: Evaluamos el funcionamiento de los componentes individualmente.
+    
+    Integration Testing: Validar la interacción entre los componentes y el sistema completo.
+    
+    
+    
+Documentación:
+---------------
+    ¿Qué documentar?
+
+        Como implementar nueva funcionalidad.   
+        Como se realizan las pruebas.
+        Lo mínimo que necesita las personas que quieren colaborar o heredar tu proyecto.
+    
+    ¿Como documentar?
+    
+        UML como documentación.
+        Comentarios
+        
+    ¿Dónde documentar?
+    
+        Propio código.
+        Sistema de documentación.
+        Wiki
+        Ficheros externos.
+        README
+        
+    ¿Cuándo documentar?
+
+        Documentar inmediatamente después de codear.
+        Cuando se resuelve un problema, documentar la solución.
+        
+        
+        
+        
+ ¿Como determinar si un codigo es o no de buena calidad?
+ 
+    para que sea de buan calidad tiene que cumplir:
+        
+            Legibilidad <---- Que sea facil de leer, que de un viscazo sse pueda desucir que hacer
+            
+            Mantenibilidad <---- Que el codigo preaparado para midificaciones a lo largo del tiempo sin complicaciones
+            
+            Testeabilidad  <---- Que este preparado para ser testeado de forma automatizada
+    
+    
            
            
            
