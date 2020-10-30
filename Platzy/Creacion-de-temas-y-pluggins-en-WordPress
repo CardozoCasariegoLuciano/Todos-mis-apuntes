@@ -1,0 +1,13 @@
+Cada tema esta dividido en varios archivos para poder trabajar de forma mas organizada, estos archivos que Wordpress reconoce son:
+
+header.php:      Cabecera.
+siderbar.php:    Barra Lateral
+footer.php:      Pie de página.
+index.php:       Base estructural. En todos los index.php vamos a llamar al header, footer y sidebar.
+style.css:       Guarda todos los estilos.
+404.php:         Página de error.
+archive.php:     Todo el archivo de una categoría etiqueta.
+comments.php:    Sección de comentarios.
+search.php:      Sección de busqueda.
+single.php:      Especifico para entradas y artículos.
+page.php:        Son un tipo específico de archivo de plantilla que se puede aplicar a una página específica o grupos de páginas.
