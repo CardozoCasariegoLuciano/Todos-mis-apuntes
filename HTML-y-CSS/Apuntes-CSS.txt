@@ -173,15 +173,77 @@ selectores:
 		
 	Tipo de elementos:
 	
-		tipo bloque: se extienden a lo largo de la linea. si tengo 2 tipo bloque juntos, no se ponen uno al lado del otro aunque tengan espacio, sino que hacen un salto  de linea
+		tipo bloque: [display= block] se extienden a lo largo de la linea. si tengo 2 tipo bloque juntos, no se ponen uno al lado del otro aunque tengan espacio, sino que hacen un salto  de linea
 		
-		tipo linea: se extienden solo lo necesario. si tengo 2 tipo linea juntos, se ponen uno al lado
+		tipo linea:[display= inline] se extienden solo lo necesario. si tengo 2 tipo linea juntos, se ponen uno al lado del otro
 			
 					A estos elemetos no se les puede dar un alcho o alto 
 					
-		tipo en linea-bloque: son iguales a los en linea, pero se les puede modificar el ancho, alto y otras cosas mas
+		tipo en linea-bloque: [display= inline-block] iguales a los en linea, pero se les puede modificar el ancho, alto y otras cosas mas
 		
-
+		tipo Flex: [display= flex] Nos facilita el centrar elementos o alinearlos a la derecha o izquierda. 
+		
+                    Funcionamiento: El elemento padre debe tener esta propiedad para poder alinear o sus elementos hijos
+                    
+                    Algunas propiedades:
+                            
+                           [justify-content:] alinea elementos horizontalmente y acepta los siguientes valores:
+                           
+                                                flex-start:  (default) Alinea elementos al lado izquierdo del contenedor.
+                                                flex-end: Alinea elementos al lado derecho del contenedor.
+                                                center: Alinea elementos en el centro del contenedor.
+                                                space-between: Muestra elementos con la misma distancia entre ellos.
+                                                space-around: Muestra elementos con la misma separación alrededor de ellos.
+                                                
+                                                
+                           [align-items:] alinea elementos verticalmente y acepta los siguientes valores:
+                                                
+                                                flex-start: Alinea elementos a la parte superior del contenedor.
+                                                flex-end: Alinea elementos a la parte inferior del contenedor.
+                                                center: Alinea elementos en el centro (verticalmente hablando) del contenedor.
+                                                baseline: Muestra elementos en la línea base del contenedor
+                                                stretch: Elementos se estiran para ajustarse al contenedor.
+                                                
+                           [flex-direction:]  define la dirección de los elementos en el contenedor, y acepta los siguientes valores:
+                           
+                                                row:  (default) Elementos son colocados en la misma dirección del texto.
+                                                row-reverse: Elementos son colocados en la dirección opuesta al texto.
+                                                column: Elementos se colocan de arriba hacia abajo.
+                                                column-reverse: Elementos se colocan de abajo hacia arriba.
+                                                
+                                                NOTAS: *cuando estableces la dirección a una fila invertida o columna, el inicio y el final también se invierten.
+                                                       *cuando es una columna, justify-content cambia a vertical y align-items a horizontal.    
+                                                    
+                           [order: <unNumero>] Se le aplica a elementos individuales (hijos) dentro del Flex y lo que hace es ordenarlos. Por defecto el valor es 0
+                           
+                           [align-self:]  es igual a align-items pero para elementos individuales (hijos) (acepta los mismos parametros)
+                                                
+                           [flex-wrap:]  especifica si los elementos son obligados a permanecer en una misma línea o pueden fluir en varias líneas.                   
+                           
+                                                nowrap:  (default) Cada elemento se ajusta en una sola línea.
+                                                wrap: los elementos se envuelven alrededor de líneas adicionales.
+                                                wrap-reverse: Los elementos se envuelven alrededor de líneas adicionales en reversa.
+                                                
+                           [flex-flow:] esta propiedad combina [flex-direction:] y [flex-wrap:]. acepta un valor de cada una separada por un espacio.
+                           
+                           [align-content:] establece como múltiples líneas están separadas una de otra. Esta propiedad acepta los siguientes valores:
+                           
+                                                flex-start: Las líneas se posicionan en la parte superior del contenedor.
+                                                flex-end: Las líneas se posicionan en la parte inferior del contenedor.
+                                                center: Las líneas se posicionan en el centro (verticalmente hablando) del contenedor.
+                                                space-between: Las líneas se muestran con la misma distancia entre ellas.
+                                                space-around: Las líneas se muestran con la misma separación alrededor de ellas.
+                                                stretch: Las líneas se estiran para ajustarse al contenedor.
+                                                
+                                                NOTAS: *Esto puede ser confuso, pero [align-content] determina el espacio entre las líneas, mientras que [align-items] determina como 
+                                                         los elementos en su conjunto están alineados dentro del contenedor
+                                                       *Cuando hay solo una línea, align-content no tiene efecto.
+                                                
+                                                
+        tipo Grid: [display= grid] hay que usarlo en el contenedor padre   (ahora mismo no le encuentro ningun uso pero decien que es algo muy util  y poderoso,  googlear cuando haga falta)                  
+                                                
+                                             
+                                                
 
 ////////////////////////////////////////////
 
@@ -311,10 +373,10 @@ selectores:
 	
 	
 	
+////////////////////////////////////////////
 	
 	
-	
-	
+	googler tranciciones y animaciones con CSS
 	
 	
 	
