@@ -44,7 +44,7 @@ Comandos básicos:
 	
 	[rm <elArchivo>]: (remove) elimina <elArchivo> 
 	
-		[rm -R <elArchivo>]: Borra las carpetas, y todo lo que tengan dentro
+		[rm -R <unaCarpeta>]: Borra las carpetas, y todo lo que tengan dentro
 	
 	[cat <unArchivo>]: me imprime en la terminal el contenido de ese archivo
 	

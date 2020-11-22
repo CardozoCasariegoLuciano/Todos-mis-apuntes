@@ -315,7 +315,7 @@ selectores:
 	
 		border-radius:<unNumero>;  las cajas van a terner un borde redondeado
 		
-		Box-sizing:border-box;  <--- cuando la caja tiene este modificador, los paddings, margenes, bordes ,etc, no van a afectar el tamaño de la caja.
+		box-sizing:border-box;  <--- cuando la caja tiene este modificador, los paddings, margenes, bordes ,etc, no van a afectar el tamaño de la caja.
 		
 		
 		
