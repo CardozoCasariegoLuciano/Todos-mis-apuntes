@@ -1,0 +1,382 @@
+variables
+
+	Hay 3 tipos de variables en JavaScript:
+
+		var: ya casi no se usa, es una variable que tiene validez en todo el progama
+
+		let: se usa mucho y solo tiene validez en el bloque en el que fue creada
+
+		const: es igual a let pero no se puede reasignar un valor (es una constante)
+
+
+Funciones
+
+	Hay 3 formas de crear una funcion:
+
+		Funciones Declarativas: Las funciones de toda la vida
+
+			ej:
+				function miFuncion(){
+					return "El retorno";
+				}
+
+
+		Funciones de exprecion o anonimas:	Estas funciones no tienen un nombre, sino que lo que retorna se guarda directamente en una variable
+
+			ej:
+
+				let holaMundo =  function(){
+					return "Hola mundo";
+				}
+
+
+		Funciones tipo flecha (arrow function): Son otra forma de escribir una funcion anonima
+
+			ej:
+
+				  let suma = (a ,b) => a + b  (vercion super resumida)
+
+			Notas: si no hay parametros se pone parentesis vacios ()
+				   si solo hay un parametro se pueden omitir los parentesis
+
+				   Si la funcion solo tiene un return (cono en el ejemplo) no hacen falta llaves
+
+				   Pero si hay mas lineas de codigo:
+
+				   ...(parametros) => { ... todo el codigo ... }
+
+
+
+parametros por defecto en las funciones
+
+		ejemplo
+
+			function suma (a = 10, b = 5)
+
+			los valores por defecto(si no le paso los parametros) son 10 y 5
+
+
+
+
+template literals
+
+	Asi se llama al uso de las comillas invertidas ´´ (distintas a estas '').
+	Tienen muchos usus muy buenos, algunos de esos son:
+
+	usar variables o parametros:
+
+		SIN template literals
+
+			console.log('Hola, me llamo ' + nombre + ' ' + apellido)
+
+		CON template literals
+
+			console.log(´Hola, me llamo ${nombre} ${apellido}´) 
+
+
+	Tener multilinea en un texto:
+		
+		SIN template literals
+
+			console.log('Hola, me llamo /n pepe)  /n crea el salto de linea
+
+		CON template literals  --se hace el "Enter" directamente 
+
+			console.log(´Hola, me llamo
+						 pepe´)
+		
+
+			
+
+
+
+Coerción
+
+	Coerción es la forma en la que podemos cambiar un tipo de valor a otro, existen dos tipos de coerción:
+
+	Coerción implícita = es cuando el lenguaje nos ayuda a cambiar el tipo de valor.
+
+	Coerción explicita = es cuando obligamos a que cambie el tipo de valor.
+  	y se hace asi: TipoQueQueremos( elValor )
+
+  		ejemplos  
+            Number("45"); --> 45
+            Number(true); --> 1 (false = 0)
+            String(false); --> "false
+            Boolean(0); --> false
+
+
+
+Ejemplos en los que Boolean devuelve Falso:
+
+	Boolean(0); //false
+	Boolean(null); //false
+	Boolean(NaN); //false
+	Boolean(undefined); //false
+	Boolean(false); //false
+	Boolean(""); //false
+
+Ejemplos en los que Boolean devuelve verdadero:
+
+	Boolean(1); //true para 1 o cualquier número diferente de cero (0)
+	Boolean("a"); //true para cualquier caracter o espacio en blanco en el string
+	Boolean([]); //true aunque el array esté vacío
+	Boolean({}); //true aunque el objeto esté vacío
+	Boolean(function(){}); //Cualquier función es verdadera también
+
+
+Tipos de Operadores
+
+	3 == "3"  = true    no es estricto en cuanto al tipo
+	3 === "3" = false   es estricto y no son del mismo tipo
+	
+	!true  negacion
+	
+	1+1    suma de numeros o concatenacion de Strings
+	1*1    multiplicacioin
+	1/1    divicion entera
+	1-1    resta
+	
+	<   menor que 
+	>   mayor que 
+	>=  mayor o igual que
+	<=  menor o igual
+	
+	&&   and
+	||   or
+
+
+
+Condicionales
+
+	If: el if de toda la vida (con el else)
+
+		if(true){
+ 		console.log("Holaa");
+		}else{...}
+
+	Condicional ternario:  condicion ? siEsTrue : siEsFalse
+
+		4==5 ? console.log("Holaa") : console.log("Chau");
+
+
+	Switch
+
+	switch(3){
+		case 1: console.log("caso sea 1");
+			break;
+		case 2: console.log("caso sea 2");
+			break;
+		case 3: console.log("caso sea 3");  // saldria esto
+			break;
+		default: console.log("default")  // valor por defecto
+	}
+
+
+
+Manejo de Strings:
+
+
+	var nombreEnMayusculas = unString.toUpperCase();  // pone todas la lteras en mayusculas
+	
+	var nombreEnMinuscula = unString.toLowerCase();   // pone todas las letras en minuscuila
+	
+	var primeraLetra = unString.charAt(0); // retorna el caracter que este en la pocision pasada por parametro
+	
+	var cantDeLetras = unString.length; // retorna la cantidad de caracteres
+	
+	var str = unString.substring(5,7); // retorna los caracteres entre la pocicion 5 y 7
+
+	
+Manejo de numeros:
+	
+	var numero = 900.20;
+	
+	var con4Decimales = numero.toFixed(4);
+	
+	var redondeado = Math.round(numero);
+
+
+
+
+Arrays
+
+	como crearlo:
+
+		let frutas = ["Manzana", "Platano", "Peras", "uvas"];
+	
+	
+	Como acceder a un elemento:
+
+		console.log(frutas[0]); // "Manzana"	
+		console.log(frutas[2]); // "Peras"
+	
+	
+	Su longitud:
+
+		console.log(frutas.length); // 4
+	
+	
+	Como agreagar un elemento al final del array:
+	
+		frutas.push("Tomate");
+
+	
+	Como agreagar un elemento al principio del array:
+	
+		frutas.unshift("Tomate");
+	
+	
+	Como eliminar el ultimo elemento del array:
+	
+		frutas.pop();
+	
+	
+	Como eliminar el primer elemento del array:
+	
+		frutas.shift();
+	
+	
+	Como buscar el indice de un elemento del array:
+	
+		frutas.indexOf("Manzana") // retorna 0
+		frutas.indexOf("Uvas") // retorna 3
+
+
+	Como saber si un elemento pertenece al array:
+
+		frutas.includes("Uvas")) // retorna true si el array contiene el valor buscado
+
+
+
+Manejo de arrays:
+
+	
+	// Filtrar un array
+
+	let personasAltas = unArray.filter( (persona) => { ... });  ---Todos los Array aceptan el mensaje .filter(), que por parametro requieren la condicion para 
+																	ser filtrada (dentro de una funcion, arrow function en este ejemplo pero puede en una funcion aparte)
+	
+	
+	
+	// Transformar un array
+
+	
+	le alturaEnCentimetros = unArray.map(transAlturaEnCm(persona)); 	---Todos los Array aceptan el mensaje .map() que modifica a todos los elementos de array.
+																			por parametro requieren la modificacion a realizar (tambien en una funcion, en este caso una funcion aparte). Nota: Map modifica el array
+	
+
+
+Concatenar Arrays:
+
+	let primeros3 = [1,2,3]
+	let siguientes3 = [4,5,6]
+
+
+	let todosJuntos = [0, ...primeros3, ...siguientes3] 
+
+	// todosJuntos contiene estos elementos: 0,1,2,3,4,5,6
+
+
+
+
+Loops(siclos)
+
+	for (var i = 0; i < frutas.length; i++) {   // el for de toda la vida
+	
+		console.log(frutas[i]);	
+	}
+	
+	
+	for (var fruta of frutas) {
+		console.log(fruta);          //el foreach de toda la vida
+	}
+	
+	
+	
+	var count = 0;
+	while(frutas.length > 0){      // el while de toda la vida
+	
+		count ++;
+		frutas.shift();
+	}
+
+
+
+
+Programacion Orientada a Objeto
+
+	en javaScript no existen clases realmente, lo que hay son Prototipos, tampoco existe la herencia de clases como tal, sino que esta la herencia prototipal, que es un poco mas compleja
+	no voy a tomar apuntes de como trabaja JS realmente con las "clases" ya que hay una forma mas "Normal" de hacerlas, pero internamente trabaja con prototipos.
+
+
+	class Animal {  			  	 	// creando la clase
+								  	 	// se pueden tener las variables en una seccion aparte pero no hace falta
+
+		constructor (nombre, raza){  	// constructor tiene que tener ese nombre
+
+			this.nombre = nombre;
+			this.raza = raza;
+		}
+
+		moverse(){						// un metodo
+			return console.log(" *Se mueve* " );
+		}
+	}
+
+
+	class Gato extends Animal{  		// La herencia
+	
+		constructor(nombre, raza){
+	
+			super(nombre, raza);		// llama al constructore de la clase padre, como en java
+		}
+	}
+
+Instanciando una clase:
+
+	var Cocodrilo = new Animal("Coco", "Cocodrilo") 
+	
+	var michi = new Gato("maia", "felino")
+
+	
+	
+	
+Objetos
+
+	var Persona = {       				// las llaves significan objetos
+	
+		nombre: "Luciano",  			// con comas en lugar de punto y coma
+		apellido: "Cardozo Casariego",
+		edad: 22,
+	}
+
+
+
+
+
+
+PROMESAS
+
+
+Las promesas son objetos, y pueden tener 3 estados: 
+
+
+ pending (pendiente): Es el estado que tienen todas las promesas al ser creadas
+
+ filfilled (Si se resuelve): Para obtener el valor de la resoluciuon de la promesa se usa el .then(val => ...)
+
+ rejected (Si no se resuelve): Para obtener el valor de la resoluciuon de la promesa se usa el .catch(err => ...)
+
+
+
+Crear una promesa:
+resive como parametro en el contructor una funcion, que a su ves tiene como parametros dos funciones: resolve y reject, que se 
+ejecutan dependiendo si se cumplio o no la promesa
+
+new Promise(function(resolve, reject){
+
+
+})
+
+...Expandir este tema cuando sepa mas del tema...

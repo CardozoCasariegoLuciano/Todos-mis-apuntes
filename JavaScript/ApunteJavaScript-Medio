@@ -1,0 +1,6 @@
+debugger    ---cunado lo ejecutas en la consola del navegador se detiene el codigo y empieza a debuggear desde esta linea
+
+prompt("Para que el usuario diga algo"); 	----Salta en el navegador un cuadro para ingresar un valor
+
+setTimeout(function() {console.log("b")}, 3000);  // setTimeout requiere una funcion y una cantidad de miliseguntos. ejecuta esa
+												  // funcion una vez trascurridos esos milisegundos
