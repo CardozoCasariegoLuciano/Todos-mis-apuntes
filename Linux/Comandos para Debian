@@ -1,0 +1,40 @@
+Cosas de Ubuntu/Debian
+---------------------
+	
+	[sudo apt-get update]: Busca actualizaciones para el sistema
+	
+	[sudo apt-get upgrade]: Instala esas actualizaciones
+
+	[sudo apt-get autoremove]: limpia la memoria de paquetes de instalación
+	
+	[sudo apt-get autoclean]:limpia el sistema de paquetes huérfanos, es decir, de paquetes que en un tiempo tuvieron uso por alguna aplicación y ahora ya no lo usa ningún programa
+
+
+Dependencias incumplidas:
+-------------------------
+
+	[sudo apt-get -f install] resuelve las dependencias rotas que existan en el sistema
+
+
+Instalacion de Paquetes y programas:
+-------------------------------------
+
+
+	[sudo apt-get install <nombreDeLaAPP>]: No todos las aplicaciones estan para instalar de esta manera
+									. Otras estan en otras librerias  (No se si sea esa palabra)
+	
+	
+	[sudo apt-get remove <nombreDeLaAPP>]: Elimina una aplicacion de nuestro sistema
+
+			[sudo apt-get remove --purge <nombreDeLaAPP>]: ademas elimina todos los archivos de configuracion
+
+
+Instalar archivos .dev:
+-----------------------
+
+	Para instalarlo primero lo tenemos que descargar de internet
+	
+	[sudo dpkg -i <nombreDeLoQueDescargamos.deb>]: para instalarlo
+	
+	[sudo dpkg -r <nombreDeLaAplicacion>]: para desinstalarlo
+

@@ -1,6 +1,6 @@
 [man <unComando>] <----- Nos muestra el manual de ese comando  		ej) man ls
 
-[<unComando --help>]  <----. Nos muestra la ayuda de ese comando 		ej) ls --help
+[<unComando> --help]  <----. Nos muestra la ayuda de ese comando 		ej) ls --help
 
 
 Comandos básicos:
@@ -50,29 +50,21 @@ Comandos básicos:
 	
 		[cat -n <unArchivo>]: Indica el numero de cada linea
 		
-		[cat -s <unArchivo>]: Elimina (solo en la terminal) los saltos de linea repetidos
+		[cat -s <unArchivo>]: Elimina (solo en la terminal) los saltos de linea repetidos	
 	
-	[sudo apt-get update]: Busca actualizaciones para el sistema
-	
-	[sudo apt-get upgrade]: Instala esas actualizaciones
-	
-	[sort]: ordena alfabeticamente/numeralmente, se aprovecha mas con los "|" (Ver mas abajo)
-	
-	[grep <unaPalabra>]: muestra las lineas que contengan esa palabra (o letra), se aprovecha mas con los "|" (Ver mas abajo)
-		
-		[grep -i <unaPalabra>]: ignora las mayusculas y minusculas
-		
+			
 	[echo "texto"]: imprime ese texto en pantalla, puedo copiarlo dentro de un atchivo con los "|" (Ver mas abajo)
 	
 	[history]: lista todos los comandos usados
 	
 	[wc <unArchivoDeTexto>]: nos muestra 3 numeros: 1ro) cantidad de lineas  2do) cantidad de palabras  3ro) la cantidad de Bytes que tiene ese erchivo de texto (medio inutil este ultimo)
 
-	[sudo apt-get autoremove]: limpia la memoria de paquetes de instalación
 	
-	[sudo apt-get autoclean]:limpia el sistema de paquetes huérfanos, es decir, de paquetes que en un tiempo tuvieron uso por alguna aplicación y ahora ya no lo usa ningún programa
-	
-	 
+
+
+
+
+
 
 
 Para dar permisos a una carpeta:
@@ -105,7 +97,7 @@ Para dar permisos a una carpeta:
 										<unPermiso> Pueden ser r(read) w(write) x(execute)
 										<unElemento> Archivo o carpeta
 										
-										Ejemplo)  sudo chmod u=rwx,q=,o+w tarea.txr   <--- sin espacios entre los distintos usuarios y separados con ,(comas)
+										Ejemplo)  sudo chmod u=rwx,g=,o+w tarea.txr   <--- sin espacios entre los distintos usuarios y separados con ,(comas)
 										
 														a user le estoy dando todos los permisos
 														a group le estoy sacando todos los permisos
@@ -178,28 +170,10 @@ Para descomprimir un .tar:
 
 
 
-Instalacion de Paquetes y programas:
--------------------------------------
 
 
-	[sudo apt-get install <nombreDeLaAPP>]: No todos las aplicaciones estan para instalar de esta manera
-									. Otras estan en otras librerias  (No se si sea esa palabra)
-	
-	
-	[sudo apt-get remove <nombreDeLaAPP>]: Elimina una aplicacion de nuestro sistema
-
-			[sudo apt-get remove --purge <nombreDeLaAPP>]: ademas elimina todos los archivos
-												   de configuracion
 
 
-Instalar archivos .dev:
------------------------
-
-	Para instalarlo primero lo tenemos que descargar de internet
-	
-	[sudo dpkg -i <nombreDeLoQueDescargamos.deb>]: para instalarlo
-	
-	[sudo dpkg -r <nombreDeLaAplicacion>]: para desinstalarlo
 	
 	
 	
@@ -222,10 +196,7 @@ Instalar archivos .tar.gz:
 	5to) [sudo make install]
 
 
-Dependencias incumplidas:
--------------------------
 
-	[sudo apt-get -f install] resuelve las dependencias rotas que existan en el sistema
 
 
 Procesos en la Terminal:
@@ -247,6 +218,13 @@ Concatenar comandos:
 			ls | sort <-- primero lista todos los elementos, y despues lo ordena alfabeticamente
 			
 			cat <unArchivo> | grep <unaPalabra>  <--- muestra el contenido de un archivo de texto, y sobre eso muestra solo las lineas/palabras que contengan "<unaPalabra>"
+
+
+	[sort]: ordena alfabeticamente/numeralmente, se aprovecha mas con los "|" (Ver mas abajo)
+	
+	[grep <unaPalabra>]: muestra las lineas que contengan esa palabra (o letra), se aprovecha mas con los "|" (Ver mas abajo)
+		
+		[grep -i <unaPalabra>]: ignora las mayusculas y minusculas
 			
 			
 			
@@ -289,16 +267,8 @@ Comandos Extra del Sistema:
 	
 	Muestra info del prosesador [lscpu]
 	
-	Muestra la hora actual, tiempo de encendido del equipo y  otras cosas mas [uptime]
-	
-	Muestra el espacio libre y ocupudo en las unidades de almacenamiento [df -h]
-	
-	Muestra 
-	
-	
-	
-Comandos utiles que requieren instalacion:
-------------------------------------------
+	Muestra la hora actual, tiempo de encendido del equipo y  otras cosas mas [uptime]	
+
 
 
 
