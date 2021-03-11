@@ -1,0 +1,159 @@
+MongoDB es una base de datos orientada a documentos. Esto quiere decir que en lugar de guardar los datos en registros, guarda los datos en documentos. Estos documentos son almacenados en BSON, que es una representación binaria de JSON
+
+
+Colecciones == Tablas
+Documentos == Tuplas
+
+los dacumentos se representan como pares de clave-valor
+ej)
+
+{
+"nombre": "Pepe",
+"apellido": "Peposo",
+"edad": "99"
+}
+
+los nombres de los campos son siempre cadenas de texto (con commilas), la parte del valor puede ser cualquier cosa, desde un string hasta un onjeto, pasando por los arrays
+
+
+
+COMANDOS MONGO)
+
+  GENERALES:
+	
+	cls = limpia la terminal
+
+
+  BASES DE DATOS:
+
+	use [unNombre] = crea una nueva base de datos
+	db.dropDatabase() = elimina la base de datos (primero asegurarme que estoy en la db deseada con 		use[nomDB])
+	db = muestra la base de datos actual
+	show dbs = muestra todas las bases de datos (no muestra las db vacias)
+
+
+  COLECCIONES:
+
+	
+	db.createCollection("[unNombre]") = crea una coleccion
+	show collections = muestra todas las colecciones
+	db.[nombreColeccion].insert({...}) = inserta datos a la coleccion elegida (si la coleccion no existe la 		crea)
+	db.[nombreColeccion].drop() = Elimina la coleccion
+	
+
+	db.[nombreColeccion].update({campoA},{campoB}) = en el CampoA ira "la condicion" mientras en el 		campoB iran los valores a modificar mediante un $set
+	
+	NOTA: si no uso el $set y pongo directamete un nuevo valor para el campo deseado, simplemente se 		borraran TODOS los datos anteriores y se reemplazaran por el indicado
+	
+		 ej)
+	  		db.personas.update({nombre: "Pepe"},{$set: {edad: 20}})
+
+			a la persona con el nombre "pepe" se le cambia la edad a 20
+
+		NOTA:
+		  Esto solo va a modifiacar un solo documento, si queremos que afecte a todos los que cumplan la 		  condicion hay que agregar el parametro {munti: true}
+
+			db.[nombreColeccion].update({campoA},{campoB},{munti: true})
+
+
+	Incrementar un valor numerico: 
+		
+		se utiliza el $inc: {[campoAaumentar] : [cantidadAaumentar]}
+
+		ejemplo:
+
+		db.personas.update( {} , {$inc: {edad: 1}} , {multi: true} )
+
+		A todas las personas de la tabla de incrementa da edad en 1
+
+
+	Renombrar un campo:
+
+		se utiliza el $rename: {[NombreViejo] : [NombreNuevo]}
+		
+		ejemplo:
+
+		db.personas.update( {} , {$rename: {edad: años_Suscripto}} , {multi: true} )
+
+		cambia el campo edad por años_Suscripto en todas las personas en la tabla
+
+
+
+
+	db.[nombreColeccion].deleteOne({ [laCondicion] }) = elimina el documento que cumpla con la condicion
+	db.[nombreColeccion].remove({ [laCondicion] }) = elimina el documento que cumpla con la condicion 			(llaves vacias los borra a todos) 
+
+	db.[nombreColeccion].count() = nos retorna la cantidad de documentos que contiene la coleccion
+
+
+
+
+
+  CONSULTAS:
+
+	NOTA: con todos funciona el 
+
+		.pretty() = lo muestras de una forma mas legible
+		.limit(unNumero) = indica la cantidad de documentos a mostrar
+		.sort({[nombreDelCampo]: 1 o 0}) = ordena los documentos en funcion del campo seleccionado. 1 es 			ascendente y 0 descendente
+	
+
+	db.[nombreColeccion].find() = nos muestra todas nuestros documentos
+	db.[nombreColeccion].findOne() = nos muestra solo un documento
+	
+	db.[nombreColeccion].find({ condicion }) = nos muestra todos los documentos que cumplan la condicion
+
+		   
+	Operadors utiles:
+
+		igualdad		{valor: 15}
+		menor que		{valor: {$lt: 15} } 
+		menor igual que		{valor: {$lte: 15} } 
+		mayor que		{valor: {$gt: 15} }
+		mayor igual que		{valor: {$gte: 15} }
+		distinto		{valor: {$ne: 15} } 
+
+
+		AND			------
+		OR			------
+
+	
+	Ejemplo)
+
+		db.personas.find({ edad: {$gte: 18} }) -- Esto retorna a todas las personas mayores de edad (18 		o mas)
+
+
+	
+	el .find() tambien acepta otro parametro, el cual indica que campos quiero que me retorne
+
+	ej)
+
+		db.personas.find({ edad: {$gte: 18} }, {nombre: 1, edad: 1}) 
+
+		dandoles el valor de 1 indicamos que queremos que nos lo muestre
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

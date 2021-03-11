@@ -1,0 +1,33 @@
+Node es un entorno de ejecución para javascript construido con el motor v8.
+
+Diferencias entre NODE y JavaScript:
+
+
+JavaScript: 
+	tiene el DOM (Document objet module)
+	En javascript tambien tenemos el CSSOM
+	Tambien el fetch API
+	Toda la capa del web storage
+	Tambien el canvas API
+	Las APIs en general del navegador
+	
+
+
+NODE:
+	Node tiene el modulo de HTTP para crear servidores
+	El modulo del sistema operativo para comunicarse con el SO
+	El modulo utiliddes
+	El modulo debugger
+
+En común:
+
+	Librerias comunes streams
+	Eventos
+	Ecmascript modules
+	Consola
+
+
+
+Aquitectura orientada a Eventos:
+
+
