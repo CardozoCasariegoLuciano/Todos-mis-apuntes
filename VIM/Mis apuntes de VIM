@@ -98,6 +98,27 @@ Copiar y pegar:
 
  p : pegar (Lo pega en la linea de abajo)
  P : pegar (lo tega en la linea de arriba)
+ 
+
+   Para copiar, borrar o mover un texto sin usar el M.V ni mover el puntero:
+
+      :{nroLinea_inicio},{nroLinea_Final}xx{nroLinea_Destino}
+
+         {nroLinea_inicio} y {nroLinea_Final} ==> son los numeros de linea del codigo que quiero 
+                                                   cortar, mover o eliminar, si no pongo un nroLinea_Final
+                                                   solo trabajara con la linea indicada
+
+         xx ===> es el comando que quiero ejecutar, co = copiar || mo = mover || d = borrar
+
+         {nroLinea_Destino} ==> es la linia destino en la que quiero pegar o mover (para eliminar no hace
+                                 falta). si en lugar de un numero de linea pongo un punto (.),
+                                 se va a pegar en la linea actual
+
+         NOTA: para las lineas relativas al puntero uso los signos + y - antes de cada posicion. 
+
+            EJEMPLO)
+                  :+15,+5mo-20 => muevo el contenido que hay entre 15 y 5 lineas mas abajo del puntero y
+                                    las pego 20 lineas arriba del mismo
 
 
 Borrar:
@@ -248,6 +269,7 @@ Comando Global:
 
 Otros:
    
+   view {archivo} = en lugar de vim uso view, esto abre el archivo pero no me deja editarlo
 	<< = hace una tabulacion
 	>> = quita una tabulacion
 			Si tengo texto seleccionado lo aplica a todo el codigo
@@ -392,6 +414,18 @@ Ventanas-pestañas-buffers:
 					:vsplit <unArchivo> = abre el otro archivo en una divicion de la ventana de modo vertical (:vsp)
 					:new <unArchivo> = crea una nueva ventana
 					Ctrl+wq = cierra una ventana
+         Tamaño de las ventanas:
+               divicion horizontal:
+                  Ctrl-w + = agranda la ventana (Ctrl-w, solar y luego tocar el +)
+                  Ctrl-w - = achica la ventana (Todas estas aceptan un numero para repetir la cantidad)
+                  Ctrl-w _ = aumenta  al maximo del tamaño permitido
+               divicion vertical:
+                  Ctrl-w < = Agranda (12 Ctrl-w <  = agranda  12 veces)
+                  Ctrl-w > = Achica
+                  Ctrl-w | = aumenta al maximo del tamaño permitido
+               General:
+                  Ctrl-w =  = iguala el tamaño de todas las ventanas
+
 
 	Pestañas:
 		una pestaña es una coleccion de ventana	
@@ -425,6 +459,25 @@ Suspender
 
 	Ctrl-z o :stop  <-- suspende la ejecucion y me manda a la terminal
 	fg (desde la terminal, no desde vim) <-- retoma la ejecucion del codigo
+
+
+Archivos cifrados:
+
+   para crear un archivo sifrado:
+      vim -x {nombre_Archivo}  una vez dentro me va a pedir la contraseña para luego 
+                               poder descifrarlo
+
+   para cifrar un archivo ya creado:
+      :X   luego me va a pedir que elija las contraseñas
+
+   para eliminar un cifrado:
+      una vez dentro :set key=   no tiene que haber nada despues del = 
+
+   NOTA IMPORTANTE
+   SUPER IMPORTANTE
+      si alguien abre el archivo sin decifrar, vera codigo sin sentido, pero si lo modifica y lo guarda
+      todo el archivo quedara corrupto y no podra descifrar luego
+      RECOMIENDO EVITAR ENCRIPTAR ARCHIVOS ASI
 
 
 VIMRC:
@@ -540,7 +593,6 @@ si lo quiero cambiar escribo: let mapleader=" "  (asi esta ahora)
         :Bracey  --> abre el live server (prestar atencion en que puerto) 
         :BraceyStop  --> cierra el live server
         :BraceyReload --> recarga la pagina
-
 
 
 
