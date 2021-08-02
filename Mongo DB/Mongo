@@ -26,7 +26,7 @@ COMANDOS MONGO)
 
   BASES DE DATOS:
 
-	use [unNombre] = crea una nueva base de datos
+	use [unNombre] = se mueve a esa base de datos (la crea si no existe)
 	db.dropDatabase() = elimina la base de datos (primero asegurarme que estoy en la db deseada con 		use[nomDB])
 	db = muestra la base de datos actual
 	show dbs = muestra todas las bases de datos (no muestra las db vacias)

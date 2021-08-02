@@ -38,3 +38,5 @@ Instalar archivos .dev:
 	
 	[sudo dpkg -r <nombreDeLaAplicacion>]: para desinstalarlo
 
+
+sudo apt-get -f install arregla problemas de dependencias

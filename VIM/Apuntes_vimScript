@@ -1,0 +1,412 @@
+Vim scripts es el lenguaje de programacion propio de vim
+
+
+Modo Ex:
+
+el modo Ex es como un modo de comando sin fin.
+	
+	Q o gQ => para entrar en el modo ex :visual => para salir del modo ex
+
+
+
+:echo o :echom -> son similares al console.log de JS la diferencia entre estos
+es que :echom guarda el resultado en el historial de mensajes :messajes -> para
+ver todos los mensajes :mensajes clear -> para borrar todos los mensajes
+
+
+Tipos de datos
+
+	VIM tiene 10 tipos de datos diferentes:
+
+		-Number -Float -String -List -Dictionary -Special -Funcref -Job -Channel
+		-Blob
+
+
+	Booleanos:
+
+		en vim el valor 0 es igual a falso, mietras que cualquier otro numero es
+		igual a verdadero (incluyendo los numeros negativos)
+
+
+	Number:
+
+		vim tiene 4 tipos diferentes de numeros: Decimales, Hexadecimales,
+		Binarios y Octales
+
+		Hexadecimal: comienzan con 0x o 0X Binarios: comienzan con 0b o 0B
+		Octales: comienzan con 0, 0o y 0O
+
+		si muestro un numero con :echo siempre lo va a mostrar en decimal
+
+		Aritmetica: vim trabaja con sumas (+), restas (-), multiplicacion (*) y
+		divicion (/)
+
+			la divicion de dos Number da otro Number 5 / 2 = 2 (sin decimales)
+
+
+	Float:
+	
+		se indican con un punto EJ) 3.141516 es un float
+
+		Aritmetica: si uno de los operandos es un float, vim fuerza el resultado
+		a float 5 / 2 = 2.5
+
+
+	Strings:
+
+		son cadenas de texto entre comillas (simples o dobles)
+			
+			la diferencia esta en que las comillas simples muestran literalmente
+			lo que contienen mientras que las dobles interpretan caracteres
+			especiales
+
+		Para concatenar cademas vim usa el punto (.)
+
+
+		A un string le podes pedir un carctar como si fuera una lista
+			"HOla"[1] = O
+		
+
+		Aritmeticas:
+		
+			Al ejecutar una operacion entre un string y una cadena, vim fuerza a
+			la cadena a un numero EJ) "12 empanadas" + 3 => 15 Esto solo funciona
+			porque 12 esta al principio de la cadena
+
+		  	
+				un buen truco para forzar a un numero es sumar 0 o multiplicar 1
+				"12" + 0 = 12 "55" * 1 = 55
+
+			algo similar pasa con el operador "punto": 12 . " empanadas" = "12
+			empanadas"
+
+					Solo con  Numbers, con float rompe
+
+
+			Metodos de Strings:
+
+				-strlen() = retorna la longitud de una cadena strlen("HOla") => 4
+
+				-substitute() = sustitule las apariciones de una letra en una
+				palabra substitute("sweet" , "e", "o" , "g") => "swoot" Cambia
+				todas las "e" por "o" en la palabra "sweet" de forma global "g" (""
+				si no quiero que asi sea)
+
+
+	List:
+
+		Listas ordenadas, se pueden mezclar los tipos [1,2,3,4] [1,a,1.55]
+
+		Al igual que en perl, al pedir un  indice negativo lo busca al final de la lista
+			[1,2,3,4][0] => 1
+			[1,2,3,4][-1] => 4
+
+		podes seleccionar varios elementos de una lista con [n:m] donde n es el indice inicial y 
+		m el inidice final
+			[1,2,3,4,5,6][2:4] => [3,4,5]
+
+			Si no le indico el elemento m [n:] va a tomar los elementos hasat el final
+			Lo mismo si no le indico el indice inicial [:m], tomara los primeros elementos
+
+	Podes concatenar listas con un mas (+) 
+			[1,2,3] + [4,5] = [1,2,3,4,5]
+
+		
+	Desgranar una lista:
+
+		Algo asi tiene JS en su ultima version
+
+		Ejemplo)
+
+			:let lista = [1,2,3]
+			:let [num1, num2, num3] = lista
+
+				donde ahora num1 = 1
+								num2 = 2
+								num3 = 3
+
+			-------
+			con el ; asigno el resto de elementos a la siguiente variable
+
+			:let lista = [1,2,3,4,5,6,7]
+			:let [num1, num2; resto] = lista
+
+				donde ahora num1 = 1
+								num2 = 2
+								resto = [3,4,5,6,7]
+
+
+		
+		Metodos para Listas:
+			
+			-len() = retorna la cantidad de elementos de la lista
+			
+			-insert() = agrega un elemento al principio de la lista
+					insert(ListaDeAnimales , "Perro") -> pone a "perro" al principio de la lista
+					insert(ListaDeAnimales , "Vaca", 2) -> pone a "Vaca" antes del 2do elemento
+
+			-remove() = elimina al elemento de x indice
+					remove(Lista , 0) -> remueve al elemento de la primera posicion
+
+			-empty() = retorna 1 o 0 en funcion si el hash o la lista estan vacias
+
+			-map = realiza una accion sobre cada elemento de la lista
+					map(Lista, Accion)
+					Ejemplo)
+						map(Lista, 'v:val' . " map"') => a cada elemento de la lista de concatena " map"
+
+
+			-filter = retorna otra lista con los elementos que pasaron el filtro
+					filter(lista, condicion)
+					Ejemplo)
+						filter(lista , 'v:val !~ 20') => retorna una lista con todos los elementos distintos a 20
+
+
+						NOTA: v:val es una variable especial que indica el elemtno actual en una iteracion
+
+
+	Dictionary 
+		
+		es el diccionario/hash de toda la vida
+
+			las claves/valor se separan con dos puntos (:) y las claves son siempre Strings(si uso numeros vim 
+			los fuerza a string)
+
+				{"id": 1234, "nombre": "Pepe", "ListaDeCompras" : [...]}
+
+			si quiero evitar poner comillas a las claves uso #{}
+
+				#{id: 1234, nombre: "Pepe", ListaDeCompras : [...]}
+
+
+		Para acceder a un valor puedo usar la notacion de los corchetes (["key"]) o con la notacion del
+		punto (.key)
+
+			ejemplo)
+				:let usuario = #{id: 1234, nombre: "Pepe", ListaDeCompras : [...]}
+
+				:let usuarioID = usuario["id"]
+				:let usuarioNombre = usuario.nombre
+
+	
+		Podes modificar o agregar un elemento simplemente llamando a la llave a asignarle un valor.
+		si este ya existia lo reemplaza y si no lo crea
+
+			usuario.apellido = "iñaki" => la key apellido no existe, por lo cual la crea
+
+
+			Metodos para diccionario:
+
+				-len() = retorna la cantidad de elementos
+
+				-has_key() = retorna 1 o 0, dependiendo si el hash contiene o no al elemento
+					has_key(usuario, "id") => 1
+
+				-empty() = retorna 1 o 0 en funcion si el hash o la lista estan vacias
+
+				-remove() = elimina la key indicada del hash (retorna el elemento eliminado)
+					remove(usuario, id) => esto retorna 1234 y ademas lo quita del hash usuario
+
+				-items() = comvierte al hash en una lista de listas, donde el primer elemento de la sublista
+								es la key, y el segundo es el valor
+
+				-filter y map estan disponibles con la diferencia que en estos se usa v:key en lugar de v:val
+				donde cada v:key sera el valor de cada key
+					
+
+	Primitivos especiales:
+
+		v:false  v:true  v:none  v:null
+
+
+		TRUE:
+			es equivalente a un numero distinto de 0.
+			cuando codificamos con JSON mediante json_encode(), es interpretado como verdadero
+
+			Ejemplo)
+				json_encode({"test":  v:true}) => {"test": true}
+
+		FALSE:
+			equivalente a un 0
+			al codificar a JSON se interpreta como falso
+
+			Ejemplo)
+				json_encode({"IsMan": v:false}) => {"IsMan: false"}
+
+		NONE:
+		   equivalente a una cadena vacia
+
+		NULL:
+			similar a NONE
+
+
+
+Condicionales y bucles
+
+
+	Operadores relacionales
+
+			a == b    igual a
+			a != b    distinto de
+			a > b 	 mayor que
+			a >= b    mayor igual que 
+			a < b     menor que
+			a <= b    menor igual que
+
+		realiza la coincidencia con expresiones regulares
+
+			a =~# b   a contiene a b  pero tiene en cuenta las mayusculas
+			a =~? b   a contiene a b  pero ignora las mayusculas
+			a =~ b    a contiene a b, si ignora o no depende de la configuracion (set ignorecase)
+			a !~ b    a no contiene a b
+				
+					ejemplo: 
+							let str = "Abundante desayuno"
+							str =~# "Abundante" = true
+							
+			or = ||
+			and = &&
+
+IF:
+
+	if (condicion)
+		{Codigo}
+	endif
+
+	tambien entiende el elseif y el else
+
+
+Ternarios:
+	
+	(condicion) ? {si es true} : {si es false}
+
+FOR:
+
+	for {items} in {miLista}
+		{contenido}
+	endfor
+
+WHILE:
+
+	while  {condicion}
+		{codigo}
+	endwhile
+
+	BREAK Y CONTINUE:
+
+		El break detiene el bucle (for o while)
+		El Continue simplemente se sale de bucle actual, y sigue con el proximo
+
+TRY-CATCH-FINALLY:
+
+	try
+		{contenido}
+	catch
+		{contenido}
+	finally
+		{contenido}
+	endtry
+
+
+	con throw podemos simular un error
+		throw "hubo un error"
+
+
+Variables
+
+	para asignar una variable mutable
+
+			let nombre = "Luciano"
+		
+		para cambiar el valor de una variable tambien hay que usar let
+
+			let nombre = "pepe"
+			nombre = "lucas" --> tira un error porque no use un let
+	
+
+	Para asignar una variable constante:
+
+			const id = 123
+
+
+Fuentes de variable:
+
+	variables de entorno:
+
+		Vim puede acceder a las variables de entorno de tu terminal. Por 
+		ejemplo, si tienes la variable SHELL de entorno en tu terminal, puedes 
+		acceder a ella desde Vim mediante:	
+
+		echo $SHELL -->  devuelve el valor de $SHELL. En mi caso devuelve /bin/bash"
+
+	variables de opciones:
+
+		Puedes acceder a las opciones de Vim con & (estos son ajustes a los que 
+		accedes con set).
+
+		Por ejemplo, para ver qué fondo utiliza Vim, puedes ejecutar:
+
+			echo &background
+
+	variables de registro:
+
+		Supongamos que el valor "chocolate" está ya guardado en el registro a. Para
+		acceder a el, puedes utilizar @a. También puedes actualizarlo con let
+
+			echo @a
+			" devuelve chocolate
+
+			let @a .= " donut"
+
+			echo @a  --> devuelve "chocolate donut"
+			
+
+
+Ambito de las variables:
+
+	existen 9  diferentes ambitos:
+
+		g:           Variable global 
+		{nothing}    Variable global 
+		b:           Variable de buffer local
+		w:           Variable de ventana local
+		t:           Variable de pestaña local
+		s:           Variable procedente de Vimscript 
+		l:           Variable de función local
+		a:           Variable de parámetro de función formal
+		v:           Variable propia de Vim
+
+
+		Variable Gobal:
+
+			al definir una variable "normal" estamos definiendo una variable global
+				let id = 123  o  let g:id = 123 es lo mismo
+
+			Al ser globales se las puede llamar desde cualquier lugar
+
+
+		Variable de Buffer:
+
+			variables que solo son validas dentro del buffer actual
+
+		Variable de ventana:
+
+			variables que solo son validas dentro de su ventana
+
+		... y asi con el resto
+
+
+Funciones:
+
+	function {nombreFuncion}()
+		{codigo}
+	endfunction
+
+	NOTA:	El nombre de la funcion tiene que comenzar con una letra mayuscula
+
+	
+	al usar function!, vas a sobre escribir a otra funcion si tiene el mismo nombre
+
+	Para llamar a una funcion se usa:
+
+		call {nombreFuncion}

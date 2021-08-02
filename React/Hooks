@@ -1,0 +1,207 @@
+
+
+-------------------------------------------------------------------------
+=============================UseState====================================
+-------------------------------------------------------------------------
+
+ Te permite usar variables de estado dentro de componentes funcionales
+
+   Estructura:
+
+	const [state, setState] = useState([valorInicial]);
+
+
+   [valorInicial]: es el valor con el que comienza el estado
+
+   state: es el nombre que usaremos para referirnos a ese estado
+
+   setState: Función que actualiza el estado(no se puede actualizar directamete)
+
+
+Nuestro estado puede ser de los siguente tipos:
+
+-String
+
+-Boolean
+
+-Number
+
+-Float
+
+-Null
+
+-Undefined
+
+-Object
+
+-Array
+
+
+-------------------------------------------------------------------------
+==============================UseEffect==================================
+-------------------------------------------------------------------------
+
+  nos permite manejar efectos que van a ser transmitidos dentro del componente
+	
+    Estructura:
+
+	useEffect( ()=>{} , [] ) 
+
+	  Requiere dos parametros, el primero es una funcion a realizar (llamar a una api, conectarse a
+	  una DB, etc), el segundo parametro es a que elemento le tiene que "prestar atencion", si ese 
+	  elemento se modifica, la funcion del primer parametro se ejecutara de nuevo (las llaves vacias
+	  dice que no sigue a ningun elemento y solo se ejecutara una vez al principio de la aplicacion)
+
+
+-------------------------------------------------------------------------
+==============================UseContex==================================
+-------------------------------------------------------------------------
+ 
+  Context provee una forma de pasar datos a través del árbol de componentes sin tener que pasar props manualmente en cada nivel.
+
+	es una forma de desntralizar valores.
+
+Estructura basica:
+
+1) Crear en una carpeta (generalmente llamada context) y dentro de ella creamos un archivo con lo siguiente
+
+	--el import a react	
+	--const [el nombre del contexto] = React.createContext({})
+	--export default [el nombre del contexto]
+
+	solo con eso ya tenemos creado el contexto, de aqui se puden hacer muchas cosas que van a depender 
+	de cada caso
+
+2) en el archivo padre que queremos que entienda del contexto (tanto el como todos sus hijos)
+
+ 	<[el nombre del contexto].Provider value="saraza">
+		El resto de los componentes
+	</[el nombre del contexto].Provider>
+
+
+	el campo value sera lo que todos los componentes van a enteder, puede ser un simple valor, un 
+	array com multiples valores y lo que sea
+
+
+3) en el archivo que queremos que obtenga datos de este hook:
+
+	--importamos useContext
+	--importamos [el nombre del contexto] (paso 1)
+	--const [unNombre] = useContex([el nombre del contexto])
+	-- usamos [unNombre] donde queramos 
+
+	
+	si el context del paso 1 retorna muchas cosas le podemos hacer una destructuracion	
+
+
+-------------------------------------------------------------------------
+==============================UseReducer==================================
+------------------------------------------------------------------------- 
+
+   Como useState, pero más escalable
+
+	*Implementa una forma más amigables y llena de caracteristicas para trabajar con el estado
+
+	*useReducer a menudo es preferible a useState cuando:
+	  se tiene una lógica compleja que involucra múltiples subvalores
+	  el próximo estado depende del anterior.
+
+
+  UseReducer: esta basado en la idea de Redux de tener una función pura que devuelve estados pero que se puede aplicar
+   de una manera local en componentes
+
+
+Estructura basica:
+
+   ejemplo de un contador:
+
+
+      const initialState = {count: 0};               // estado inicial
+
+      function reducer(state, action) {             // el reducer similar al de redux  
+
+          switch (action.type) {
+
+            case 'increment':
+              return {count: state.count + 1};
+
+            case 'decrement':
+              return {count: state.count - 1};
+
+            default:
+              throw new Error();
+          }
+      }
+
+      function Counter() {            
+
+         const [state, dispatch] = useReducer(reducer, initialState);  //usamos el useReducer
+
+         return (
+                 <>
+                   Count: {state.count}
+                   <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+                   <button onClick={() => dispatch({type: 'increment'})}>+</button>
+                 </>
+         );
+      }
+
+
+-------------------------------------------------------------------------
+==============================UseMemo====================================
+------------------------------------------------------------------------- 
+
+
+useMemo nos permite usar la memoización de forma simple, esto nos permite almacenar los resultados
+de una función para que, en caso de enviar los mismo argumentos que antes, ésta no 
+haga los cálculos otra vez sino que devuelva el resultado que registró antes.
+
+Lo ideal es primero realizar el trabajo sin useMemo, y una ves que verificamos que funciona lo 
+implementamos para ahorrar espacio en memoria
+
+La estructura es muy similar a useEffect
+ 
+  const filteredCharacters = useMemo( ()=>{} , [] ) 
+
+	  Requiere dos parametros, el primero es una funcion a realizar, el segundo parametro es a que 
+	  elemento le tiene que "prestar atencion", si ese elemento se modifica, la funcion del primer 
+	  parametro se ejecutara de nuevo (con los corchetes vacios nunca se va a ejecutar)
+
+
+ejemplo:
+
+ const filteredCharacters = useMemo(
+    () =>
+      characters.filter((user) =>
+        user.name.toLowerCase().includes(search.toLowerCase())
+      ),
+    [characters, search]
+  );
+
+-------------------------------------------------------------------------
+==============================UseRef=====================================
+------------------------------------------------------------------------- 
+
+use ref nos sirve para obtener un elemento del DOM construido por React de tal forma que podamos acceder 
+a sus atributos de una forma imperativa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
