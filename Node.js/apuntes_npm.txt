@@ -1,0 +1,31 @@
+NPM es el administrador de paquetes de Node. es donde los puedo descargar
+
+
+	Instalar algun paquete:
+
+		npm install {paquete}  = esto nos instala la ultima version del paque {paquete}
+								install se puede abreviar con "i"
+
+		npm i {paquete}@version  = esto nos descarga una verison espesifica del paquete
+
+
+		Etiquetas:
+
+			-g  = instala ese paquete de forma global, se podra usar en cualquier proyecto
+			-D  = instala ese paquete como una dependencia de desarroyo, son dependencias para
+					el desarroyo de la aplicacion, mas no de la ejecución de la aplicacion ya terminada.
+					La forma larga es --save-deb
+
+
+
+	Desinstalar algun paquete:
+
+		npm uninstall {nombre} = elimina un paquete y a sus dependencias
+		npm un {nombre} = es la forma corta
+
+	
+	Package.json:
+
+		Es un archivo que se crea al inicializar nuestro proyecto con node.
+		Este tiene una descripcion de nuestro programa, ingluyendo los paquetes
+		instalados
