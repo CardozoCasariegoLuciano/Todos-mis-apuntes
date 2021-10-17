@@ -1,31 +1,34 @@
-Vim es un editor de texto desde la consola y su principal caracteristica es que se centra en 
-no usar el mause para nada, de hecho estos apuntes lo voy a hacer asi siempre que pueda ;)
+Vim es un editor de texto desde la consola y su principal característica es que se centra en 
+no usar el mouse para nada, de hecho estos apuntes lo voy a hacer así siempre que pueda ;)
 
+NOTA: Algunos de estas acciones pueden cambiar con el uso de algunos pluggins o configuraciones en el .vimrc(ver mas abajo)
+
+Básicos para leer estos apuntes:
  Para deshacer un cambio = u
  Para reHacer un cambio = Ctrl + r
  Para salir de cualquier modo = Esc
  Para escribir un comando = :<NombreComando>
  Para salir de vim = :q
- Para abir un plegado = za
+ Para abrir un plegado = za
 
 
 Modo Insertar:
    i : Activa el modo de escritura justo donde tengo el puntero (el cursor lo pone ANTES de la barra)
    I : Activa el modo de escritura al principio de la linea
-   a : Activa el modo de escritura justo donde tengo el puntero (el cursor lo pone DESPUES de la barra)
+   a : Activa el modo de escritura justo donde tengo el puntero (el cursor lo pone DESPUÉS de la barra)
    A : Activa el modo de escritura al final de la linea
    o : Activa el modo de escritura en la linea de abajo 
-   O : Activa el modo de escritura en la linea de arriva 
-   s : elimina el caracter actual e ingresa al modo escritura
+   O : Activa el modo de escritura en la linea de arriba 
+   s : elimina el carácter actual e ingresa al modo escritura
    S : elimina toda la linea e ingresa al modo escritura
      
      <Num>i = repite lo que escriba <Num> veces (lo aplica una vez salgo del modo insertar)
      NOTA: en el comando uso "i" pero puede ser cualquier otro que ingrese al modo escritura 
      	
      Estando en el modo Insertar:
-       Ctrl-H  Borrar un carácter
-       Ctrl-W  Borrar una palabra
-       Ctrl-U  Borrar una línea entera
+       Ctrl-h  Borrar un carácter
+       Ctrl-w  Borrar una palabra
+       Ctrl-u  Borrar una línea entera
        Ctrl-o = Me permite escribir un comando como si estuviera en el modo normal 
 					(Solo un, luego vuelvo al M.I)
 
@@ -43,8 +46,8 @@ Modo Visual:
      Ctrl+v = nos selecciona de a lineas enteras
 
 
-Los numeros:
-   los numeros multiplican la cantidad de veces que se va a ejeutal la proxima letra
+Los números:
+   los números multiplican la cantidad de veces que se va a ejecutar la próxima letra
     
    Ejemplos:
      4j : me muevo 4 lugares para abajo
@@ -57,7 +60,7 @@ Movimiento:
    k : Me muevo hacia ABAJO
    l : Me muevo hacia DERECHA
    
-   g : va al principio del archivo 
+   gg : va al principio del archivo 
    G : va al final del archivo
    [num]G: me manda a la linea que indique en [num]
    
@@ -68,7 +71,7 @@ Movimiento:
    % : en caso que este parado en un elemento "cerrable", me manda al otro
      ej: si estoy parado en el "{" de una funcion y toco %, me manda al "}"
    
-   0 : nos manda al principi de la linea
+   0 : nos manda al principio de la linea
    $ : nos manda al final de la linea
    
    zt : posiciona la pantalla de forma que el puntero quede en la parte superior de la pantalla
@@ -100,14 +103,14 @@ Copiar y pegar:
        
       :{nroLinea_inicio},{nroLinea_Final}xx{nroLinea_Destino}
          
-         {nroLinea_inicio} y {nroLinea_Final} ==> son los numeros de linea del codigo que quiero 
+         {nroLinea_inicio} y {nroLinea_Final} ==> son los números de linea del código que quiero 
                                                    cortar, mover o eliminar, si no pongo un nroLinea_Final
                                                    solo trabajara con la linea indicada
          xx ===> es el comando que quiero ejecutar, co = copiar || mo = mover || d = borrar
-         {nroLinea_Destino} ==> es la linia destino en la que quiero pegar o mover (para eliminar no hace
-                                 falta). si en lugar de un numero de linea pongo un punto (.),
+         {nroLinea_Destino} ==> es la linea destino en la que quiero pegar o mover (para eliminar no hace
+                                 falta). Si en lugar de un numero de linea pongo un punto (.),
                                  se va a pegar en la linea actual
-         NOTA: para las lineas relativas al puntero uso los signos + y - antes de cada posicion. 
+         NOTA: para las lineas relativas al puntero uso los signos + y - antes de cada posición. 
             EJEMPLO)
                   :+15,+5mo-20 => muevo el contenido que hay entre 15 y 5 lineas mas abajo del puntero y
                                     las pego 20 lineas arriba del mismo
@@ -115,7 +118,8 @@ Copiar y pegar:
 
 Borrar:
    x  =	Borrar un caracter
-   dw =	Borrar una palabra
+   dw =	Borrar una palabra(a partir del puntero)
+   diw =	Borrar una palabra entera
    d$ =	Borrar parcialmente una linea (borra toda la linea partir del puntero)
    di<elcontenedor> =	Borrar contenido de un "Contenedor" pero sin borrar a este
 			ejemplo: "Hola Mundo" <-- di"--> ""
@@ -124,8 +128,8 @@ Borrar:
 
 
 Reemplazar
-   r : la proxima letra que escriba va a reemplazar a la letra en la que estoy parado
-   R : lo mismo que en minuscula pero de queda en ese modo
+   r : la próxima letra que escriba va a reemplazar a la letra en la que estoy parado
+   R : lo mismo que en minúscula pero de queda en ese modo
    cw: corta la palabra en la que estoy parado (a partir del puntero )y me pone en el modo escritura
    ciw: corta la palabra entera y me pone en el modo de escritura
                                                  	
@@ -139,25 +143,24 @@ Reemplazar
                                                 las cambia por [palabraNueva] pero me pregunta en 
                                                 cada palabra si realmente lo quiero hacer
           unos ejemplos:
-                :%s/\d/"\0"/   --> a todos los numeros les agrega comillas antes y despues
-                    % --> indica que la busqueda sera en todo el documento
+                :%s/\d/"\0"/   --> a todos los números les agrega comillas antes y después
+                    % --> indica que la búsqueda sera en todo el documento
                     s --> sustituir
-                    \d --> exprecion regular, todos los digitos
-                    "\0" --> las comillas son literalmente comillas, \0 indica el patron de busqueda
+                    \d --> expresión regular, todos los dígitos
+                    "\0" --> las comillas son literalmente comillas, \0 indica el patrón de búsqueda
                               (en este caso \d) NOTA: otra forma equivalente a \0 es &
 
 
-      Reemplazar en multiples archivos:
-
+      Reemplazar en múltiples archivos:
 
           :args *.txt                captura todos los archivos txt en la ubicación actual
                                          :args muestra la lista 
-          :argdo %s/dog/chicken/     realiza la sustitucion en todos los archivos 
+          :argdo %s/dog/chicken/     realiza la sustitución en todos los archivos 
           :argdo update              guarda los archivos modificados
 
 
-Plegar codigo(Fold):
-   existen 6 tipos de plegados, aca solo voy a anotar el manual (por defecto) y el indent
+Plegar código(Fold):
+   existen 6 tipos de plegados, acá solo voy a anotar el manual (por defecto), el indent y el syntax
       
     USO:
       zf --> es el operador base para el plegado, este se puede combinar con otras teclas 
@@ -183,7 +186,9 @@ Plegar codigo(Fold):
           :loadview --> al entrar a un archivo, este comando crea todos los plegados guardados
                           en ese archivo
                       
-   El plegado en modo "indent" se crea solo cuando detecta un cambio en la indentacion
+   El plegado en modo "indent" se crea solo cuando detecta un cambio en la indentación
+
+   El plegado en modo "syntax" se crea automáticamente dependiendo de la sintaxis del lenguaje usado
 
 
 Comandos:
@@ -194,55 +199,56 @@ Comandos:
 		:q! = Forzar salir
 		:wq = Guardar y salr
 		:x = Guardar y salir (lo mismo que :wq)
+   
+   Abrir/Editar:
+		:e <nombreDeUnArchivo> = lo abre en otro buffer (ver mas abajo)
+      
+   Buscar Archivos:
+		:find <nombreDeUnArchivo> = lo abre en otro buffer, la diferencia con :e es que este ultimo solo 
+											 busca en la carpeta actual mientras que :find busca en el path.
+                       (hay que modificar el path para que busque donde querramos)
+      Path:
+        :set path? = nos muestra el path
+        :set path+=<RutaAagregar/**> = nos agrega es ruta al path, al final /** para todas las subCarpetas
+                              NOTA: evitar agregar path muy grandes(Con muuuchos archivos)
 
 
 Buscar:
    :/[UnaPalabra] = busca la palabra
-   n = va a la siguente palabra
+   n = va a la siguiente palabra
    N = va a la palabra anterior
 
 		*(sobre una palabra) = busca todas las palabras iguales
-		f<unSimbolo> = pone el puntero en la primera aparicion de <unSimbolo> en lo que queda de linea
-		F<unSimbolo> = pone el puntero en la primera aparicion de <unSimbolo> en lo que paso de la linea 
+		f<unSimbolo> = pone el puntero en la primera aparición de <unSimbolo> en lo que queda de linea
+		F<unSimbolo> = pone el puntero en la primera aparición de <unSimbolo> en lo que paso de la linea 
 
 
 Terminal:
    :shell = nos abre una terminal, para salir escribimos "exit"
-   :terminal = nos abre una terminal en una nueva divicion de pantalla (horizontal)
-   :vert:term = igual que el comando de arriba pero la divicion la hace en vertical
-	 :! <comando> = nos ejecuta el comando de la terminal de linux (buenaaado)
+   :terminal = nos abre una terminal en una nueva división de pantalla (horizontal)
+   :vert:term = igual que el comando de arriba pero la división la hace en vertical
+	 :! <comando> = nos ejecuta el comando de la terminal de linux 
       
-   Abrir/Editar:
-		:e <nombreDeUnArchivo> = lo abre en otra pestaña
-      
-   Buscar Archivos:
-		:find <nombreDeUnArchivo> = lo abre en otra pestaña, la diferencia con :e es que este ultimo solo 
-											 busca en la carpeta actual mientras que :find busca en el path.
-                       (hay que modificar el path para que busque donde querramos)
-   Path:
-     :set path? = nos muestra el path
-     :set path+=<RutaAagregar/**> = nos agrega es ruta al path, al final /** para todas las subCarpetas
-                           NOTA: evitar agregar path muy grandes(Con muuuchos archivos)
 
 
 Comando Global:
    El comando global de Vim es utilizado para ejecutar un comando de la línea de 
    comandos en múltiples líneas de manera simultánea.
    
-   :g/patron/comando  --> "patron" puede ser una palabra o una exprecion regular
+   :g/patron/comando  --> "patron" puede ser una palabra o una expresión regular
 
     Ejemplo:
 
         :g/console/d  --> en todas las LINEAS que contengan la palabra "console" le aplica el comando "d"
                             (delete)
 
-        :g!/console/d  --> el g! indica todas las lines que NO contengan la palabra "console"
+        :g!/console/d  --> el g! indica todas las lineas que NO contengan la palabra "console"
 
-        :g/./normal A;  --> con el . indico cualquier caracter (cualquier liena que no este vacia).
-                            con "normal" indico que lo siguiente sega un comando valido para ese modo
+        :g/./normal A;  --> con el . indico cualquier caracter (cualquier linea que no este vacía).
+                            Con "normal" indico que lo siguiente sega un comando valido para ese modo
                             con A indico que voy a ingresar al modo Insertar al final de la linea
                             ; es lo que voy a escribir
-                            En resumen ese comando agrega un ; al final de cada liena que no este vacia
+                            En resumen ese comando agrega un ; al final de cada linea que no este vacía
 
 
 Otros:
@@ -252,28 +258,30 @@ Otros:
 			Si tengo texto seleccionado lo aplica a todo el codigo
    '. = salta a la ultima linea editada
    .  = repetir el ultimo comando 
-   ;  = repite el ultimocomando de movimiento
+   ;  = repite el ultimo comando de movimiento
    J  = une la linea inferior a la actual	
    :smile = ¡Sonrie!
    gUiw y guiw = pasan la palabra a MAYUSCULAS o MINUSCULAS respectivamente
-   :ab <abreviatura> <texto> = crea una abrebiatura para el texto indicado.  en el M.I, puedo escribir lo que elegi como abrebiatura y luego de un espacio se va a generar la palabra conpleta
+   :ab <abreviatura> <texto> = crea una abreviatura para el texto indicado. En el M.I, puedo escribir lo que elegí como abreviatura y luego de un espacio se va a generar la palabra completa
    Ctrl-x y Ctrl-a = si estoy parado sobre un numero, aumento o disminuyo su valor
 
 
 Moverse entre archivos:
-   por ejemplo cuando importo una funcion de otro archivo
+   por ejemplo cuando importo una función de otro archivo
 
-   gd : me lleva a la definicion de una funcion dentro del mismo archivo
-   gf : me lleva a la definicion de una funcion a otro archivo (me cambia de
-			 archivo, por eso primero tengo que guardar cambios) 
+   gd : me lleva a la definición de una función dentro del mismo archivo
+   gf : me lleva a la definición de una función a otro archivo (me cambia de
+			 archivo, por eso primero tengo que guardar cambios(con la config por defecto)) 
 
 	 Para volver al archivo anterior: Ctrl + o
 	 Para ir al archivo siguiente : Ctrl + i
 
 
 Diccionario:
-   Para usar el diccionario tengo que havilitarlo en el .vimrc:
-      
+   Para usar el diccionario tengo que habilitarlo en el .vimrc(mas abajo) con las siguiente lineas:
+      nnoremap <F2> :setlocal spell! spelllang=es<CR>
+      nnoremap <F4> :setlocal spell! spelllang=en<CR>
+
    ]s : me pasa sobre el primer error
    z= : me lista las posibles opciones
 
@@ -281,12 +289,12 @@ Diccionario:
 Marcadores:
    :marks = muestra todas las marcas
 
-   Locales: (unico en cada buffer):
-      m<letra> = marca una posicion, estableciendo la marca <letra> en la pocicon actual
+   Locales: (único en cada buffer):
+      m<letra> = marca una posición, estableciendo la marca <letra> en la posición actual
       '<letra> = salta a la linea donde se encuentra <letra>
 
    Globales: (valido para todos los buffers):
-      m<letraMayuscula> = marca una posicion, estableciendo la marca <letraMayuscula> en la pocicon actual
+      m<letraMayuscula> = marca una posición, estableciendo la marca <letraMayuscula> en la posición actual
       '<letraMayuscula> = salta a la linea donde se encuentra <letraMayuscula>
 
 
@@ -296,23 +304,23 @@ Registros:
    
    :register = muestra todos los registros
    
-   para pegar el contenido de un registro uso la "p" (pegar)
+   Para pegar el contenido de un registro uso la "p" (pegar)
    
    "<Char>p = pega el contenido del registro <Char>  En el M.N
    Ctrl-R <char> = pega el contenido del registro <Char>  En el M.I
    
-   Registros automaticos:
-      guardan en un registro automaticamente, hay muchos aca solo voy a mostrar uno
+   Registros automáticos:
+      guardan en un registro automáticamente, hay muchos acá solo voy a mostrar uno
       El ultimo texto COPIADO de guarda en el registro "0 
    
    Registros nominales:
-      Hay que ser explisitos sobre en cual registro guardar el texto y van de las letras "a" a la "z"
+      Hay que ser explícitos sobre en cual registro guardar el texto y van de las letras "a" a la "z"
    
       "<Char><Command>
    
       Ejemplos:
        "ayiw <-- en el registro "a" guardo la copia de la palabra entera 
-             (al ser una copia tambien lo guarda automaticamente en 
+             (al ser una copia también lo guarda automáticamente en 
              el registro "0)
        "zdd  <-- en el registro "z" guardo toda la linea que corte
    
@@ -324,7 +332,7 @@ Registros:
 
 
 Macros:
-   Las macros son algo asi como pedasos de codigo que me puedo guardar y ejecutar mas 
+   Las macros son algo así como pedazos de código que me puedo guardar y ejecutar mas 
    adelante repetidamente.
          
    NOTA: las macros se guardan en los registros nominales (se acceden de otra forma),
@@ -337,15 +345,15 @@ Macros:
       @@ = ejecuta la ultima macro ejecutada
 
         EJEMPLO)
-            qa0gU$jq = esto lo que hace es pasar a mayusculas toda la linea
+            qa0gU$jq = esto lo que hace es pasar a mayúsculas toda la linea
 
-                qa  --> empieza a grabar una macro en elregistro a
+                qa  --> empieza a grabar una macro en el registro a
                 0   --> se para al principio de la linea
-                gU$ --> pasa a mayuscula todo el texto hasta el final de la linea
+                gU$ --> pasa a mayúscula todo el texto hasta el final de la linea
                 j   --> baja de la linea
-                q   --> detiene la grabacion de la linea
+                q   --> detiene la grabación de la linea
 
-                Ahora si escribo @a se ejecuta esa macro y toda la linea se pasa a mayuscula
+                Ahora si escribo @a se ejecuta esa macro y toda la linea se pasa a mayúscula
 
 
       Modificar una macro ya existente:
@@ -357,24 +365,24 @@ Macros:
             3ro)  "<char>y$  --> lo vuelvo a guardar en el registro
 
 
-            NOTA: algunos caracteres se reprecentan de una forma distinta por vim, con las teclas
+            NOTA: algunos caracteres se representan de una forma distinta por vim, con las teclas
                   Ctrl-v + <Char> me escribe su forma, EJ Esc = 
 
 
 Ventanas-pestañas-buffers:
    Buffers:
       Son espacio en memoria cada vez que abro una nueva pestaña:
-      NOTA: cerrar una ventana o pestaña no hace que el buffer que representan tambien se cierre
-   Comandos:  :ls  <-- me muestra todos los boffers	
+      NOTA: cerrar una ventana o pestaña no hace que el buffer que representan también se cierre
+   Comandos:  :ls  <-- me muestra todos los buffers	
      :bn  <-- me muevo al siguiente buffer (:bnext)
      :bp  <-- me muevo al buffer anterior (:bprevious)
      :b + nombreDeUnArchivo  <-- me muevo a ese archivo  (si lo tengo en el buffer)
-     :b + unNumero  <-- me muevo al buffer que ocupe la pocicion del numero
+     :b + unNumero  <-- me muevo al buffer que ocupe la posición del numero
      
      :bd + unNumero <-- elimina el buffer de ese numero (buffer delete)
      :bd <-- elimina el buffer en el que estoy
      :bd + nombreDeUnArchivo <-- elimina el buffer con ese nombre
-     :qall <-- cierra todos los buffers 
+     :qall <-- cierra todos los buffers(y sale de vim) 
      :qwall <-- guarda y cierra todos los buffers 
           
    Ventanas:
@@ -398,7 +406,7 @@ Ventanas-pestañas-buffers:
             Ctrl-w =  = iguala el tamaño de todas las ventanas
 
    Pestañas:
-      una pestaña es una coleccion de ventana	
+      una pestaña es una colección de ventanas
      Comandos:
       vim -p [lista de archivos] = en la terminal, abre todos los archivos en pestañas diferentes
       :tabnew <-- abre una nueva ventana sin nombre (:tabe)
@@ -410,53 +418,71 @@ Ventanas-pestañas-buffers:
 
 
 Sesiones:
-   Las sesiones guardan la informacion de todas las ventanas(Incluyendo el diseño)
+   Las sesiones guardan la información de todas las ventanas(Incluyendo el diseño)
    Por ejemplo si tengo tres ventanas y cierro el archivo, al volver a abrirlo ya no las voy
-   a tener, para eso estan las sesiones
+   a tener, para eso están las sesiones
 
-   Creado una sesion:
-      :mksession ==> me crea la sesion (y un archivo extra en el directorio actual)
+   Creado una sesión:
+      :mksession ==> me crea la sesión (y un archivo extra en el directorio actual)
       :mksession [una/ruta] ==> lo mismo de arriba pero me crea el archivo en la ruta descrita
 
    Abriendo una sesion
-      :source Session.vim ==> abre la sesion (si tengo el archivo en el directorio actual)
-      vim -S Session.vim  ==> (desde la terminal, fuera de vim) abre vim con la sesion ya cargada
+      :source Session.vim ==> abre la sesión (si tengo el archivo en el directorio actual)
+      vim -S Session.vim  ==> (desde la terminal, fuera de vim) abre vim con la sesión ya cargada
 
 
 Suspender
-	 Ctrl-z o :stop  <-- suspende la ejecucion y me manda a la terminal
-	 fg (desde la terminal, no desde vim) <-- retoma la ejecucion del codigo
+	 Ctrl-z o :stop  <-- suspende la ejecución y me manda a la terminal
+	 fg (desde la terminal, no desde vim) <-- retoma la ejecución del código
 
 
 Archivos cifrados:
-   para crear un archivo sifrado:
+   para crear un archivo cifrado:
       vim -x {nombre_Archivo}  una vez dentro me va a pedir la contraseña para luego 
                                poder descifrarlo
 
-   para cifrar un archivo ya creado:
+   Para cifrar un archivo ya creado:
       :X   luego me va a pedir que elija las contraseñas
 
-   para eliminar un cifrado:
-      una vez dentro :set key=   no tiene que haber nada despues del = 
+   Para eliminar un cifrado:
+      una vez dentro :set key=   no tiene que haber nada después del = 
 
    NOTA IMPORTANTE
    SUPER IMPORTANTE
-      si alguien abre el archivo sin decifrar, vera codigo sin sentido, pero si lo modifica y lo guarda
-      todo el archivo quedara corrupto y no podra descifrar luego
+      si alguien abre el archivo sin descifrar, vera codigo sin sentido, pero si lo modifica y lo guarda
+      todo el archivo quedara corrupto y no se podrá descifrar luego
       RECOMIENDO EVITAR ENCRIPTAR ARCHIVOS ASI
 
 
+Formas de abrir VIM:
+   todos estas formas están explicadas también en sus respectivas secciones
+
+   Vim sin ninguna configuración ni plugins:
+      vim -u NONE <archivo>
+
+   Vim con una "Session" ya activa:
+      vim -S Session.vim 
+      
+   Vim con varias pestañas ya cargadas
+      vim -p [lista de archivos] 
+
+   Vim solo para ver (no permite modificar)   
+      view {archivo} 
+
+
 VIMRC:
-   en el vimrc es donde se guardan todas las configuraciones del editor
+   en el .vimrc es donde se guardan todas las configuraciones del editor
+    en los entornos linux se encuentra en la raíz (créalo si no existe)
 
-   para abrir VIM sin tener en cuenta esta configuracion y/o plugins escribo en la terminal:
-
+   Para abrir VIM sin tener en cuenta esta configuracion y/o plugins escribo en la terminal:
     vim -u NONE => sin nada, como viene por defencto vim
+
+   Nota: algunos comando aquí explicados pueden cambiar dependiendo de como configuremos el vimrc
 
 
 PLUGGINS!!! ---------------------------
    voy a usar el gestor de plugins PlugVIM, pero hay muchos mas.
-   Cada pluggin puede tener su propia configuracion y propios comandos, tener eso en mente
+   Cada pluggin puede tener su propia configuración y propios comandos, tener eso en mente
 	 a la hora de buscar e instalar uno
          
    1ro)  tengo que instalar PlugVim desde su gitHub oficial
@@ -481,67 +507,67 @@ PLUGGINS!!! ---------------------------
                
    ---Comandos y configuraciones de mis pluggins
        tengo asignada la tecla lider el "espacio".
-       si lo quiero cambiar escribo: let mapleader=" "  (asi esta ahora)
-   ------------------------
-   Plug 'scrooloose/nerdtree'  <-- este plugin nos permite abir un arbol de archivos (Buenardo)
+
+  Mis Pluggins:
+
+   -----------------------
+   Plug 'scrooloose/nerdtree'  <-- este plugin nos permite abrir un árbol de archivos (Buenardo)
       config: 
          let NERDTreeQuitOnOpen = 1  <-- para que se cierre una vez cambie de carpeta
-         nmap <Leader>nt :NERDTreeFind<CR>  <-- para abrir el plugging (teclaLider + n + t)
+         nmap <Leader>nt :NERDTreeToggle<CR>  <-- para abrir el plugging (teclaLider + n + t)
       USO:
          m = me muestra el menu y todas las opciones
          o = abre el archivo/carpeta
          s = abre el archivo pero en pantalla dividida
+         t = abre el archivo pero en otra pestaña
    -----------------------
 	 Plug 'christoomey/vim-tmux-navigator'  <-- este plug esta bueno con el anterior, me deja cambiar de pestaña con el teclado
      USO:
        Ctrl + las teclas de movimiento (h  j  k  l ) para movernos entre archivos
 	 -----------------------
-   Plug 'preservim/nerdcommenter'  <-- Este pluggin nos permite comnetar y descomentar bloques de codigo
+   Plug 'preservim/nerdcommenter'  <-- Este pluggin nos permite comentar y des-comentar bloques de código
      USO:
-       <Leader>cc nos permite comentar un bloque de codigo seleccionado
-       <Leader>cu nos permite DES-comentar un bloque de codigo seleccionado
-       <Leader>c<space> nos hace un toggle comment para el codigo seleccionado 
+       <Leader>cc nos permite comentar un bloque de código seleccionado 
+       <Leader>cu nos permite DES-comentar un bloque de código seleccionado
+       <Leader>c<space> nos hace un toggle comment para el código seleccionado 
    -----------------------
-   Plug 'jiangmiao/auto-pairs'  <-- este pluggin lo que hace es cerrar cualquier tipo de llave al momento de crearla
-   -----------------------
-   Prettier  <-- formatea el codigo
+   fzf  <-- es un buscador de archivos bastante potente
      USO:
-       <Leader>p  para formater al codigo seleccionado
-   ----------------------
-   fzf  <-- es un buscardor de archivos bastante potente
-     USO:
-      <Leader>fi = nos lista toodos los archivos de esa carpeta		
-      <Leader>ag = nos lista todos los archivos que contengan una palabra espesifica
+      <Leader>fi = nos lista todos los archivos de esa carpeta que contengan una palabra especifica		
+      <Leader>gf = nos lista todos los archivos de esa carpeta que contengan una palabra especifica y que ademas estén trackeados por Git
+      <Leader>ag = nos lista todos los archivos que contengan una palabra especifica
    -----------------------
-   zeavim   <--- es un buscador de documentacion offline
+   zeavim   <--- es un buscador de documentación offline
       USO 
         <Leader><Leader>z = me abre en la barra de comandos un Docset: <lenguajeDeProg>
-                            ahi escribo el lenguaje del que quiero preguntar y luego enter
-                            Despues me pide la funcionalidad espesifica que quiero buscar
+                            ahí escribo el lenguaje del que quiero preguntar y luego enter
+                            Después me pide la funcionalidad especifica que quiero buscar
    -------------------------
    Bracey   <--- es un live server para html, css y javascript
       USO: 
-        :Bracey  --> abre el live server (prestar atencion en que puerto) 
+        :Bracey  --> abre el live server (prestar atención en que puerto) 
         :BraceyStop  --> cierra el live server
         :BraceyReload --> recarga la pagina
    -------------------------
-   Vim-Surround  <-- me permite insertar contenido antes y despues de un texto
+   Vim-Surround  <-- me permite insertar contenido antes y después de un texto
       USO:
          cambiando un contenedor:
             cs + actual + nuevo 
                cs = (change surronding)
             ejemplo:
-               cs"' --> dentro de una palabra com comillas doble, lo que hace es cambiarlas por unas simples
+               cs"' --> dentro de una palabra con comillas doble, lo que hace es cambiarlas por unas simples
                cs'<p>  --> cambia lo que esta entre comillas simples por una etiqueta p
                cst"  --> (change surrounding tag) cambia el tag por unas comillas
          Eliminando un contenedor
             ds + contenedor
+               ds = (delete surround)
                ejemplo:
                   ds"  --> elimina las comillas
          Agregar un contenedor:
             ys + elem + contenedor
+               ys = (you surround)
                ejemplo:
-                  ysiw{  --> agrega una llave antes y despues de la pabra en la que estoy parado
+                  ysiw{  --> agrega una llave antes y después de la palabra en la que estoy parado
                         NOTA: si uso (,[ o { se va a agregar un espacio entre este y la palabra,
                         no pasa si uso ),} o ]
             yss + contenedor
@@ -554,9 +580,9 @@ PLUGGINS!!! ---------------------------
                    texto_seleccionado => S "  => "texto_seleccionado"
                    texto_seleccionado => S (  => ( texto_seleccionado )
    -----------------------
-   UltiSnips  <---- me permite crear mis propios snippets (hay otro pluggin que ya trae un monton)
+   UltiSnips  <---- me permite crear mis propios snippets (hay otro pluggin que ya trae un montón)
       USO:
-         <F5> despues de la palabra clave
+         <F5> después de la palabra clave
    ---------------------
    Emmet  <--- El emmet de toda la vida
       USO:
@@ -568,3 +594,26 @@ PLUGGINS!!! ---------------------------
          que las tengan, ademas de darme la oportunidad de ir a una de ellas.
          Tenes que probarlo para entenderlo, es dificil de explicar
    ---------------------
+   CoC <--- es como un super plgguin, ofrece muchas cosas 
+
+      USO básico:
+         K => muestra la documentación
+         <Leader>rn => renombra el texto que tengamos bajo el puntero
+                        y lo cambia donde corresponda 
+         <Leader>ac => nos muestra todas la acciones que puede hacer sobre 
+                        el texto en el que estemos parados
+         <Leader>Cd => nos lista todos los errores de código
+         <Leader>Ce => nos lista todas las extensiones que tengamos instaladas(mas abajo)
+         <Leader>Cc => nos lista todos los comandos que CoC puede realizar
+         <Leader>Co => nos muestra un outLine de nuestro archivo
+
+      Coc Extensions:
+         Coc nos permite extender su funcionalidad instalando determinados "paquetes"
+
+         coc-emmet => autocompletado para HTML, JSX y TSX
+         coc-prettier => formateo de código (<Leader>p)
+         coc-pairs => cierra automáticamente los: () [] {} "" '' ``  
+         coc-snippets => nos permite manejar los snippets de UltiSnips  y otros de forma mas cómoda
+
+      También hay que instalar las extensiones para cada lenguaje que queramos usar para 
+      tener el autocompletado 
