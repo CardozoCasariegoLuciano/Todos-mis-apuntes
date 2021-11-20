@@ -1,0 +1,29 @@
+GitHub Cli es una interfaz de linea de comando para usar las funciones de Git Hub desde la terminal (es algo distinto a simplemente Git)
+
+1ro) se tiene que instalar desde su pagina: https://cli.github.com/
+2ro) desde la terminar usar el comando:  gh auth login  para enlazar nuestra cuenta de gitHub
+3ro  usar
+
+Algunos comandos interesantes:
+
+gh browse : 
+            Nos abre el repo en el que estemos parado en nuestro navegador por defecto
+            
+            Algunas etiquetas que acepta:
+              -b <string> : nos abre directamente con otra RAMA seleccionada (la que le pasemos por <string>)
+              -n : mustra la URL del repo en lugar de abrirlo en el navegador
+              -R <owner/repo>: Abre en el navegador otro repo distinto
+              -s : nos abre en la pestaña de configuracion del repo
+              -w : nos abre en la wiki del repo
+
+gh repo create <name>:
+              Nos crea un nuevo repo
+
+              Etiquetas:
+
+              --public :lo hace publico
+              --private : lo hace privado
+              -d <string> : nos permite crearle una descripción al repo
+
+
+Bueno en realidad hay un montooon de comandos, pero esos dos son los que mas usaría, cualquier cosa en el paso 1ro tengo el link y ahí esta la DOC
