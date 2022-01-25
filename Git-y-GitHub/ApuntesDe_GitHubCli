@@ -24,6 +24,9 @@ gh repo create <name>:
               --public :lo hace publico
               --private : lo hace privado
               -d <string> : nos permite crearle una descripción al repo
+              --source (-s) : nos permite crear el repo remoto usando uno local ya existente
+                  Ejemplo: --source=. o --source=~/home/luciano/loQueSea
+              --push: nos sube a github directamente lo que tengamos comiteado
 
 
 Bueno en realidad hay un montooon de comandos, pero esos dos son los que mas usaría, cualquier cosa en el paso 1ro tengo el link y ahí esta la DOC

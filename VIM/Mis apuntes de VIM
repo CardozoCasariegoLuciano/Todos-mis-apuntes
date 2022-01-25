@@ -405,6 +405,11 @@ Ventanas-pestañas-buffers:
          General:
             Ctrl-w =  = iguala el tamaño de todas las ventanas
 
+      Reposicionando las ventanas:
+         Ctrl-w + H => cambia las ventanas de horizontal a vertical 
+         Ctrl-w + J => cambia las vetanas de vertical a horizontal 
+         Crrl-w + r => Cambia de posición las ventanas
+
    Pestañas:
       una pestaña es una colección de ventanas
      Comandos:
