@@ -485,7 +485,7 @@ VIMRC:
    Nota: algunos comando aquí explicados pueden cambiar dependiendo de como configuremos el vimrc
 
 
-PLUGGINS!!! ---------------------------
+PLUGGINS!!! 
    voy a usar el gestor de plugins PlugVIM, pero hay muchos mas.
    Cada pluggin puede tener su propia configuración y propios comandos, tener eso en mente
 	 a la hora de buscar e instalar uno
@@ -598,6 +598,13 @@ PLUGGINS!!! ---------------------------
          <Leader>s : Me deja escribir dos letras, luego me marca todas las palabras en el archivo
          que las tengan, ademas de darme la oportunidad de ir a una de ellas.
          Tenes que probarlo para entenderlo, es dificil de explicar
+   ---------------------
+   GitGutter  <----- integracion con gitHub
+      Muestra las lineas agregadas, eliminadas o editadas
+      USO:
+         <Leader>hp  => muestra una preview de la linea marcada
+         <Leader>hs  => mete en el stage la pedazo de codigo marcado
+         <Leader>hu  => deshace el pedazo de codigo
    ---------------------
    CoC <--- es como un super plgguin, ofrece muchas cosas 
 
